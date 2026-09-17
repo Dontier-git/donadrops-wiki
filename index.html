@@ -29,7 +29,7 @@
 <body>
 <nav>
   <h1>DonaDrops</h1>
-  <p>v2.0.0 &middot; by Donatier</p>
+  <p>v2.0.1 &middot; by Donatier</p>
   <a href="#intro">Introducción</a>
   <a href="#commands">Comandos</a>
   <a href="#permissions">Permisos</a>
@@ -90,7 +90,7 @@
 </table>
 <p>Alias: <code>/donadrops</code>. Todos los argumentos tienen autocompletado (nombres de cofre, categorías, 1-5, jugadores online).</p>
 <div class="callout">
-Además de <code>/dd spawn &lt;nombre&gt;</code>, DonaDrops trae un spawneador automático por probabilidad (ver <a href="#spawn-system">Spawneo automático</a>): cada cofre respeta su propio <code>spawn-chance</code> y <code>spawn-cooldown-seconds</code> (o los valores globales de <code>config.yml</code> si no los define). Un cofre con <code>spawn: true</code> en su archivo nunca usa este buscador aleatorio: solo aparece en los puntos fijos creados con <code>/dd createspawn</code>.
+Además de <code>/dd spawn &lt;nombre&gt;</code>, DonaDrops trae un spawneador automático por probabilidad (ver <a href="#spawn-system">Spawneo automático</a>): en cada intento, el plugin sortea individualmente el <code>spawn-chance</code> de cada cofre (o el valor global si no lo define) para armar una lista de "candidatos" de ese ciclo, y después elige uno al azar entre esos candidatos. Un cofre con <code>spawn-chance: 100</code> entra SIEMPRE a esa lista, así que si es el único con 100% termina eligiéndose casi siempre (salvo que su propio cooldown o el global todavía no se cumplan). Un cofre con <code>spawn: true</code> en su archivo nunca usa este buscador aleatorio: solo aparece en los puntos fijos creados con <code>/dd createspawn</code>, y solo en los mundos permitidos por su <code>perworld</code> (ver arriba).
 </div>
 
 <h2 id="permissions">Permisos</h2>
@@ -331,18 +331,7 @@ DonaDrops nunca carga ni genera un chunk solo para comprobar un posible punto de
 <tr><td><code>messages</code></td><td>Título, subtítulo y mensajes de chat al generar un cofre y al reclamarlo.</td></tr>
 <tr><td><code>gui-fillers</code></td><td>Panel decorativo de cada menú: material, nombre y qué slots rellena (<code>border</code> o una lista de slots separados por coma, ej. <code>"0,1,7,8"</code>).</td></tr>
 <tr><td><code>custom-heads</code></td><td>Texturas base64 reutilizables por los menús de <code>/gui</code>.</td></tr>
-<tr><td><code>update-checker</code></td><td>Avisa por chat cuando hay una versión nueva del plugin (ver <a href="#update-checker">Aviso de actualizaciones</a> más abajo).</td></tr>
 </table>
-
-<h3 id="update-checker">Aviso de actualizaciones</h3>
-<p>Cuando está activo, el plugin va revisando cada tanto si salió una versión nueva y le avisa por chat a los jugadores con el permiso <code>donadrops.notify</code> (staff, admins, o quien vos definas). No hace falta estar pendiente ni entrar a mirar un foro: si te conectás y hay una versión más nueva, te enterás ahí mismo.</p>
-<pre><code>update-checker:
-  enabled: true
-  check-every-minutes: 60
-  check-url: "https://api.spigotmc.org/legacy/update.php?resource=138594"
-  resource-page: "https://www.spigotmc.org/resources/donadrops.138594/"</code></pre>
-<p><code>check-url</code> ya viene apuntando por defecto a la <a href="https://www.spigotmc.org/resources/donadrops.138594/">página de SpigotMC</a> del plugin, así que no hace falta tocar nada: apenas subas una versión nueva ahí, el aviso por chat empieza a salir solo. <code>resource-page</code> es el link que se muestra junto al aviso para que el staff vaya directo a descargarla.</p>
-<p>Si preferís usar tu propia URL (por ejemplo un <code>version.txt</code> en un repo de GitHub que devuelva solo el número de versión en texto plano), simplemente reemplazá <code>check-url</code> por esa. Mientras <code>check-url</code> quede vacío, esta opción no hace nada aunque <code>enabled</code> esté en <code>true</code>.</p>
 
 <h2 id="categories">categories.yml</h2>
 <p>Por defecto: <code>common</code>, <code>rare</code>, <code>epic</code>, <code>elite</code>, <code>legendary</code>, cada una con su propio <code>weight</code>. Puedes añadir, quitar o renombrar categorías libremente; el plugin las lee dinámicamente. El <code>weight</code> queda disponible para cualquier sistema propio de sorteo por categoría que quieras construir sobre estos datos.</p>
@@ -367,6 +356,10 @@ inventory-size: 54
 # spawneador automático. true = SOLO aparece en los puntos fijos creados con
 # /dd createspawn &lt;nombreSpawn&gt; este_cofre (ver "Puntos de spawn fijos").
 spawn: false
+
+# TIP: [] (vacío, default) = sin restricción, aparece en cualquier mundo permitido.
+# Agregá nombres de mundo para limitarlo a esos mundos nada más, ej: ["world"].
+perworld: []
 
 chest-flags:
   - permission-required
@@ -426,15 +419,10 @@ spawn-interval-seconds: 5
 total-chests: 20
 
 groups:
-  ores:
-    weight: 60
+  main:
+    weight: 100
     drops:
-      - "common_ores"
-      - "rare_gems"
-  legendary:
-    weight: 10
-    drops:
-      - "legendary_vault"
+      - "donadrops"
 
 messages:
   start-chat: "&amp;6&amp;lDrops Event &amp;fhas started! Keep an eye out for chests."
@@ -451,16 +439,17 @@ messages:
 <tr><td><code>auto-start</code> / <code>auto-interval-minutes</code></td><td>Si está en <code>true</code>, el evento se dispara solo cada tantos minutos (por defecto, cada 1 hora) mientras <code>enable</code> también sea <code>true</code>.</td></tr>
 <tr><td><code>spawn-interval-seconds</code></td><td>Mientras el evento está activo, aparece un cofre nuevo cada tantos segundos (por defecto 5).</td></tr>
 <tr><td><code>total-chests</code></td><td>El evento termina solo apenas se llega a esta cantidad de cofres generados.</td></tr>
-<tr><td><code>groups</code></td><td>Cada grupo tiene un <code>weight</code> (peso relativo frente a los demás grupos) y una lista <code>drops</code> con nombres de cofres de tu carpeta <code>/drops</code>. En cada tick el plugin sortea primero el grupo, y dentro de ese grupo, un cofre al azar.</td></tr>
+<tr><td><code>groups</code></td><td>Cada grupo tiene un <code>weight</code> (peso relativo frente a los demás grupos) y una lista <code>drops</code> con nombres de cofres de tu carpeta <code>/drops</code>. En cada tick el plugin sortea primero el grupo, y dentro de ese grupo, un cofre al azar. El ejemplo de fábrica ya apunta al cofre por defecto <code>donadrops</code>: si lo borrás o le cambiás el nombre, actualizá también estos grupos.</td></tr>
 <tr><td><code>messages</code></td><td>Mensajes de chat y título/subtítulo al empezar y al terminar, más el aviso del próximo evento (<code>%time%</code> se reemplaza por el tiempo restante, ej. "1h 0m 0s").</td></tr>
 </table>
-<p>Se maneja con <code>/dd event start &lt;nombre&gt;</code>, <code>/dd event stop [nombre]</code> y <code>/dd event list</code>. Solo puede haber un evento activo a la vez.</p>
+<p>Se maneja con <code>/dd event start &lt;nombre&gt;</code>, <code>/dd event stop [nombre]</code> y <code>/dd event list</code>. Solo puede haber un evento activo a la vez. Mientras el evento está corriendo, todos los jugadores conectados ven una <b>bossbar</b> mostrando cuántos cofres van generados sobre el total (se actualiza sola y desaparece al terminar el evento).</p>
+<p>Para ver cuánto falta para el próximo evento (o para el próximo cofre automático random), usá los placeholders <code>%donadrops_next_event_time%</code> y <code>%donadrops_next_chest_time%</code> — ver <a href="#placeholders">Placeholders</a>.</p>
 
 <h2 id="spawn-points">Puntos de spawn fijos</h2>
 <p>Con <code>/dd createspawn &lt;nombreSpawn&gt; &lt;nombreCofre&gt;</code> creás un punto de aparición fijo, en tu ubicación actual, ligado a un cofre concreto. Se guarda como un archivo dentro de la carpeta <code>/Spawners</code>, nombrado <code>&lt;cofre&gt;_&lt;nombreSpawn&gt;.yml</code>:</p>
-<pre><code># Spawners/legendary_vault_spawnroom.yml
+<pre><code># Spawners/donadrops_spawnroom.yml
 spawn-name: "spawnroom"
-chest: "legendary_vault"
+chest: "donadrops"
 world: "world"
 x: 120
 y: 68
@@ -565,6 +554,7 @@ texture: "VALOR_DE_LA_TEXTURE"</code></pre>
 <tr><td><code>%donadrops_event_chests_spawned%</code></td><td>Cofres generados en lo que va del evento activo.</td></tr>
 <tr><td><code>%donadrops_event_chests_total%</code></td><td><code>total-chests</code> del evento activo.</td></tr>
 <tr><td><code>%donadrops_next_event_time%</code></td><td>Tiempo formateado (ej. <code>45m 12s</code>) hasta el próximo evento automático, entre todos los eventos configurados.</td></tr>
+<tr><td><code>%donadrops_next_chest_time%</code></td><td>Tiempo restante del cooldown global antes de que el spawneador automático pueda intentar aparecer otro cofre random.</td></tr>
 <tr><td><code>%donadrops_next_event_seconds%</code></td><td>Lo mismo, pero en segundos totales (útil para barras de progreso).</td></tr>
 <tr><td><code>%donadrops_event_&lt;nombre&gt;_next_time%</code></td><td>Tiempo hasta el próximo disparo automático de ESE evento en particular.</td></tr>
 <tr><td><code>%donadrops_player_opened%</code></td><td>Cantidad de cofres que el jugador reclamó por completo.</td></tr>
