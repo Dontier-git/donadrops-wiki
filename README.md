@@ -1,2 +1,2 @@
-# donadrops-wiki
-donadrops wiki
+# DonaDrops Wiki
+© 2026 DonaDrops Wiki. All rights reserved.
