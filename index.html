@@ -3,7 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <title>DonaDrops Wiki</title>
-<link rel="stylesheet" href="style.css">
+<style>
+  :root{--bg:#1b1b1f;--panel:#242429;--accent:#e0a72b;--text:#e7e7ea;--muted:#9a9aa3;--code:#141417;}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);display:flex;}
+  nav{width:260px;min-height:100vh;background:var(--panel);padding:24px 16px;position:sticky;top:0;height:100vh;overflow-y:auto}
+  nav h1{font-size:20px;color:var(--accent);margin:0 0 4px}
+  nav p{color:var(--muted);font-size:12px;margin:0 0 24px}
+  nav a{display:block;color:var(--text);text-decoration:none;padding:6px 10px;border-radius:6px;font-size:14px;margin-bottom:2px}
+  nav a:hover{background:#33333a}
+  main{flex:1;padding:40px 60px;max-width:900px}
+  h2{color:var(--accent);border-bottom:1px solid #34343c;padding-bottom:8px;margin-top:48px}
+  h3{color:#f0c56b;margin-top:28px}
+  p,li{line-height:1.6;color:#d7d7dc}
+  code{background:var(--code);padding:2px 6px;border-radius:4px;font-size:13px;color:#9fe08a}
+  pre{background:var(--code);padding:16px;border-radius:8px;overflow-x:auto;border:1px solid #2e2e35}
+  pre code{background:none;padding:0;color:#d7d7dc}
+  table{border-collapse:collapse;width:100%;margin:16px 0}
+  th,td{border:1px solid #34343c;padding:8px 10px;text-align:left;font-size:14px}
+  th{background:#2b2b32;color:var(--accent)}
+  .tag{display:inline-block;background:#332a12;color:var(--accent);padding:2px 8px;border-radius:4px;font-size:12px;margin-left:6px}
+  .callout{border-left:3px solid var(--accent);background:#2a2620;padding:12px 16px;border-radius:0 6px 6px 0;margin:16px 0}
+</style>
 </head>
 <body>
 <nav>
@@ -289,14 +310,14 @@ DonaDrops nunca carga ni genera un chunk solo para comprobar un posible punto de
     max-amount: 4</code></pre>
 
 <h2 id="config">config.yml</h2>
-<p>Controla el comportamiento global: probabilidad de aparición de referencia, segundos de espera antes de poder abrir, símbolo de estrella, título por defecto (centrado automáticamente), tipo de bloque/inventario global, flags globales (ver <a href="#flags">Chest Flags</a>), spawnear fuera del border, sonidos por acción, mensajes/títulos con <code>%x% %y% %z% %world% %name%</code>, paneles decorativos de cada GUI y cabezas con textura reutilizables.</p>
-<h3>Restricción por mundo</h3>
+<p>Controla el comportamiento global: probabilidad de aparición de referencia, segundos de espera antes de poder abrir, símbolo de estrella, título por defecto (centrado automáticamente), tipo de bloque/inventario global, flags globales (ver <a href="#flags">Chest Flags</a>), spawnear fuera del border, sonidos por acción, mensajes/títulos con <code>%x% %y% %z% %world% %name%</code>, paneles decorativos de cada GUI y cabezas con textura reutilizables.</p><h3>Restricción por mundo</h3>
 <pre><code>perworldchest:
   Enable: false
   list-worlds:
     # - "world"
     # - "world_nether"</code></pre>
 <p>Con <code>Enable: false</code> (valor por defecto), los cofres pueden aparecer en todos los mundos existentes. Con <code>true</code>, solo se permiten los mundos escritos en <code>list-worlds</code>, uno por línea.</p>
+
 <table>
 <tr><th>Sección</th><th>Qué controla</th></tr>
 <tr><td><code>general</code></td><td>Probabilidad de referencia, tiempo de bloqueo, símbolos de estrella, colores de estrellas y título por defecto.</td></tr>
@@ -476,8 +497,7 @@ Todo cofre nuevo creado con <code>/dd create</code> incluye esta sección autom�
 <p>El idioma es <b>global para todo el plugin</b>. El selector de idioma del editor muestra todos los idiomas fila por fila y marca claramente el seleccionado. Al elegir uno, DonaDrops cambia inmediatamente <code>config.yml → language</code> (por ejemplo, <code>en</code> pasa a <code>es</code>) y guarda el archivo. No se guarda un idioma independiente por drop/cofre.</p>
 <p>Las traducciones abarcan los mensajes de chat, títulos, avisos y textos internos traducibles de las interfaces. Los textos que tú personalices directamente en los archivos <code>/gui</code> permanecen como los hayas escrito.</p>
 <h2 id="holograms">Hologramas</h2>
-<p>Cada cofre generado tiene un holograma construido con <b>Display Entities</b> (TextDisplay), sin depender de otro plugin de hologramas. Configurable en <code>config.yml → hologram</code>: líneas, altura, escala y <code>text-shadow</code>.</p>
-<p>Además de <code>{name}</code> y <code>{stars}</code>, el holograma puede mostrar el <b>tiempo restante antes del despawn</b> mediante la variable de tiempo configurada para ello.</p>
+<p>Cada cofre generado tiene un holograma construido con <b>Display Entities</b> (TextDisplay), sin depender de otro plugin de hologramas. Configurable en <code>config.yml → hologram</code>: líneas, altura, escala y <code>text-shadow</code>.</p><p>Además de <code>{name}</code> y <code>{stars}</code>, el holograma puede mostrar el <b>tiempo restante antes del despawn</b> mediante la variable de tiempo configurada para ello.</p>
 <div class="callout">
 Si tu servidor corre una versión sin Display Entities, el plugin lo detecta, desactiva los hologramas sin crashear, y avisa una sola vez por consola. El resto del plugin sigue funcionando normal.
 </div>
@@ -541,9 +561,33 @@ texture: "VALOR_DE_LA_TEXTURE"</code></pre>
 <tr><td><code>%donadrops_chest_&lt;nombre&gt;_rarity%</code></td><td>Rareza (1-5) de ese cofre.</td></tr>
 <tr><td><code>%donadrops_chest_&lt;nombre&gt;_category%</code></td><td>Nombre de categoría (con colores) de ese cofre.</td></tr>
 <tr><td><code>%donadrops_event_active%</code></td><td><code>yes</code>/<code>no</code>, si hay un drop event corriendo ahora mismo.</td></tr>
+<tr><td><code>%donadrops_event_name%</code></td><td>Nombre del drop event activo (vacío si no hay ninguno).</td></tr>
+<tr><td><code>%donadrops_event_chests_spawned%</code></td><td>Cofres generados en lo que va del evento activo.</td></tr>
+<tr><td><code>%donadrops_event_chests_total%</code></td><td><code>total-chests</code> del evento activo.</td></tr>
+<tr><td><code>%donadrops_next_event_time%</code></td><td>Tiempo formateado (ej. <code>45m 12s</code>) hasta el próximo evento automático, entre todos los eventos configurados.</td></tr>
+<tr><td><code>%donadrops_next_event_seconds%</code></td><td>Lo mismo, pero en segundos totales (útil para barras de progreso).</td></tr>
+<tr><td><code>%donadrops_event_&lt;nombre&gt;_next_time%</code></td><td>Tiempo hasta el próximo disparo automático de ESE evento en particular.</td></tr>
+<tr><td><code>%donadrops_player_opened%</code></td><td>Cantidad de cofres que el jugador reclamó por completo.</td></tr>
+<tr><td><code>%donadrops_player_rarity_score%</code></td><td>Puntaje acumulado de rareza del jugador (usado en <code>/dd tops</code>).</td></tr>
+<tr><td><code>%donadrops_player_rarest%</code></td><td>Rareza más alta que ese jugador reclamó alguna vez.</td></tr>
+<tr><td><code>%donadrops_player_rewards_total%</code></td><td>Cantidad total de ítems recibidos de cofres.</td></tr>
+<tr><td><code>%donadrops_player_best_reward%</code></td><td>La entrega individual más grande (cantidad de un mismo ítem) que recibió.</td></tr>
 </table>
+<p>Dentro del propio plugin (mensajes de chat, títulos, comandos al abrir, hologramas), seguís usando las variables internas de siempre: <code>%player%</code>, <code>%name%</code>, <code>%world%</code>, <code>%x%</code>, <code>%y%</code>, <code>%z%</code>, <code>{name}</code>/<code>{stars}</code> en hologramas, y <code>%time%</code> en los mensajes de <code>next-event-*</code> dentro de un Drop Event.</p>
 
 <h2 id="faq">Solución de problemas</h2>
+<p><b>El plugin no inicia:</b> revisa que PlaceholderAPI esté instalado. Es una dependencia obligatoria de DonaDrops.</p><p><b>El botón Editar Recompensas no hace nada:</b> en v1.3.0 debe abrir un inventario de edición de 54 slots. Puedes retirar las recompensas actuales y colocar nuevos ítems; los cambios se guardan al cerrar.</p>
+<p><b>Faltan barriers en /dd tops:</b> las posiciones sin jugador se rellenan automáticamente con <code>BARRIER</code>. Las posiciones ocupadas se sustituyen por la cabeza del jugador y sus estadísticas.</p>
+<p><b>Quiero limitar los mundos:</b> activa <code>perworldchest.Enable</code> y añade los nombres exactos de los mundos a <code>perworldchest.list-worlds</code>.</p>
+<p><b>Quiero una zona:</b> usa <code>/dd zonewand</code> o <code>/dd pos1</code> + <code>/dd pos2</code>, después <code>/dd createzone &lt;nombre&gt;</code> y pulsa la confirmación. Para eliminarla, usa <code>/dd deletezone &lt;nombre&gt;</code>.</p>
+
+<p><b>/dd reload indica un error YAML:</b> si un archivo YAML está corrupto, la recarga debe considerarse fallida y la consola debe mostrar el archivo y la línea del problema en lugar de informar falsamente que la recarga terminó correctamente.</p>
+<p><b>No puedo abrir un cofre recién aparecido:</b> revisa el tiempo configurado en <code>open-delay-seconds</code>. El mensaje de cooldown puede mostrar cuánto tiempo queda.</p>
+<p><b>Quiero cambiar el tipo de cofre:</b> utiliza el selector de Inventory Type del editor o configura <code>type-override</code> en el drop.</p>
+<p><b>Quiero una cabeza con textura:</b> usa <code>material: PLAYER_HEAD</code> y <code>texture: "VALOR_DE_LA_TEXTURE"</code>.</p>
+<p><b>Las partículas desaparecen antes de abrir el cofre:</b> revisa la configuración de partículas de aparición; estas deben permanecer activas mientras el cofre no haya sido abierto.</p>
+<p><b>Un sonido o partícula no funciona:</b> verifica que el nombre corresponda a la versión de Minecraft/Paper utilizada.</p>
+<p><b>El servidor se congela/crashea al aparecer un cofre:</b> actualiza a la última versión del plugin; el spawneo automático ya no fuerza la carga de chunks.</p>
 
 </main>
 </body>
