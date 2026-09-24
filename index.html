@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>DonaDrops Wiki</title>
@@ -29,280 +29,280 @@
 <body>
 <nav>
   <h1>DonaDrops</h1>
-  <p>v2.0.9 &middot; by Donatier</p>
-  <a href="#intro">Introducción</a>
-  <a href="#requirements">Requisitos</a>
-  <a href="#commands">Comandos</a>
-  <a href="#permissions">Permisos</a>
-  <a href="#creating">Crear un cofre</a>
+  <p>v2.0.10 &middot; by Donatier &amp; Santiago Rivers</p>
+  <a href="#intro">Introduction</a>
+  <a href="#requirements">Requirements</a>
+  <a href="#commands">Commands</a>
+  <a href="#permissions">Permissions</a>
+  <a href="#creating">Creating a chest</a>
   <a href="#editor">Editor GUI</a>
-  <a href="#blocktype">Tipo de bloque/inventario</a>
+  <a href="#blocktype">Block/inventory type</a>
   <a href="#flags">Chest Flags</a>
-  <a href="#zones">Zonas de spawn</a>
-  <a href="#spawn-system">Spawneo automático</a>
-  <a href="#amounts">Cantidad mínima/máxima</a>
+  <a href="#zones">Spawn zones</a>
+  <a href="#spawn-system">Automatic spawning</a>
+  <a href="#amounts">Min/max amount</a>
   <a href="#config">config.yml</a>
   <a href="#categories">categories.yml</a>
-  <a href="#drops">Archivos /drops</a>
-  <a href="#item-rarity">Rareza de ítems</a>
+  <a href="#drops">/drops files</a>
+  <a href="#item-rarity">Item rarity</a>
   <a href="#drop-events">Drop Events</a>
-  <a href="#spawn-points">Puntos de spawn fijos</a>
-  <a href="#decoration">Decoración del cofre</a>
-  <a href="#lang">Idiomas</a>
-  <a href="#holograms">Hologramas</a>
-  <a href="#reward-lore">Lore de recompensas</a>
-  <a href="#visibility">Distancia de visibilidad</a>
-  <a href="#heads">Cabezas con textura</a>
+  <a href="#spawn-points">Fixed spawn points</a>
+  <a href="#decoration">Chest decoration</a>
+  <a href="#lang">Languages</a>
+  <a href="#holograms">Holograms</a>
+  <a href="#reward-lore">Reward lore</a>
+  <a href="#visibility">Visibility distance</a>
+  <a href="#heads">Textured heads</a>
   <a href="#tops">Leaderboards</a>
-  <a href="#gui">Sistema de GUIs</a>
-  <a href="#gui-files">Archivos de GUI y rankings</a>
-  <a href="#spawn-effects">Efectos de aparición</a>
-  <a href="#pre-spawn">1. Partículas de aparición</a>
-  <a href="#spawn-animations">2. Animación de aparición</a>
-  <a href="#spawn-particles">3. Partículas persistentes</a>
-  <a href="#rgb-colors">Colores RGB</a>
-  <a href="#security">Seguridad</a>
-  <a href="#events">Sonidos, títulos y partículas</a>
+  <a href="#gui">GUI system</a>
+  <a href="#gui-files">GUI and ranking files</a>
+  <a href="#spawn-effects">Spawn effects</a>
+  <a href="#pre-spawn">1. Pre-spawn particles</a>
+  <a href="#spawn-animations">2. Spawn animation</a>
+  <a href="#spawn-particles">3. Persistent particles</a>
+  <a href="#rgb-colors">RGB colors</a>
+  <a href="#security">Security</a>
+  <a href="#events">Sounds, titles and particles</a>
   <a href="#placeholders">Placeholders</a>
-  <a href="#faq">Solución de problemas</a>
+  <a href="#faq">Troubleshooting</a>
 </nav>
 <main>
 
-<h2 id="intro">Introducción</h2>
-<p>DonaDrops es un plugin de Minecraft (Paper 1.20, Java 17+) creado por <b>Donatier</b> que convierte cualquier cofre en un "drop chest": un cofre con nombre y color propio, rareza en estrellas, categoría, holograma flotante, una lista de recompensas que se sortean al abrirlo y paneles decorativos no removibles alrededor del loot.</p>
+<h2 id="intro">Introduction</h2>
+<p>DonaDrops is a Minecraft plugin (Paper 1.20, Java 17+) created by <b>Donatier</b> and <b>Santiago Rivers</b> that turns any chest into a "drop chest": a chest with its own name and color, a star rarity, a category, a floating hologram, a list of rewards that gets rolled when it's opened, and non-removable decorative panels around the loot.</p>
 
-<h2 id="requirements">Requisitos</h2>
+<h2 id="requirements">Requirements</h2>
 <ul>
-<li>Minecraft <b>1.20 o superior</b>, sobre <b>Paper</b> o un fork de Paper.</li>
-<li><b>PlaceholderAPI</b> es obligatorio. DonaDrops lo declara como dependencia y el servidor no arrancará el plugin si no está instalado.</li>
-<li>WorldGuard es opcional (soft-dependency), solo se usa si activas <code>worldguard-compatibility</code> en <code>config.yml</code>.</li>
+<li>Minecraft <b>1.20 or higher</b>, on <b>Paper</b> or a Paper fork.</li>
+<li><b>PlaceholderAPI</b> is required. DonaDrops declares it as a dependency and the server won't start the plugin if it isn't installed.</li>
+<li>WorldGuard is optional (soft-dependency), only used if you enable <code>worldguard-compatibility</code> in <code>config.yml</code>.</li>
 </ul>
 <table>
-<tr><th>Versión del servidor</th><th>Java necesario</th></tr>
-<tr><td>1.20 a 1.20.4</td><td>Java 17 o superior</td></tr>
-<tr><td>1.20.5 y superiores (1.21.x...)</td><td>Java 21 o superior (lo exige Minecraft; el plugin funciona igual)</td></tr>
+<tr><th>Server version</th><th>Java required</th></tr>
+<tr><td>1.20 to 1.20.4</td><td>Java 17 or higher</td></tr>
+<tr><td>1.20.5 and above (1.21.x...)</td><td>Java 21 or higher (required by Minecraft itself; the plugin works the same)</td></tr>
 </table>
-<p>El plugin se compila contra la API de Paper 1.20.4. Para que también funcione en versiones más nuevas, todo lo que Minecraft ha ido renombrando o convirtiendo (nombres de partículas, sonidos, encantamiento del brillo, inventarios) se resuelve al ejecutarse en tu servidor, no al compilar. Si algún nombre no existe en tu versión, se usa un respaldo seguro en vez de dar error.</p>
+<p>The plugin is compiled against the Paper 1.20.4 API. So it also works on newer versions, everything Minecraft has renamed or changed over time (particle names, sounds, the enchantment glow, inventories) is resolved at runtime on your server, not at compile time. If a name doesn't exist on your version, a safe fallback is used instead of throwing an error.</p>
 <div class="callout">
-No se da soporte a versiones anteriores a la 1.20. Si alguien lo instala en una, el servidor no carga el plugin y muestra en consola un aviso del tipo <code>Unsupported API version 1.20</code>; no rompe nada más. Las versiones más nuevas están contempladas, pero conviene probarlas en tu servidor antes de usarlas en producción.
+Versions before 1.20 are not supported. If someone installs it on one, the server won't load the plugin and will print a console warning like <code>Unsupported API version 1.20</code>; nothing else breaks. Newer versions are expected to work, but it's still worth testing them on your server before using them in production.
 </div>
 
-<h2 id="commands">Comandos</h2>
+<h2 id="commands">Commands</h2>
 <table>
-<tr><th>Comando</th><th>Descripción</th></tr>
-<tr><td><code>/dd create &lt;nombre&gt; [rareza 1-5] [categoría]</code></td><td>Crea un cofre a partir del cofre que estás mirando.</td></tr>
-<tr><td><code>/dd spawn &lt;nombre&gt;</code></td><td>Genera ese cofre en tu ubicación actual.</td></tr>
-<tr><td><code>/dd editor &lt;nombre&gt;</code></td><td>Abre el editor GUI de un cofre existente.</td></tr>
-<tr><td><code>/tops</code></td><td>Abre el selector de categorías de los rankings.</td></tr>
-<tr><td><code>/dd tops</code></td><td>Alias interno para abrir el mismo selector de rankings.</td></tr>
-<tr><td><code>/dd reload</code></td><td>Recarga config.yml, categories.yml, idiomas y drops.</td></tr>
-<tr><td><code>/dd author</code></td><td>Muestra la información del plugin y el autor.</td></tr>
-<tr><td><code>/dd help</code></td><td>Lista todos los comandos.</td></tr>
-<tr><td><code>/dd locate &lt;nombre&gt;</code></td><td>Lista todas las ubicaciones donde ese cofre está actualmente generado en el mundo.</td></tr>
-<tr><td><code>/dd give &lt;jugador&gt; &lt;nombre&gt;</code></td><td>Da directamente al jugador el contenido de ese cofre, sin generar el bloque.</td></tr>
-<tr><td><code>/dd copy &lt;origen&gt; &lt;nombre-nuevo&gt;</code></td><td>Duplica un cofre existente (rareza, categoría, recompensas, comandos, tipo de bloque...) bajo un nombre nuevo.</td></tr>
-<tr><td><code>/dd list [página]</code></td><td>Lista los cofres registrados con su rareza y cuántos hay generados ahora, de 6 en 6.</td></tr>
-<tr><td><code>/dd respawnall</code></td><td>Refresca el holograma de todos los cofres actualmente generados.</td></tr>
-<tr><td><code>/dd despawnall</code></td><td>Retira todos los cofres que estén generados en ese momento.</td></tr>
-<tr><td><code>/dd delete &lt;nombre&gt;</code></td><td>Elimina el drop registrado y retira sus apariciones activas.</td></tr>
-<tr><td><code>/dd zonewand</code></td><td>Entrega el hacha de hierro de DonaDrops para seleccionar Pos1 y Pos2.</td></tr>
-<tr><td><code>/dd pos1 &lt;x&gt; &lt;y&gt; &lt;z&gt; [mundo]</code></td><td>Define la primera posición de una zona.</td></tr>
-<tr><td><code>/dd pos2 &lt;x&gt; &lt;y&gt; &lt;z&gt; [mundo]</code></td><td>Define la segunda posición de una zona.</td></tr>
-<tr><td><code>/dd createzone &lt;nombre&gt;</code></td><td>Crea una zona con la selección actual y muestra una confirmación clicable antes de guardarla.</td></tr>
-<tr><td><code>/dd deletezone &lt;nombre&gt;</code></td><td>Elimina una zona y sus límites dejan de restringir el spawn.</td></tr>
-<tr><td><code>/dd createspawn &lt;nombreSpawn&gt; &lt;nombreCofre&gt;</code></td><td>Crea un punto fijo de aparición para ese cofre en tu ubicación actual (ver <a href="#spawn-points">Puntos de spawn fijos</a>).</td></tr>
-<tr><td><code>/dd deletespawn &lt;archivo&gt;</code></td><td>Elimina un punto de spawn fijo (el nombre de archivo es <code>&lt;cofre&gt;_&lt;nombreSpawn&gt;</code>).</td></tr>
-<tr><td><code>/dd listspawns [nombreCofre]</code></td><td>Lista los puntos de spawn fijos guardados, opcionalmente filtrando por cofre.</td></tr>
-<tr><td><code>/dd event start &lt;nombre&gt;</code></td><td>Inicia manualmente un drop event definido en <code>/events</code>.</td></tr>
-<tr><td><code>/dd event stop [nombre]</code></td><td>Detiene el drop event en curso.</td></tr>
-<tr><td><code>/dd event list</code></td><td>Lista todos los drop events y su estado actual.</td></tr>
+<tr><th>Command</th><th>Description</th></tr>
+<tr><td><code>/dd create &lt;name&gt; [rarity 1-5] [category]</code></td><td>Creates a chest from the container you're looking at.</td></tr>
+<tr><td><code>/dd spawn &lt;name&gt;</code></td><td>Spawns that chest at your current location.</td></tr>
+<tr><td><code>/dd editor &lt;name&gt;</code></td><td>Opens the editor GUI for an existing chest.</td></tr>
+<tr><td><code>/tops</code></td><td>Opens the leaderboard category selector.</td></tr>
+<tr><td><code>/dd tops</code></td><td>Internal alias that opens the same leaderboard selector.</td></tr>
+<tr><td><code>/dd reload</code></td><td>Reloads config.yml, categories.yml, languages and drops.</td></tr>
+<tr><td><code>/dd author</code></td><td>Shows the plugin's info and author.</td></tr>
+<tr><td><code>/dd help</code></td><td>Lists every command.</td></tr>
+<tr><td><code>/dd locate &lt;name&gt;</code></td><td>Lists every location where that chest is currently spawned in the world.</td></tr>
+<tr><td><code>/dd give &lt;player&gt; &lt;name&gt;</code></td><td>Gives that chest's contents directly to a player, without spawning the block.</td></tr>
+<tr><td><code>/dd copy &lt;source&gt; &lt;new-name&gt;</code></td><td>Duplicates an existing chest (rarity, category, rewards, commands, block type...) under a new name.</td></tr>
+<tr><td><code>/dd list [page]</code></td><td>Lists registered chests with their rarity and how many are currently spawned, 6 at a time.</td></tr>
+<tr><td><code>/dd respawnall</code></td><td>Refreshes the hologram of every chest currently spawned.</td></tr>
+<tr><td><code>/dd despawnall</code></td><td>Removes every chest that's currently spawned.</td></tr>
+<tr><td><code>/dd delete &lt;name&gt;</code></td><td>Deletes the registered drop and removes its active spawns.</td></tr>
+<tr><td><code>/dd zonewand</code></td><td>Gives you the DonaDrops iron axe to select Pos1 and Pos2.</td></tr>
+<tr><td><code>/dd pos1 &lt;x&gt; &lt;y&gt; &lt;z&gt; [world]</code></td><td>Sets the first position of a zone.</td></tr>
+<tr><td><code>/dd pos2 &lt;x&gt; &lt;y&gt; &lt;z&gt; [world]</code></td><td>Sets the second position of a zone.</td></tr>
+<tr><td><code>/dd createzone &lt;name&gt;</code></td><td>Creates a zone from the current selection and shows a clickable confirmation before saving it.</td></tr>
+<tr><td><code>/dd deletezone &lt;name&gt;</code></td><td>Deletes a zone; its boundaries stop restricting spawns.</td></tr>
+<tr><td><code>/dd createspawn &lt;spawnName&gt; &lt;chestName&gt;</code></td><td>Creates a fixed spawn point for that chest at your current location (see <a href="#spawn-points">Fixed spawn points</a>).</td></tr>
+<tr><td><code>/dd deletespawn &lt;file&gt;</code></td><td>Deletes a fixed spawn point (the file name is <code>&lt;chest&gt;_&lt;spawnName&gt;</code>).</td></tr>
+<tr><td><code>/dd listspawns [chestName]</code></td><td>Lists saved fixed spawn points, optionally filtered by chest.</td></tr>
+<tr><td><code>/dd event start &lt;name&gt;</code></td><td>Manually starts a drop event defined in <code>/events</code>.</td></tr>
+<tr><td><code>/dd event stop [name]</code></td><td>Stops the running drop event.</td></tr>
+<tr><td><code>/dd event list</code></td><td>Lists every drop event and its current status.</td></tr>
 </table>
-<p>Alias: <code>/donadrops</code>. Todos los argumentos tienen autocompletado (nombres de cofre, categorías, 1-5, jugadores online).</p>
+<p>Alias: <code>/donadrops</code>. Every argument has tab-completion (chest names, categories, 1-5, online players).</p>
 <div class="callout">
-Además de <code>/dd spawn &lt;nombre&gt;</code>, DonaDrops trae un spawneador automático por probabilidad (ver <a href="#spawn-system">Spawneo automático</a>): en cada intento, el plugin sortea individualmente el <code>spawn-chance</code> de cada cofre (o el valor global si no lo define) para armar una lista de "candidatos" de ese ciclo, y después elige uno al azar entre esos candidatos. Un cofre con <code>spawn-chance: 100</code> entra SIEMPRE a esa lista, así que si es el único con 100% termina eligiéndose casi siempre (salvo que su propio cooldown o el global todavía no se cumplan). Un cofre con <code>spawn: true</code> en su archivo nunca usa este buscador aleatorio: solo aparece en los puntos fijos creados con <code>/dd createspawn</code>, y en los mundos indicados por <code>spawn-world</code> (ver arriba).
+Besides <code>/dd spawn &lt;name&gt;</code>, DonaDrops ships an automatic, probability-based spawner (see <a href="#spawn-system">Automatic spawning</a>): on every attempt, the plugin individually rolls each chest's <code>spawn-chance</code> (or the global value if it doesn't define one) to build a list of that cycle's "candidates", then picks one at random among them. A chest with <code>spawn-chance: 100</code> ALWAYS enters that list, so if it's the only one at 100% it will almost always be the one chosen (unless its own cooldown or the global one haven't elapsed yet). A chest with <code>spawn: true</code> in its file never uses this random picker at all: it only appears at the fixed points created with <code>/dd createspawn</code>, and in the worlds listed in <code>spawn-world</code> (see above).
 </div>
 
-<h2 id="permissions">Permisos</h2>
+<h2 id="permissions">Permissions</h2>
 <table>
-<tr><th>Nodo</th><th>Default</th><th>Descripción</th></tr>
-<tr><td><code>donadrops.*</code></td><td>op</td><td>Otorga todos los permisos.</td></tr>
-<tr><td><code>donadrops.create</code></td><td>op</td><td>Crear cofres, incluido <code>/dd copy</code>.</td></tr>
-<tr><td><code>donadrops.spawn</code></td><td>op</td><td>Generar cofres, romperlos, usar <code>/dd locate</code>, <code>/dd give</code>, <code>/dd list</code> y <code>/dd despawnall</code>.</td></tr>
-<tr><td><code>donadrops.editor</code></td><td>op</td><td>Abrir el editor.</td></tr>
-<tr><td><code>donadrops.reload</code></td><td>op</td><td>Recargar el plugin y refrescar hologramas.</td></tr>
-<tr><td><code>donadrops.tops</code></td><td>true</td><td>Ver el menú de rankings.</td></tr>
-<tr><td><code>donadrops.author</code></td><td>true</td><td>Ver /dd author.</td></tr>
-<tr><td><code>donadrops.help</code></td><td>true</td><td>Ver /dd help.</td></tr>
-<tr><td><code>donadrops.notify</code></td><td>op</td><td>Recibe avisos de inicio, errores de YAML y nuevas versiones.</td></tr>
-<tr><td><code>donadrops.open</code></td><td>true</td><td>Permite abrir cofres generados.</td></tr>
-<tr><td><code>donadrops.event</code></td><td>op</td><td>Permite iniciar, detener y listar drop events con <code>/dd event</code>.</td></tr>
+<tr><th>Node</th><th>Default</th><th>Description</th></tr>
+<tr><td><code>donadrops.*</code></td><td>op</td><td>Grants every permission.</td></tr>
+<tr><td><code>donadrops.create</code></td><td>op</td><td>Create chests, including <code>/dd copy</code>.</td></tr>
+<tr><td><code>donadrops.spawn</code></td><td>op</td><td>Spawn chests, break them, use <code>/dd locate</code>, <code>/dd give</code>, <code>/dd list</code> and <code>/dd despawnall</code>.</td></tr>
+<tr><td><code>donadrops.editor</code></td><td>op</td><td>Open the editor.</td></tr>
+<tr><td><code>donadrops.reload</code></td><td>op</td><td>Reload the plugin and refresh holograms.</td></tr>
+<tr><td><code>donadrops.tops</code></td><td>true</td><td>View the leaderboard menu.</td></tr>
+<tr><td><code>donadrops.author</code></td><td>true</td><td>View /dd author.</td></tr>
+<tr><td><code>donadrops.help</code></td><td>true</td><td>View /dd help.</td></tr>
+<tr><td><code>donadrops.notify</code></td><td>op</td><td>Receive startup notices, YAML errors and new version alerts.</td></tr>
+<tr><td><code>donadrops.open</code></td><td>true</td><td>Allows opening spawned chests.</td></tr>
+<tr><td><code>donadrops.event</code></td><td>op</td><td>Allows starting, stopping and listing drop events with <code>/dd event</code>.</td></tr>
 </table>
 <div class="callout">
-Cada categoría de <code>categories.yml</code> obtiene automáticamente su propio permiso <code>donadrops.opendrop.&lt;categoría&gt;</code> (por defecto <code>op</code>), incluida cualquier categoría nueva que agregues. Solo se aplica a los cofres que tengan la flag <code>permission-required</code> — ver <a href="#flags">Chest Flags</a>.
+Every category in <code>categories.yml</code> automatically gets its own <code>donadrops.opendrop.&lt;category&gt;</code> permission (default <code>op</code>), including any new category you add. It only applies to chests that have the <code>permission-required</code> flag — see <a href="#flags">Chest Flags</a>.
 </div>
 
-<h2 id="creating">Crear un cofre paso a paso</h2>
+<h2 id="creating">Creating a chest step by step</h2>
 <ol>
-<li>Coloca cualquier bloque contenedor (cofre, baúl, barril, shulker...).</li>
-<li>Rellénalo con los ítems que quieras que ese cofre pueda dar.</li>
-<li>Mira fijamente el cofre.</li>
-<li>Ejecuta <code>/dd create &amp;6Cofre Legendario 5 legendary</code></li>
+<li>Place any container block (chest, trapped chest, barrel, shulker box...).</li>
+<li>Fill it with the items you want that chest to be able to give.</li>
+<li>Look directly at the chest.</li>
+<li>Run <code>/dd create &amp;6Legendary Chest 5 legendary</code></li>
 </ol>
 <div class="callout">
-El nombre acepta <b>legacy</b> (<code>&amp;6</code>), <b>hex</b> (<code>&amp;#FFAA00</code>) y <b>MiniMessage</b> (<code>&lt;gradient:red:gold&gt;Texto&lt;/gradient&gt;</code>). El color se muestra en el título, holograma y GUI, pero <b>nunca</b> aparece en los comandos ni en el autocompletado — ahí siempre verás el nombre plano.
+The name accepts <b>legacy</b> (<code>&amp;6</code>), <b>hex</b> (<code>&amp;#FFAA00</code>) and <b>MiniMessage</b> (<code>&lt;gradient:red:gold&gt;Text&lt;/gradient&gt;</code>). The color shows up in the title, hologram and GUI, but it <b>never</b> shows up in commands or tab-completion — there you'll always see the plain name.
 </div>
-<p>Si omites la rareza, se usa <b>1 estrella</b> por defecto. Si omites la categoría, se usa <code>common</code>.</p>
+<p>If you skip the rarity, <b>1 star</b> is used by default. If you skip the category, <code>common</code> is used.</p>
 
 <h2 id="editor">Editor GUI</h2>
-<p>Al crear un cofre (o con <code>/dd editor &lt;nombre&gt;</code>) se abre un menú para editar sus propiedades. Los cambios realizados desde la GUI se guardan en el archivo del drop correspondiente. Todo el editor (botones, submenús y mensajes que pide por chat) aparece en el idioma configurado en <code>config.yml → language</code>.</p>
+<p>Creating a chest (or running <code>/dd editor &lt;name&gt;</code>) opens a menu to edit its properties. Changes made from the GUI are saved to that drop's file. The whole editor (buttons, submenus and the messages it asks for in chat) shows up in the language set in <code>config.yml → language</code>.</p>
 <table>
-<tr><th>Botón</th><th>Qué hace</th></tr>
-<tr><td>Editar Nombre</td><td>Escribe el nuevo nombre coloreado en el chat (<code>cancel</code> para cancelar).</td></tr>
-<tr><td>Editar Rareza</td><td>Clic izq. +1 estrella, clic der. -1 estrella.</td></tr>
-<tr><td>Editar Categoría</td><td>Cambia entre las categorías de <code>categories.yml</code>.</td></tr>
-<tr><td>Editar Recompensas</td><td>Abre un inventario real de 54 slots donde puedes <b>sacar los ítems existentes y colocar nuevos ítems</b>. Todo lo que quede dentro al cerrarlo se guarda como recompensa del cofre.</td></tr>
-<tr><td>Comandos al Abrir</td><td>Agrega comandos que se ejecutan cada vez que el cofre se abre. Puedes usar <code>%player%</code> y placeholders de PlaceholderAPI.</td></tr>
-<tr><td>Idioma del Plugin</td><td>Muestra todos los idiomas y, al seleccionar uno, cambia y guarda <code>config.yml → language</code> para todo el plugin.</td></tr>
-<tr><td>Tipo de Cofre / Tipo de Inventario</td><td>Abren los selectores de tipo de bloque e inventario (ver <a href="#blocktype">Tipo de bloque e inventario</a>).</td></tr>
-<tr><td>Chest Flags</td><td>Activa o desactiva cada flag especial del cofre con un clic. Ver <a href="#flags">Chest Flags</a>.</td></tr>
-<tr><td>Inventory Size</td><td>Define un tamaño de inventario propio para ese cofre (9 a 54 slots).</td></tr>
-<tr><td>Partículas de aparición</td><td>Abre el selector de las partículas que se ven <b>antes</b> de que salga el cofre. Ver <a href="#pre-spawn">Partículas de aparición</a>.</td></tr>
-<tr><td>Animación de aparición</td><td>Abre el selector de la animación que se reproduce cuando el cofre aparece. Ver <a href="#spawn-animations">Animación de aparición</a>.</td></tr>
-<tr><td>Partículas persistentes</td><td>Abre el selector de las partículas que se quedan alrededor del cofre. Ver <a href="#spawn-particles">Partículas persistentes</a>.</td></tr>
-<tr><td>Cerrar</td><td>Cierra el editor.</td></tr>
+<tr><th>Button</th><th>What it does</th></tr>
+<tr><td>Edit Name</td><td>Type the new colored name in chat (<code>cancel</code> to cancel). Renaming a chest now also updates its internal identifier: the one used by <code>/dd editor</code>, tab-completion and the drop's <code>.yml</code> file name always match the current name, and any fixed spawn points created for that chest are moved over automatically. If another chest already resolves to the same plain name, the rename is refused and you're told so in chat.</td></tr>
+<tr><td>Edit Rarity</td><td>Left-click +1 star, right-click -1 star.</td></tr>
+<tr><td>Edit Category</td><td>Cycles through the categories in <code>categories.yml</code>.</td></tr>
+<tr><td>Edit Rewards</td><td>Opens a real 54-slot inventory where you can <b>take out existing items and place new ones</b>. Whatever is left inside when you close it is saved as that chest's rewards.</td></tr>
+<tr><td>Commands on Open</td><td>Adds commands that run every time the chest is opened. You can use <code>%player%</code> and PlaceholderAPI placeholders.</td></tr>
+<tr><td>Plugin Language</td><td>Shows every language and, when you pick one, changes and saves <code>config.yml → language</code> for the whole plugin.</td></tr>
+<tr><td>Chest Type / Inventory Type</td><td>Opens the block type and inventory type selectors (see <a href="#blocktype">Block/inventory type</a>).</td></tr>
+<tr><td>Chest Flags</td><td>Toggles each special chest flag with a click. See <a href="#flags">Chest Flags</a>.</td></tr>
+<tr><td>Inventory Size</td><td>Sets that chest's own inventory size (9 to 54 slots).</td></tr>
+<tr><td>Pre-spawn Particles</td><td>Opens the selector for the particles seen <b>before</b> the chest appears. See <a href="#pre-spawn">Pre-spawn particles</a>.</td></tr>
+<tr><td>Spawn Animation</td><td>Opens the selector for the animation played when the chest appears. See <a href="#spawn-animations">Spawn animation</a>.</td></tr>
+<tr><td>Persistent Particles</td><td>Opens the selector for the particles that stay around the chest. See <a href="#spawn-particles">Persistent particles</a>.</td></tr>
+<tr><td>Close</td><td>Closes the editor.</td></tr>
 </table>
-<h3>Selectores de efectos</h3>
-<p>Los tres botones de efectos abren un menú con el mismo formato que Chest Flags:</p>
+<h3>Effect selectors</h3>
+<p>The three effect buttons open a menu with the same layout as Chest Flags:</p>
 <ul>
-<li>Cada entrada es un valor posible. La que está en uso aparece marcada como <b>Seleccionado</b>.</li>
-<li><b>Usar config.yml</b> (papel): el drop toma el valor de <code>config.yml</code> (equivale a <code>-1</code> en el archivo). No existe para la animación, que solo se configura en el drop.</li>
-<li><b>Ninguna</b> (barrera): desactiva ese efecto en este drop (equivale a <code>none</code>).</li>
-<li>El resto son las partículas o animaciones disponibles. Un clic guarda la elección de inmediato y refresca el menú.</li>
-<li>Si la lista tiene más de una página, las flechas de las esquinas inferiores cambian de página y la flecha del centro vuelve al editor.</li>
+<li>Each entry is a possible value. The one in use is marked <b>Selected</b>.</li>
+<li><b>Use config.yml</b> (paper): the drop takes the value from <code>config.yml</code> (equal to <code>-1</code> in the file). It doesn't exist for the animation, which is only ever set on the drop.</li>
+<li><b>None</b> (barrier): disables that effect for this drop (equal to <code>none</code>).</li>
+<li>The rest are the available particles or animations. A click saves the choice immediately and refreshes the menu. Hovering over each one shows in its Lore what visual effect it produces, in the language set in <code>config.yml</code> (English shows in English, Spanish shows in Spanish, and so on for every supported language).</li>
+<li>If the list has more than one page, the arrows in the bottom corners flip pages and the center arrow returns to the editor.</li>
 </ul>
-<p>Las listas de partículas solo muestran las que tu versión de Minecraft conoce y dejan fuera las que necesitan datos extra (como <code>BLOCK</code>, <code>ITEM</code> o <code>DUST</code>). Los valores que solo se pueden escribir a mano, como la cantidad o los segundos, se editan en el archivo del drop.</p>
-<p>Los botones de la GUI se pueden personalizar mediante los archivos de <code>/gui</code>: material, nombre, lore, slot, cabeza/textura, sonidos, acciones y decoraciones, según el menú.</p>
-<h2 id="blocktype">Tipo de bloque e inventario</h2>
-<p>El editor incluye un inventario independiente para cambiar el tipo de bloque y el <code>InventoryType</code> de cada cofre. La selección se guarda como un <code>type-override</code> individual cuando está activado.</p>
-<p>El selector puede ofrecer cofres, cofres trampa, barriles, cofres de Ender, cajas de shulker de colores, dispensadores, soltadores y tolvas, además de sus tipos de inventario compatibles.</p>
+<p>The particle lists only show the ones your Minecraft version recognizes, and leave out the ones that need extra data (like <code>BLOCK</code>, <code>ITEM</code> or <code>DUST</code>). Values that can only be typed by hand, like the amount or the seconds, are edited in the drop's file.</p>
+<p>The GUI's buttons can be customized through the files in <code>/gui</code>: material, name, lore, slot, head/texture, sounds, actions and decorations, depending on the menu.</p>
+<h2 id="blocktype">Block and inventory type</h2>
+<p>The editor includes a separate inventory to change each chest's block type and <code>InventoryType</code>. The selection is saved as an individual <code>type-override</code> once enabled.</p>
+<p>The selector can offer chests, trapped chests, barrels, ender chests, colored shulker boxes, dispensers, droppers and hoppers, plus their compatible inventory types.</p>
 <pre><code>type-override:
   enabled: true
   block-type: CHEST
   inventory-type: CHEST</code></pre>
 <div class="callout">
-El tipo global se configura en <code>config.yml → chest.block-type</code> y <code>chest.inventory-type</code>. El override permite cambiar únicamente un drop.
+The global type is set in <code>config.yml → chest.block-type</code> and <code>chest.inventory-type</code>. The override only changes a single drop.
 </div>
 
-<h3>Tamaño de inventario propio</h3>
-<p>Independiente del tipo de inventario, cada drop puede definir <code>inventory-size</code> (en slots) para usar un tamaño distinto al <code>chest.rows</code> global:</p>
-<pre><code>inventory-size: 54   # -1 = usar el valor global de chest.rows</code></pre>
-<p>Solo aplica cuando el tipo de inventario resuelto es <code>CHEST</code> (otros tipos como <code>BARREL</code>, <code>SHULKER_BOX</code> o <code>ENDER_CHEST</code> tienen un tamaño fijo por Minecraft). Cualquier valor se redondea automáticamente hacia arriba al múltiplo de 9 válido más cercano entre 9 y 54 — por ejemplo, <code>32</code> pasa a ser <code>36</code>, y <code>52</code> pasa a ser <code>54</code>. También editable desde el botón <b>Inventory Size</b> del editor.</p>
+<h3>Custom inventory size</h3>
+<p>Independent of the inventory type, each drop can define <code>inventory-size</code> (in slots) to use a size different from the global <code>chest.rows</code>:</p>
+<pre><code>inventory-size: 54   # -1 = use the global chest.rows value</code></pre>
+<p>This only applies when the resolved inventory type is <code>CHEST</code> (other types like <code>BARREL</code>, <code>SHULKER_BOX</code> or <code>ENDER_CHEST</code> have a fixed size set by Minecraft). Any value is automatically rounded up to the nearest valid multiple of 9 between 9 and 54 — for example, <code>32</code> becomes <code>36</code>, and <code>52</code> becomes <code>54</code>. Also editable from the editor's <b>Inventory Size</b> button.</p>
 
 <h2 id="flags">Chest Flags</h2>
-<p>DonaDrops tiene dos niveles de flags independientes, usando siempre los mismos identificadores (en minúsculas, kebab-case):</p>
+<p>DonaDrops has two independent flag levels, always using the same identifiers (lowercase, kebab-case):</p>
 <ul>
-<li><b>Flags globales</b> — lista <code>global-flags</code> en <code>config.yml</code>. Se aplican automáticamente a <b>todos</b> los cofres que genera el plugin, sin importar de qué archivo de drop vengan.</li>
-<li><b>Flags por cofre</b> — lista <code>chest-flags</code> dentro del <code>.yml</code> de cada drop, en <code>/drops</code>. Se aplican <b>solo</b> a ese cofre en particular.</li>
+<li><b>Global flags</b> — the <code>global-flags</code> list in <code>config.yml</code>. Automatically applied to <b>every</b> chest the plugin spawns, no matter which drop file it comes from.</li>
+<li><b>Per-chest flags</b> — the <code>chest-flags</code> list inside each drop's <code>.yml</code> file, in <code>/drops</code>. Only applied to that particular chest.</li>
 </ul>
-<p>Una flag queda activa para un cofre si está en <code>global-flags</code>, o si está en el <code>chest-flags</code> propio de ese drop (o ambas cosas a la vez). No hace falta repetir en cada drop una flag que ya está activa globalmente.</p>
+<p>A flag is active for a chest if it's in <code>global-flags</code>, or if it's in that drop's own <code>chest-flags</code> (or both). You don't need to repeat a flag on every drop if it's already active globally.</p>
 
-<h3>Flags globales (config.yml)</h3>
-<p>Por defecto, <code>config.yml</code> trae activas solamente estas dos, pensadas para que sean necesarias en prácticamente cualquier servidor:</p>
+<h3>Global flags (config.yml)</h3>
+<p>By default, <code>config.yml</code> ships with only these two enabled, since they're meant to be necessary on practically any server:</p>
 <pre><code>global-flags:
   - "explosion-protect"
   - "solid-ground-only"</code></pre>
-<p>Es una lista libre: podés agregar cualquier otra flag de la tabla de abajo para que aplique a todos los cofres, o sacar las que ya están (incluso dejarla vacía). La tolerancia de <code>solid-ground-only</code> se sigue configurando en <code>spawn-restrictions.solid-ground-tolerance</code>, venga la flag de acá o de un <code>chest-flags</code> individual.</p>
+<p>It's a free-form list: you can add any other flag from the table below so it applies to every chest, or remove the ones already there (even leave it empty). The tolerance for <code>solid-ground-only</code> is still set in <code>spawn-restrictions.solid-ground-tolerance</code>, whether the flag comes from here or from an individual <code>chest-flags</code> list.</p>
 
-<h3>Flags por cofre (chest-flags)</h3>
-<p>Cada drop nuevo se crea con esta flag activada por defecto, para que un cofre recién creado quede protegido por permisos hasta que un admin la desactive a propósito:</p>
+<h3>Per-chest flags (chest-flags)</h3>
+<p>Every new drop is created with this flag enabled by default, so a freshly-created chest stays permission-protected until an admin deliberately turns it off:</p>
 <pre><code>chest-flags:
   - "permission-required"</code></pre>
-<p>Se puede editar libremente desde el botón <b>Chest Flags</b> del editor (que ahora también avisa cuando una flag ya está forzada globalmente), o directamente en el archivo del drop.</p>
+<p>It can be freely edited from the editor's <b>Chest Flags</b> button (which now also warns when a flag is already forced globally), or directly in the drop's file.</p>
 
-<h3>Flags implementadas actualmente</h3>
-<p>Estas 8 flags ya funcionan en el plugin y se pueden usar hoy mismo, tanto en <code>global-flags</code> como en <code>chest-flags</code>:</p>
+<h3>Currently implemented flags</h3>
+<p>These 8 flags already work in the plugin and can be used today, in both <code>global-flags</code> and <code>chest-flags</code>:</p>
 <table>
-<tr><th>Flag</th><th>Efecto</th></tr>
-<tr><td><code>solid-ground-only</code></td><td>El spawneo automático solo elige suelo sólido, natural y alcanzable. Compara contra el heightmap nativo de Minecraft que ignora las hojas (<code>MOTION_BLOCKING_NO_LEAVES</code>), y descarta cualquier posición que quede muy por encima del terreno natural (tolerancia en <code>spawn-restrictions.solid-ground-tolerance</code>). Esto es lo que evita que los cofres aparezcan en copas de árboles o techos random. No afecta a <code>/dd spawn</code> manual. <b>Activa globalmente por defecto.</b></td></tr>
-<tr><td><code>explosion-protect</code></td><td>El bloque del cofre es inmune a explosiones (TNT, creepers, camas, etc.). <b>Activa globalmente por defecto.</b></td></tr>
-<tr><td><code>fire-protect</code></td><td>El bloque nunca se incendia ni es destruido por fuego cercano.</td></tr>
-<tr><td><code>permission-required</code></td><td>Exige además <code>donadrops.opendrop.&lt;categoría&gt;</code> para poder abrirlo (ver <a href="#permissions">Permisos</a>). <b>Activa por defecto en cada cofre nuevo.</b></td></tr>
-<tr><td><code>unbreakable</code></td><td>El bloque nunca puede romperse/minarse, ni siquiera por staff con <code>donadrops.spawn</code>. Solo desaparece por <code>appear-seconds</code> o por comando.</td></tr>
-<tr><td><code>piston-immune</code></td><td>Los pistones no pueden empujar ni arrastrar el bloque del cofre.</td></tr>
-<tr><td><code>silent-spawn</code></td><td>No se envía mensaje de chat, título ni sonido al servidor cuando ese cofre aparece automáticamente.</td></tr>
-<tr><td><code>no-hologram</code></td><td>No se muestra ningún holograma flotante sobre ese cofre.</td></tr>
+<tr><th>Flag</th><th>Effect</th></tr>
+<tr><td><code>solid-ground-only</code></td><td>Automatic spawning only picks solid, natural, reachable ground. It checks against Minecraft's native heightmap that ignores leaves (<code>MOTION_BLOCKING_NO_LEAVES</code>), and discards any position that sits well above the natural terrain (tolerance in <code>spawn-restrictions.solid-ground-tolerance</code>). This is what keeps chests from spawning in treetops or random roofs. Doesn't affect manual <code>/dd spawn</code>. <b>Enabled globally by default.</b></td></tr>
+<tr><td><code>explosion-protect</code></td><td>The chest block is immune to explosions (TNT, creepers, beds, etc.). <b>Enabled globally by default.</b></td></tr>
+<tr><td><code>fire-protect</code></td><td>The block never catches fire or is destroyed by nearby fire.</td></tr>
+<tr><td><code>permission-required</code></td><td>Also requires <code>donadrops.opendrop.&lt;category&gt;</code> to open it (see <a href="#permissions">Permissions</a>). <b>Enabled by default on every new chest.</b></td></tr>
+<tr><td><code>unbreakable</code></td><td>The block can never be broken/mined, not even by staff with <code>donadrops.spawn</code>. It only disappears via <code>appear-seconds</code> or by command.</td></tr>
+<tr><td><code>piston-immune</code></td><td>Pistons can't push or pull the chest block.</td></tr>
+<tr><td><code>silent-spawn</code></td><td>No chat message, title or sound is sent to the server when that chest spawns automatically.</td></tr>
+<tr><td><code>no-hologram</code></td><td>No floating hologram is shown above that chest.</td></tr>
 </table>
 
-<h3>Otras flags que podrían sumarse</h3>
-<p>Además de las 8 que ya vienen, esta es una lista de ideas para un plugin de cofres con recompensas — cosas que suenan bien para más adelante. Ninguna de las que dice "Sugerida" hace algo todavía; están para que elijas cuáles te gustaría pedir en una próxima actualización.</p>
+<h3>Other flags that could be added</h3>
+<p>Besides the 8 that already ship, here's a list of ideas for a reward-chest plugin — things that sound good for later on. None of the ones marked "Suggested" do anything yet; they're here so you can pick which ones you'd like to request in a future update.</p>
 <table>
-<tr><th>Flag</th><th>Estado</th><th>Efecto (propuesto)</th></tr>
-<tr><td><code>solid-ground-only</code></td><td>Disponible</td><td>Solo aparece en suelo natural y alcanzable, nunca en copas de árboles o techos.</td></tr>
-<tr><td><code>explosion-protect</code></td><td>Disponible</td><td>Inmune a explosiones (TNT, creepers, camas).</td></tr>
-<tr><td><code>fire-protect</code></td><td>Disponible</td><td>Inmune al fuego cercano, nunca se quema.</td></tr>
-<tr><td><code>permission-required</code></td><td>Disponible</td><td>Exige un permiso de categoría para poder abrirse.</td></tr>
-<tr><td><code>unbreakable</code></td><td>Disponible</td><td>No puede romperse/minarse por nadie.</td></tr>
-<tr><td><code>piston-immune</code></td><td>Disponible</td><td>Los pistones no pueden moverlo.</td></tr>
-<tr><td><code>silent-spawn</code></td><td>Disponible</td><td>No anuncia su aparición con chat/título/sonido.</td></tr>
-<tr><td><code>no-hologram</code></td><td>Disponible</td><td>No muestra holograma flotante.</td></tr>
-<tr><td><code>no-mob-spawn-nearby</code></td><td>Sugerida</td><td>Evita que mobs hostiles aparezcan naturalmente cerca del cofre mientras esté activo.</td></tr>
-<tr><td><code>no-water-flow</code></td><td>Sugerida</td><td>El agua cercana no puede fluir sobre el bloque del cofre ni empujarlo.</td></tr>
-<tr><td><code>no-lava-flow</code></td><td>Sugerida</td><td>La lava cercana no puede fluir sobre el bloque del cofre.</td></tr>
-<tr><td><code>hopper-immune</code></td><td>Sugerida</td><td>Los hoppers no pueden extraer ítems del cofre antes de que un jugador lo abra "de verdad".</td></tr>
-<tr><td><code>no-block-place-above</code></td><td>Sugerida</td><td>Impide colocar bloques encima del cofre mientras esté activo, para que siempre quede accesible.</td></tr>
-<tr><td><code>anti-grief-radius</code></td><td>Sugerida</td><td>Bloquea romper/colocar bloques en un radio configurable alrededor del cofre.</td></tr>
-<tr><td><code>no-redstone-trigger</code></td><td>Sugerida</td><td>Ignora señales de redstone cercanas (los pistones ya están cubiertos aparte, esto sería para otros mecanismos).</td></tr>
-<tr><td><code>glowing-outline</code></td><td>Sugerida</td><td>El bloque brilla con contorno (efecto Glowing) para verse a través de paredes.</td></tr>
-<tr><td><code>beam-particle</code></td><td>Sugerida</td><td>Columna de partículas vertical sobre el cofre, visible desde lejos.</td></tr>
-<tr><td><code>compass-tracking</code></td><td>Sugerida</td><td>Los jugadores cercanos reciben una brújula apuntando al cofre mientras esté activo.</td></tr>
-<tr><td><code>boss-bar-timer</code></td><td>Sugerida</td><td>Muestra una boss bar con el tiempo restante hasta el despawn, en vez de (o junto con) el holograma.</td></tr>
-<tr><td><code>action-bar-proximity</code></td><td>Sugerida</td><td>Muestra un aviso en la action bar a los jugadores que se acercan lo suficiente.</td></tr>
-<tr><td><code>require-empty-hand</code></td><td>Sugerida</td><td>Solo se puede abrir con la mano vacía, para evitar aperturas accidentales al construir.</td></tr>
-<tr><td><code>require-item-to-open</code></td><td>Sugerida</td><td>Exige tener un ítem específico (una "llave") en el inventario para poder abrirlo.</td></tr>
-<tr><td><code>consume-key-on-open</code></td><td>Sugerida</td><td>Junto a la anterior: consume una unidad de esa llave al abrir el cofre.</td></tr>
-<tr><td><code>one-per-player</code></td><td>Sugerida</td><td>Cada jugador solo puede abrir/reclamar ese drop una vez (por sesión, día o para siempre, según se configure).</td></tr>
-<tr><td><code>one-opener-only</code></td><td>Sugerida</td><td>El primer jugador que interactúa se queda con el cofre; los demás lo ven como ya reclamado.</td></tr>
-<tr><td><code>party-shared-loot</code></td><td>Sugerida</td><td>Al abrirlo, reparte una copia del loot entre todos los jugadores cercanos, no solo quien interactuó.</td></tr>
-<tr><td><code>no-despawn</code></td><td>Sugerida</td><td>Ignora <code>appear-seconds</code>: el cofre nunca desaparece solo, hasta que lo abran o se elimine por comando.</td></tr>
-<tr><td><code>respawn-on-open</code></td><td>Sugerida</td><td>Al ser abierto y reclamado, vuelve a generarse automáticamente en otra ubicación válida.</td></tr>
-<tr><td><code>max-one-active-per-world</code></td><td>Sugerida</td><td>Nunca deja que haya más de una copia de ese drop activa a la vez en el mismo mundo.</td></tr>
-<tr><td><code>vip-only</code></td><td>Sugerida</td><td>Solo puede abrirlo quien tenga un permiso VIP configurable, además de <code>donadrops.open</code>.</td></tr>
-<tr><td><code>staff-only</code></td><td>Sugerida</td><td>Restringido por completo a jugadores con permisos de staff.</td></tr>
-<tr><td><code>require-daytime</code></td><td>Sugerida</td><td>Solo puede abrirse durante el día en ese mundo.</td></tr>
-<tr><td><code>require-nighttime</code></td><td>Sugerida</td><td>Solo puede abrirse durante la noche en ese mundo.</td></tr>
-<tr><td><code>require-clear-weather</code></td><td>Sugerida</td><td>Solo puede abrirse si no está lloviendo/tronando.</td></tr>
-<tr><td><code>require-storm</code></td><td>Sugerida</td><td>Solo puede abrirse durante una tormenta, para eventos temáticos.</td></tr>
-<tr><td><code>restrict-y-level</code></td><td>Sugerida</td><td>El spawneo automático solo elige alturas Y dentro de un rango propio del drop (distinto al global).</td></tr>
-<tr><td><code>restrict-biome</code></td><td>Sugerida</td><td>El spawneo automático solo elige puntos dentro de una lista de biomas permitidos.</td></tr>
-<tr><td><code>underwater-only</code></td><td>Sugerida</td><td>Solo aparece en posiciones sumergidas en agua, para drops temáticos de océano.</td></tr>
-<tr><td><code>cave-only</code></td><td>Sugerida</td><td>Solo aparece en posiciones subterráneas, sin ver el cielo directamente.</td></tr>
-<tr><td><code>double-loot-weekends</code></td><td>Sugerida</td><td>Duplica las cantidades de recompensa cuando el spawn ocurre en fin de semana.</td></tr>
-<tr><td><code>notify-nearby-only</code></td><td>Sugerida</td><td>El aviso de aparición (chat/título/sonido) solo llega a jugadores dentro de un radio, no a todo el servidor.</td></tr>
-<tr><td><code>broadcast-serverwide</code></td><td>Sugerida</td><td>Fuerza el aviso de aparición a todo el servidor aunque el mundo tenga otra configuración por defecto.</td></tr>
-<tr><td><code>silent-open</code></td><td>Sugerida</td><td>No reproduce sonido/partículas al abrirse o reclamarse, solo al aparecer.</td></tr>
-<tr><td><code>no-particles</code></td><td>Sugerida</td><td>Desactiva tanto las partículas de aparición como las de loot reclamado para ese cofre.</td></tr>
-<tr><td><code>reveal-on-proximity</code></td><td>Sugerida</td><td>El bloque permanece invisible/oculto hasta que un jugador entra en un radio configurable.</td></tr>
-<tr><td><code>auto-relocate-if-blocked</code></td><td>Sugerida</td><td>Si el bloque termina cubierto o inaccesible tras aparecer, busca automáticamente una nueva posición válida.</td></tr>
-<tr><td><code>cooldown-bypass</code></td><td>Sugerida</td><td>Ignora el cooldown global de <code>spawn-system</code>, útil para drops especiales de evento.</td></tr>
-<tr><td><code>priority-spawn</code></td><td>Sugerida</td><td>Se prioriza sobre otros drops al elegir qué generar cuando compiten por el mismo intento de spawn.</td></tr>
-<tr><td><code>no-fall-damage-near</code></td><td>Sugerida</td><td>Anula el daño de caída a jugadores que aterricen justo sobre el cofre.</td></tr>
-<tr><td><code>webhook-notify</code></td><td>Sugerida</td><td>Envía un aviso a un webhook externo (por ejemplo Discord) cuando el cofre aparece o se reclama.</td></tr>
-<tr><td><code>log-claims</code></td><td>Sugerida</td><td>Registra en un archivo/consola cada vez que ese drop es reclamado, con jugador y coordenadas.</td></tr>
+<tr><th>Flag</th><th>Status</th><th>Effect (proposed)</th></tr>
+<tr><td><code>solid-ground-only</code></td><td>Available</td><td>Only spawns on natural, reachable ground, never in treetops or roofs.</td></tr>
+<tr><td><code>explosion-protect</code></td><td>Available</td><td>Immune to explosions (TNT, creepers, beds).</td></tr>
+<tr><td><code>fire-protect</code></td><td>Available</td><td>Immune to nearby fire, never burns.</td></tr>
+<tr><td><code>permission-required</code></td><td>Available</td><td>Requires a category permission to be opened.</td></tr>
+<tr><td><code>unbreakable</code></td><td>Available</td><td>Can't be broken/mined by anyone.</td></tr>
+<tr><td><code>piston-immune</code></td><td>Available</td><td>Pistons can't move it.</td></tr>
+<tr><td><code>silent-spawn</code></td><td>Available</td><td>Doesn't announce its spawn with chat/title/sound.</td></tr>
+<tr><td><code>no-hologram</code></td><td>Available</td><td>Doesn't show a floating hologram.</td></tr>
+<tr><td><code>no-mob-spawn-nearby</code></td><td>Suggested</td><td>Prevents hostile mobs from naturally spawning near the chest while it's active.</td></tr>
+<tr><td><code>no-water-flow</code></td><td>Suggested</td><td>Nearby water can't flow over the chest block or push it.</td></tr>
+<tr><td><code>no-lava-flow</code></td><td>Suggested</td><td>Nearby lava can't flow over the chest block.</td></tr>
+<tr><td><code>hopper-immune</code></td><td>Suggested</td><td>Hoppers can't pull items out of the chest before a player "really" opens it.</td></tr>
+<tr><td><code>no-block-place-above</code></td><td>Suggested</td><td>Prevents placing blocks above the chest while it's active, so it stays reachable.</td></tr>
+<tr><td><code>anti-grief-radius</code></td><td>Suggested</td><td>Blocks breaking/placing blocks within a configurable radius around the chest.</td></tr>
+<tr><td><code>no-redstone-trigger</code></td><td>Suggested</td><td>Ignores nearby redstone signals (pistons are already covered separately; this would be for other mechanisms).</td></tr>
+<tr><td><code>glowing-outline</code></td><td>Suggested</td><td>The block glows with an outline (Glowing effect) so it's visible through walls.</td></tr>
+<tr><td><code>beam-particle</code></td><td>Suggested</td><td>A vertical column of particles above the chest, visible from far away.</td></tr>
+<tr><td><code>compass-tracking</code></td><td>Suggested</td><td>Nearby players get a compass pointing to the chest while it's active.</td></tr>
+<tr><td><code>boss-bar-timer</code></td><td>Suggested</td><td>Shows a boss bar with the time left until despawn, instead of (or alongside) the hologram.</td></tr>
+<tr><td><code>action-bar-proximity</code></td><td>Suggested</td><td>Shows an action-bar notice to players who get close enough.</td></tr>
+<tr><td><code>require-empty-hand</code></td><td>Suggested</td><td>Can only be opened with an empty hand, to avoid accidental openings while building.</td></tr>
+<tr><td><code>require-item-to-open</code></td><td>Suggested</td><td>Requires a specific item (a "key") in the inventory to open it.</td></tr>
+<tr><td><code>consume-key-on-open</code></td><td>Suggested</td><td>Paired with the previous one: consumes one unit of that key when the chest is opened.</td></tr>
+<tr><td><code>one-per-player</code></td><td>Suggested</td><td>Each player can only open/claim that drop once (per session, per day, or forever, depending on configuration).</td></tr>
+<tr><td><code>one-opener-only</code></td><td>Suggested</td><td>The first player to interact keeps the chest; everyone else sees it as already claimed.</td></tr>
+<tr><td><code>party-shared-loot</code></td><td>Suggested</td><td>When opened, hands out a copy of the loot to every nearby player, not just whoever interacted.</td></tr>
+<tr><td><code>no-despawn</code></td><td>Suggested</td><td>Ignores <code>appear-seconds</code>: the chest never disappears on its own, until it's opened or removed by command.</td></tr>
+<tr><td><code>respawn-on-open</code></td><td>Suggested</td><td>Once opened and claimed, automatically respawns at another valid location.</td></tr>
+<tr><td><code>max-one-active-per-world</code></td><td>Suggested</td><td>Never lets more than one copy of that drop be active at the same time in the same world.</td></tr>
+<tr><td><code>vip-only</code></td><td>Suggested</td><td>Can only be opened by someone with a configurable VIP permission, in addition to <code>donadrops.open</code>.</td></tr>
+<tr><td><code>staff-only</code></td><td>Suggested</td><td>Fully restricted to players with staff permissions.</td></tr>
+<tr><td><code>require-daytime</code></td><td>Suggested</td><td>Can only be opened during the day in that world.</td></tr>
+<tr><td><code>require-nighttime</code></td><td>Suggested</td><td>Can only be opened at night in that world.</td></tr>
+<tr><td><code>require-clear-weather</code></td><td>Suggested</td><td>Can only be opened if it isn't raining/storming.</td></tr>
+<tr><td><code>require-storm</code></td><td>Suggested</td><td>Can only be opened during a storm, for themed events.</td></tr>
+<tr><td><code>restrict-y-level</code></td><td>Suggested</td><td>Automatic spawning only picks Y heights within a range of its own for that drop (different from the global one).</td></tr>
+<tr><td><code>restrict-biome</code></td><td>Suggested</td><td>Automatic spawning only picks points within a list of allowed biomes.</td></tr>
+<tr><td><code>underwater-only</code></td><td>Suggested</td><td>Only spawns at positions submerged in water, for ocean-themed drops.</td></tr>
+<tr><td><code>cave-only</code></td><td>Suggested</td><td>Only spawns at underground positions, without a direct view of the sky.</td></tr>
+<tr><td><code>double-loot-weekends</code></td><td>Suggested</td><td>Doubles reward amounts when the spawn happens on a weekend.</td></tr>
+<tr><td><code>notify-nearby-only</code></td><td>Suggested</td><td>The spawn notice (chat/title/sound) only reaches players within a radius, not the whole server.</td></tr>
+<tr><td><code>broadcast-serverwide</code></td><td>Suggested</td><td>Forces the spawn notice to the whole server even if the world has a different default setting.</td></tr>
+<tr><td><code>silent-open</code></td><td>Suggested</td><td>Doesn't play a sound/particles when opened or claimed, only when it spawns.</td></tr>
+<tr><td><code>no-particles</code></td><td>Suggested</td><td>Disables both the spawn particles and the claimed-loot particles for that chest.</td></tr>
+<tr><td><code>reveal-on-proximity</code></td><td>Suggested</td><td>The block stays invisible/hidden until a player enters a configurable radius.</td></tr>
+<tr><td><code>auto-relocate-if-blocked</code></td><td>Suggested</td><td>If the block ends up covered or unreachable after spawning, it automatically looks for a new valid position.</td></tr>
+<tr><td><code>cooldown-bypass</code></td><td>Suggested</td><td>Ignores <code>spawn-system</code>'s global cooldown, useful for special event drops.</td></tr>
+<tr><td><code>priority-spawn</code></td><td>Suggested</td><td>Gets priority over other drops when choosing what to spawn when they compete for the same spawn attempt.</td></tr>
+<tr><td><code>no-fall-damage-near</code></td><td>Suggested</td><td>Cancels fall damage for players who land right on top of the chest.</td></tr>
+<tr><td><code>webhook-notify</code></td><td>Suggested</td><td>Sends a notice to an external webhook (e.g. Discord) when the chest spawns or is claimed.</td></tr>
+<tr><td><code>log-claims</code></td><td>Suggested</td><td>Logs every time that drop is claimed to a file/console, with the player and coordinates.</td></tr>
 </table>
-<p>Las flags por cofre se activan/desactivan desde el botón <b>Chest Flags</b> del editor, que muestra el estado de cada una, si ya está forzada globalmente y una descripción corta. Las globales se editan directamente en <code>config.yml</code>.</p>
+<p>Per-chest flags are toggled from the editor's <b>Chest Flags</b> button, which shows each flag's status, whether it's already forced globally, and a short description. Global ones are edited directly in <code>config.yml</code>.</p>
 
-<h2 id="zones">Zonas de spawn</h2>
-<p>DonaDrops permite delimitar regiones donde se pueden generar cofres. Las zonas se guardan automáticamente en la carpeta <code>/zones</code>, un archivo <code>.yml</code> por zona.</p>
-<h3>Seleccionar Pos1 y Pos2</h3>
+<h2 id="zones">Spawn zones</h2>
+<p>DonaDrops lets you define regions where chests are allowed to spawn. Zones are automatically saved in the <code>/zones</code> folder, one <code>.yml</code> file per zone.</p>
+<h3>Selecting Pos1 and Pos2</h3>
 <ol>
-<li>Ejecuta <code>/dd zonewand</code> para recibir el <b>hacha de hierro de DonaDrops</b>.</li>
-<li>Clic izquierdo sobre un bloque: <code>Pos1</code>.</li>
-<li>Clic derecho sobre un bloque: <code>Pos2</code>.</li>
+<li>Run <code>/dd zonewand</code> to get the <b>DonaDrops iron axe</b>.</li>
+<li>Left-click a block: <code>Pos1</code>.</li>
+<li>Right-click a block: <code>Pos2</code>.</li>
 </ol>
-<p>También puedes usar <code>/dd pos1 &lt;x&gt; &lt;y&gt; &lt;z&gt; [mundo]</code> y <code>/dd pos2 &lt;x&gt; &lt;y&gt; &lt;z&gt; [mundo]</code>.</p>
-<h3>Crear y confirmar</h3>
-<p>Con ambas posiciones seleccionadas, usa <code>/dd createzone &lt;nombre&gt;</code>. DonaDrops mostrará <b>Click para confirmar</b>; al pulsarlo se crea la zona. Las zonas activadas no pueden solaparse con otra zona activada.</p>
-<h3>Archivo de zona</h3>
+<p>You can also use <code>/dd pos1 &lt;x&gt; &lt;y&gt; &lt;z&gt; [world]</code> and <code>/dd pos2 &lt;x&gt; &lt;y&gt; &lt;z&gt; [world]</code>.</p>
+<h3>Creating and confirming</h3>
+<p>With both positions selected, run <code>/dd createzone &lt;name&gt;</code>. DonaDrops will show <b>Click to confirm</b>; clicking it creates the zone. Enabled zones can't overlap with another enabled zone.</p>
+<h3>Zone file</h3>
 <pre><code>enabled: true
 world: "world"
 pos1:
@@ -318,17 +318,17 @@ pos2:
 max-chests: 5
 allow-manual-spawn: true</code></pre>
 <ul>
-<li><code>enabled</code> — activa o desactiva la restricción de esa zona.</li>
-<li><code>world</code> — mundo al que pertenece la zona.</li>
-<li><code>pos1</code>/<code>pos2</code> — coordenadas persistentes de los extremos de la región.</li>
-<li><code>max-chests</code> — máximo de cofres activos simultáneos dentro de esa zona; <code>0</code> significa sin límite.</li>
-<li><code>allow-manual-spawn</code> — permite o bloquea <code>/dd spawn</code> dentro de la zona.</li>
+<li><code>enabled</code> — turns that zone's restriction on or off.</li>
+<li><code>world</code> — the world the zone belongs to.</li>
+<li><code>pos1</code>/<code>pos2</code> — the persisted coordinates of the region's corners.</li>
+<li><code>max-chests</code> — maximum number of active chests inside that zone at once; <code>0</code> means no limit.</li>
+<li><code>allow-manual-spawn</code> — allows or blocks <code>/dd spawn</code> inside the zone.</li>
 </ul>
-<p>Si un mundo tiene al menos una zona habilitada, los spawns de DonaDrops de ese mundo deben quedar dentro de una zona habilitada. Si no existen zonas habilitadas en ese mundo, el mundo conserva el comportamiento normal.</p>
-<p><code>/dd deletezone &lt;nombre&gt;</code> elimina el archivo de la zona y retira los cofres activos que estuvieran dentro de ella; después, ese mundo vuelve a estar libre de esa restricción.</p>
+<p>If a world has at least one enabled zone, DonaDrops's spawns in that world must land inside an enabled zone. If no zones are enabled in that world, the world keeps its normal behavior.</p>
+<p><code>/dd deletezone &lt;name&gt;</code> deletes the zone's file and removes any active chests that were inside it; afterwards, that world is free of that restriction again.</p>
 
-<h2 id="spawn-system">Spawneo automático</h2>
-<p>Controlado en <code>config.yml → spawn-system</code>: cooldown global, cooldown por drop, máximo de cofres activos, intentos de búsqueda y rango de altura (Y).</p>
+<h2 id="spawn-system">Automatic spawning</h2>
+<p>Controlled in <code>config.yml → spawn-system</code>: global cooldown, per-drop cooldown, maximum active chests, search attempts and height (Y) range.</p>
 <pre><code>spawn-system:
   enabled: true
   global-cooldown-seconds: 60
@@ -338,14 +338,14 @@ allow-manual-spawn: true</code></pre>
   max-y: 320
   near-players: true
   near-players-radius: 60</code></pre>
-<p><code>min-y</code> y <code>max-y</code> nunca pasan de la altura real del mundo: en 1.20 el overworld va de -64 a 320, pero el Nether y el End de 0 a 256, así que ahí el <code>-64</code> por defecto simplemente se recorta a 0.</p>
-<p>Si el mundo tiene alguna zona habilitada, DonaDrops siempre intenta generar los cofres dentro de esa zona. Si no hay ninguna zona habilitada, se usa <code>near-players</code>: se elige un jugador conectado al azar y el cofre aparece dentro de <code>near-players-radius</code> bloques a su alrededor.</p>
+<p><code>min-y</code> and <code>max-y</code> never exceed the world's real height: on 1.20 the overworld goes from -64 to 320, but the Nether and the End go from 0 to 256, so there the default <code>-64</code> simply gets clamped to 0.</p>
+<p>If the world has an enabled zone, DonaDrops always tries to spawn chests inside that zone. If there's no enabled zone, <code>near-players</code> is used: a connected player is picked at random and the chest appears within <code>near-players-radius</code> blocks of them.</p>
 <div class="callout">
-DonaDrops nunca carga ni genera un chunk solo para comprobar un posible punto de aparición: si la posición candidata cae en un chunk que no está cargado, simplemente se descarta y se prueba otra.
+DonaDrops never loads or generates a chunk just to check a possible spawn point: if the candidate position falls in a chunk that isn't loaded, it's simply discarded and another one is tried.
 </div>
 
-<h2 id="amounts">Cantidad mínima/máxima por ítem</h2>
-<p>Cada recompensa guarda <code>min-amount</code> y <code>max-amount</code> en su archivo <code>.yml</code> dentro de <code>/drops</code>. Al abrir el cofre, la cantidad final de ese ítem se sortea aleatoriamente entre esos dos números. Si no los editas, ambos quedan iguales a la cantidad del ítem que agregaste (sin variación). Edítalos directamente en el archivo del drop:</p>
+<h2 id="amounts">Min/max amount per item</h2>
+<p>Each reward stores <code>min-amount</code> and <code>max-amount</code> in its <code>.yml</code> file inside <code>/drops</code>. When the chest is opened, that item's final amount is rolled at random between those two numbers. If you don't edit them, both stay equal to the amount of the item you added (no variation). Edit them directly in the drop's file:</p>
 <pre><code>rewards:
   0:
     item: ...
@@ -353,8 +353,8 @@ DonaDrops nunca carga ni genera un chunk solo para comprobar un posible punto de
     min-amount: 1
     max-amount: 4</code></pre>
 
-<h2 id="reward-lore">Lore de recompensas</h2>
-<p>El Lore de recompensa se muestra automáticamente en los ítems mientras están dentro del inventario de loot de un cofre. Al sacar el ítem del cofre, DonaDrops elimina únicamente el Lore que añadió el sistema, dejando intacto cualquier Lore original del ítem.</p>
+<h2 id="reward-lore">Reward lore</h2>
+<p>Reward lore is automatically shown on items while they're inside a chest's loot inventory. When the item is taken out of the chest, DonaDrops removes only the lore the system added, leaving any of the item's original lore untouched.</p>
 <pre><code>reward-lore:
   enabled: true
   lines:
@@ -362,50 +362,50 @@ DonaDrops nunca carga ni genera un chunk solo para comprobar un posible punto de
     - "&amp;7Probability: &amp;f{rarity-probability}%"
 </code></pre>
 <ul>
-<li><code>enabled</code>: activa o desactiva completamente este Lore.</li>
-<li><code>lines</code>: lista de líneas editable; puedes agregar, quitar o cambiar líneas libremente.</li>
-<li><code>{rarity}</code>: clave de rareza del ítem.</li>
-<li><code>{rarity-name}</code>: nombre mostrado de la rareza definido en <code>categories.yml</code>.</li>
-<li><code>{rarity-probability}</code>: probabilidad de la rareza definida en <code>categories.yml</code>.</li>
-<li><code>{chance}</code>: probabilidad propia de la recompensa.</li>
+<li><code>enabled</code>: fully turns this lore on or off.</li>
+<li><code>lines</code>: an editable list of lines; you can freely add, remove or change lines.</li>
+<li><code>{rarity}</code>: the item's rarity key.</li>
+<li><code>{rarity-name}</code>: the rarity's display name defined in <code>categories.yml</code>.</li>
+<li><code>{rarity-probability}</code>: the rarity's probability defined in <code>categories.yml</code>.</li>
+<li><code>{chance}</code>: the reward's own chance.</li>
 </ul>
-<p>Las líneas respetan los colores tal como los escribas: códigos <code>&amp;</code>, hex exacto (<code>&amp;#FFD700</code>) y tags de MiniMessage, incluidos los degradados.</p>
-<p>El Lore se guarda internamente junto con una marca propia para que los ítems que llevan la misma configuración de Lore sigan siendo compatibles entre sí. Al obtenerlos, la marca y las líneas generadas se eliminan para que el ítem vuelva a su estado normal y pueda apilarse correctamente con ítems equivalentes.</p>
+<p>Lines respect the colors exactly as you write them: <code>&amp;</code> codes, exact hex (<code>&amp;#FFD700</code>) and MiniMessage tags, gradients included.</p>
+<p>The lore is stored internally along with a marker so that items sharing the same lore configuration stay compatible with each other. As soon as the item actually leaves the chest, DonaDrops removes the marker and the lines it added: this is checked on every click and drag while the loot GUI is open, again the moment it's closed, and once more on whatever gets dropped to the ground - including pressing the drop key (Q) directly on a slot inside the chest, which sends the item straight to the ground without ever passing through the player's own inventory. That last case used to be missed, leaving the lore stuck on a dropped item; it's covered now too.</p>
 
 <h2 id="config">config.yml</h2>
-<p>Controla el comportamiento global: probabilidad de aparición de referencia, segundos de espera antes de poder abrir, símbolo de estrella, título por defecto (centrado automáticamente), tipo de bloque/inventario global, flags globales (ver <a href="#flags">Chest Flags</a>), spawnear fuera del border, sonidos por acción, mensajes/títulos con <code>%x% %y% %z% %world% %name%</code>, Lore de recompensas, distancia de visibilidad, paneles decorativos de cada GUI y cabezas con textura reutilizables.</p>
+<p>Controls global behavior: baseline spawn probability, seconds to wait before it can be opened, star symbol, default title (automatically centered), global block/inventory type, global flags (see <a href="#flags">Chest Flags</a>), spawning outside the world border, per-action sounds, messages/titles with <code>%x% %y% %z% %world% %name%</code>, reward lore, visibility distance, each GUI's decorative panels and reusable textured heads.</p>
 
 <table>
-<tr><th>Sección</th><th>Qué controla</th></tr>
-<tr><td><code>general</code></td><td>Probabilidad de referencia, tiempo de bloqueo, símbolos de estrella, colores de estrellas y título por defecto.</td></tr>
-<tr><td><code>global-flags</code></td><td>Lista de flags aplicadas automáticamente a todos los cofres (ver <a href="#flags">Chest Flags</a>). Por defecto: <code>explosion-protect</code> y <code>solid-ground-only</code>.</td></tr>
+<tr><th>Section</th><th>What it controls</th></tr>
+<tr><td><code>general</code></td><td>Baseline probability, lock time, star symbols, star colors and default title.</td></tr>
+<tr><td><code>global-flags</code></td><td>List of flags automatically applied to every chest (see <a href="#flags">Chest Flags</a>). Default: <code>explosion-protect</code> and <code>solid-ground-only</code>.</td></tr>
 
-<tr><td><code>zones</code></td><td>Valores predeterminados para las nuevas zonas, como <code>max-chests</code> y <code>allow-manual-spawn</code>.</td></tr>
-<tr><td><code>chest</code></td><td>Bloque e inventario usados por los cofres sin <code>type-override</code> propio.</td></tr>
-<tr><td><code>reward-lore</code></td><td>Activa/desactiva y personaliza línea por línea el Lore de las recompensas dentro del cofre.</td></tr>
-<tr><td><code>visibility-distance</code></td><td>Distancia máxima de visibilidad del cofre y su holograma. Por defecto: <code>50</code>.</td></tr>
-<tr><td><code>hologram</code></td><td>Activado, altura, líneas (<code>{name}</code>/<code>{stars}</code>), sombra de texto y escala.</td></tr>
-<tr><td><code>sounds</code></td><td>Sonido por acción: aparición, apertura, bloqueado, loot reclamado, clic de GUI.</td></tr>
-<tr><td><code>pre-spawn-particles</code></td><td>Partículas que se ven unos segundos antes de que aparezca el cofre (ver <a href="#pre-spawn">Partículas de aparición</a>). Por defecto: <code>type: none</code>.</td></tr>
-<tr><td><code>spawn-particles</code></td><td>Partículas que se mantienen alrededor del cofre mientras está en el mundo (ver <a href="#spawn-particles">Partículas persistentes</a>). Por defecto: <code>type: none</code>.</td></tr>
-<tr><td><code>particles</code></td><td>Partículas al reclamar todo el loot (ver <a href="#events">Sonidos, títulos y partículas</a>). Por defecto: <code>EXPLOSION_LARGE</code>.</td></tr>
-<tr><td><em>(animación)</em></td><td><code>spawn-animation</code> no está en config.yml: se configura en cada drop (ver <a href="#spawn-animations">Animación de aparición</a>).</td></tr>
-<tr><td><code>messages</code></td><td>Título, subtítulo y mensajes de chat al generar un cofre y al reclamarlo.</td></tr>
-<tr><td><code>gui-fillers</code></td><td>Panel decorativo de cada menú: material, nombre y qué slots rellena (<code>border</code>, una lista de slots separados por coma, ej. <code>"0,1,7,8"</code>, o rangos como <code>"0-8,25-26"</code>).</td></tr>
-<tr><td><code>spawn-system</code></td><td>Spawneo automático: cooldown global, máximo de cofres, intentos de búsqueda, rango Y y <code>near-players</code> (ver <a href="#spawn-system">Spawneo automático</a>).</td></tr>
-<tr><td><code>spawn-restrictions</code></td><td><code>solid-ground-tolerance</code>: cuántos bloques por encima del terreno natural se acepta el suelo cuando la flag <code>solid-ground-only</code> está activa.</td></tr>
-<tr><td><code>worldguard-compatibility</code></td><td>Con <code>enabled: true</code>, los jugadores necesitan permiso USE en la región de WorldGuard para abrir un cofre. Viene en <code>false</code>.</td></tr>
-<tr><td><code>leaderboards</code></td><td>Tamaño del inventario de rankings, slots de los jugadores y slot del botón de regreso.</td></tr>
-<tr><td><code>leaderboard</code></td><td><code>player</code>: material, cabeza/textura, nombre y Lore de las posiciones ya ocupadas por un jugador, comunes a todos los rankings. El ítem de las posiciones vacías (<code>empty</code>) ya no vive aquí: se configura por separado en cada archivo de <code>/gui</code> (ver <a href="#gui-files">Archivos de GUI y rankings</a>).</td></tr>
-<tr><td><code>custom-heads</code></td><td>Texturas base64 reutilizables por los menús de <code>/gui</code>.</td></tr>
+<tr><td><code>zones</code></td><td>Default values for new zones, like <code>max-chests</code> and <code>allow-manual-spawn</code>.</td></tr>
+<tr><td><code>chest</code></td><td>Block and inventory used by chests without their own <code>type-override</code>.</td></tr>
+<tr><td><code>reward-lore</code></td><td>Enables/disables and customizes, line by line, the lore shown on rewards inside the chest.</td></tr>
+<tr><td><code>visibility-distance</code></td><td>Maximum visibility distance of the chest and its hologram. Default: <code>50</code>.</td></tr>
+<tr><td><code>hologram</code></td><td>Enabled, height, lines (<code>{name}</code>/<code>{stars}</code>), text shadow and scale.</td></tr>
+<tr><td><code>sounds</code></td><td>Sound per action: spawn, open, locked, loot claimed, GUI click.</td></tr>
+<tr><td><code>pre-spawn-particles</code></td><td>Particles seen a few seconds before the chest appears (see <a href="#pre-spawn">Pre-spawn particles</a>). Default: <code>type: none</code>.</td></tr>
+<tr><td><code>spawn-particles</code></td><td>Particles that stay around the chest while it's in the world (see <a href="#spawn-particles">Persistent particles</a>). Default: <code>type: none</code>.</td></tr>
+<tr><td><code>particles</code></td><td>Particles played when all the loot is claimed (see <a href="#events">Sounds, titles and particles</a>). Default: <code>EXPLOSION_LARGE</code>.</td></tr>
+<tr><td><em>(animation)</em></td><td><code>spawn-animation</code> isn't in config.yml: it's set on each drop (see <a href="#spawn-animations">Spawn animation</a>).</td></tr>
+<tr><td><code>messages</code></td><td>Title, subtitle and chat messages when a chest spawns and when it's claimed.</td></tr>
+<tr><td><code>gui-fillers</code></td><td>Each menu's decorative panel: material, name and which slots it fills (<code>border</code>, a comma-separated list of slots, e.g. <code>"0,1,7,8"</code>, or ranges like <code>"0-8,25-26"</code>).</td></tr>
+<tr><td><code>spawn-system</code></td><td>Automatic spawning: global cooldown, max chests, search attempts, Y range and <code>near-players</code> (see <a href="#spawn-system">Automatic spawning</a>).</td></tr>
+<tr><td><code>spawn-restrictions</code></td><td><code>solid-ground-tolerance</code>: how many blocks above natural terrain the ground is still accepted when the <code>solid-ground-only</code> flag is active.</td></tr>
+<tr><td><code>worldguard-compatibility</code></td><td>With <code>enabled: true</code>, players need USE permission in the WorldGuard region to open a chest. Defaults to <code>false</code>.</td></tr>
+<tr><td><code>leaderboards</code></td><td>Leaderboard inventory size, player slots and the back-button slot.</td></tr>
+<tr><td><code>leaderboard</code></td><td><code>player</code>: material, head/texture, name and lore for positions already taken by a player, shared across every leaderboard. The item for empty positions (<code>empty</code>) no longer lives here: it's configured separately in each <code>/gui</code> file (see <a href="#gui-files">GUI and ranking files</a>).</td></tr>
+<tr><td><code>custom-heads</code></td><td>Base64 textures reusable across the <code>/gui</code> menus.</td></tr>
 </table>
 
 <h2 id="categories">categories.yml</h2>
-<p>Por defecto: <code>common</code>, <code>rare</code>, <code>epic</code>, <code>elite</code>, <code>legendary</code>, cada una con su propio <code>weight</code>. Puedes añadir, quitar o renombrar categorías libremente; el plugin las lee dinámicamente. El <code>weight</code> queda disponible para cualquier sistema propio de sorteo por categoría que quieras construir sobre estos datos.</p>
-<p>El mismo archivo también trae una sección aparte, <code>drop-items:</code>, para la rareza de los <b>ítems individuales</b> dentro de un cofre. Ver <a href="#item-rarity">Rareza de ítems</a>.</p>
+<p>By default: <code>common</code>, <code>rare</code>, <code>epic</code>, <code>elite</code>, <code>legendary</code>, each with its own <code>weight</code>. You can add, remove or rename categories freely; the plugin reads them dynamically. The <code>weight</code> is available for any category-based rolling system you want to build on top of this data.</p>
+<p>The same file also has a separate section, <code>drop-items:</code>, for the rarity of <b>individual items</b> inside a chest. See <a href="#item-rarity">Item rarity</a>.</p>
 
-<h2 id="drops">Archivos /drops/&lt;nombre&gt;.yml</h2>
-<p>Cada cofre tiene un archivo editable con nombre, rareza, categoría, idioma, tiempos, comandos al abrir, recompensas, cantidades, efectos de aparición y configuración de tipo de bloque/inventario.</p>
+<h2 id="drops">/drops/&lt;name&gt;.yml files</h2>
+<p>Each chest has an editable file with its name, rarity, category, language, timings, commands on open, rewards, amounts, spawn effects and block/inventory type settings.</p>
 <pre><code>open-delay-seconds: 3
 appear-seconds: 300
 
@@ -419,8 +419,8 @@ type-override:
 
 inventory-size: 54
 
-# Efectos de aparición (ver "Efectos de aparición del cofre").
-# -1 = usar config.yml, none = sin efecto.
+# Spawn effects (see "Chest spawn effects").
+# -1 = use config.yml, none = no effect.
 pre-spawn-particles:
   type: -1
   seconds: -1
@@ -435,16 +435,16 @@ spawn-particles:
   count: -1
   interval-ticks: -1
 
-# TIP: false (default) = este cofre puede aparecer donde sea que lo elija el
-# spawneador automático. true = SOLO aparece en los puntos fijos creados con
-# /dd createspawn &lt;nombreSpawn&gt; este_cofre (ver "Puntos de spawn fijos").
+# TIP: false (default) = this chest can spawn wherever the automatic
+# spawner picks. true = it ONLY spawns at the fixed points created with
+# /dd createspawn &lt;spawnName&gt; this_chest (see "Fixed spawn points").
 spawn: false
 
 chest-flags:
   - permission-required
-  # No hace falta repetir aquí solid-ground-only ni explosion-protect: ya están
-  # activas para todos los cofres en config.yml -> global-flags. Se puede agregar
-  # cualquier otra flag de la lista completa en la sección "Chest Flags".
+  # No need to repeat solid-ground-only or explosion-protect here: they're
+  # already active for every chest via config.yml -> global-flags. You can
+  # add any other flag from the full list in the "Chest Flags" section.
 
 rewards:
   0:
@@ -452,14 +452,14 @@ rewards:
     chance: 100.0
     min-amount: 1
     max-amount: 4
-    # rarity: clave de categories.yml -> drop-items: (ver "Rareza de ítems").
-    # La probabilidad de esa rareza se multiplica con "chance" de arriba.
+    # rarity: a key from categories.yml -> drop-items: (see "Item rarity").
+    # That rarity's probability gets multiplied with "chance" above.
     rarity: common</code></pre>
-<p>Los comandos pueden añadirse desde la GUI o editarse directamente en el YAML.</p>
-<p>El cofre se queda en el mundo hasta que se saquen TODOS los ítems de su inventario de loot, o hasta que pase <code>appear-seconds</code> (lo que ocurra primero). Mientras tenga loot sin reclamar, cualquiera puede volver a hacer clic derecho para ver lo que queda — no se vuelve a sortear, es el mismo loot generado la primera vez.</p>
+<p>Commands can be added from the GUI or edited directly in the YAML.</p>
+<p>The chest stays in the world until ALL the items in its loot inventory are taken out, or until <code>appear-seconds</code> elapses (whichever comes first). While it still has unclaimed loot, anyone can right-click it again to see what's left — it isn't re-rolled, it's the same loot generated the first time.</p>
 
-<h2 id="item-rarity">Rareza de ítems</h2>
-<p>Además de la rareza en estrellas del cofre (1-5) y la categoría del cofre (<code>common</code>, <code>rare</code>...), cada <b>ítem individual</b> dentro de las recompensas puede tener su propia rareza. Se define en <code>categories.yml</code>, bajo <code>drop-items:</code>:</p>
+<h2 id="item-rarity">Item rarity</h2>
+<p>Besides the chest's own star rarity (1-5) and its category (<code>common</code>, <code>rare</code>...), each <b>individual item</b> among the rewards can have its own rarity. It's defined in <code>categories.yml</code>, under <code>drop-items:</code>:</p>
 <pre><code>drop-items:
   common:
     display-name: "&amp;7Common"
@@ -476,18 +476,18 @@ rewards:
   legendary:
     display-name: "&amp;e&amp;lLegendary"
     probability: 3.0</code></pre>
-<p>Podés crear, borrar o renombrar estas categorías libremente. Por defecto todo ítem nuevo queda en <code>common</code> con 100% de probabilidad (es decir, sin ninguna penalización extra). Cuanto más baja sea la <code>probability</code> de la rareza asignada, menos chance tiene ese ítem de aparecer: su <code>chance</code> propio (definido en el archivo del cofre) se multiplica por <code>probability / 100</code>.</p>
-<p>Se edita de dos formas:</p>
+<p>You can create, delete or rename these categories freely. By default every new item is set to <code>common</code> with 100% probability (i.e., no extra penalty at all). The lower the assigned rarity's <code>probability</code>, the less likely that item is to appear: its own <code>chance</code> (set in the chest's file) gets multiplied by <code>probability / 100</code>.</p>
+<p>It's edited in two ways:</p>
 <ul>
-<li>Directamente en el archivo del cofre, con el campo <code>rarity:</code> de cada recompensa (ver <a href="#drops">Archivos /drops</a>).</li>
-<li>Desde <code>/dd editor &lt;cofre&gt; → Edit Rewards</code>: <b>shift-clic derecho</b> sobre un ítem sube un escalón de rareza, <b>shift-clic izquierdo</b> lo baja. El lore del ítem se actualiza al instante mostrando la rareza actual y su probabilidad.</li>
+<li>Directly in the chest's file, with the <code>rarity:</code> field on each reward (see <a href="#drops">/drops files</a>).</li>
+<li>From <code>/dd editor &lt;chest&gt; → Edit Rewards</code>: <b>shift-right-click</b> an item to raise its rarity a step (category and probability), <b>shift-left-click</b> to lower it. Hovering over any reward shows its current rarity and probability along with these two instructions in its Lore, in the language set in <code>config.yml</code>. Both the rarity and the probability are always a single line each: shift-clicking updates that same line in place rather than adding new ones, no matter how many times you click.</li>
 </ul>
 <div class="callout">
-En la pantalla de Edit Rewards ahora hay una flecha (última casilla) para volver al menú principal del editor sin perder los cambios.
+The Edit Rewards screen now has an arrow (last slot) to return to the editor's main menu without losing your changes.
 </div>
 
 <h2 id="drop-events">Drop Events</h2>
-<p>Un Drop Event es una oleada temporal de cofres que aparecen mucho más rápido de lo normal. Cada evento es un archivo independiente dentro de la carpeta <code>/events</code> (se crea sola la primera vez, con un ejemplo llamado <code>drop-event.yml</code>). Podés tener tantos eventos como quieras: copiá el archivo con otro nombre y ese nombre pasa a ser la clave usada en <code>/dd event start &lt;nombre&gt;</code>.</p>
+<p>A Drop Event is a temporary wave of chests that appear much faster than normal. Each event is a separate file inside the <code>/events</code> folder (it's created on its own the first time, with an example called <code>drop-event.yml</code>). You can have as many events as you want: copy the file under another name and that name becomes the key used in <code>/dd event start &lt;name&gt;</code>.</p>
 <pre><code># events/drop-event.yml
 enable: false
 
@@ -511,21 +511,21 @@ messages:
   finish-title: "&amp;6&amp;lDrops Event"
   finish-subtitle: "&amp;7The event has ended. See you next time!"
   next-event-title: "&amp;eNext Drops Event"
-  next-event-subtitle: "&amp;7Comienza in &amp;f%time%"</code></pre>
+  next-event-subtitle: "&amp;7Starts in &amp;f%time%"</code></pre>
 <table>
-<tr><th>Campo</th><th>Qué controla</th></tr>
-<tr><td><code>enable</code></td><td>Viene en <code>false</code> a propósito: revisá el evento y activalo cuando esté listo. Es la primera opción del archivo.</td></tr>
-<tr><td><code>auto-start</code> / <code>auto-interval-minutes</code></td><td>Si está en <code>true</code>, el evento se dispara solo cada tantos minutos (por defecto, cada 1 hora) mientras <code>enable</code> también sea <code>true</code>.</td></tr>
-<tr><td><code>spawn-interval-seconds</code></td><td>Mientras el evento está activo, aparece un cofre nuevo cada tantos segundos (por defecto 5).</td></tr>
-<tr><td><code>total-chests</code></td><td>El evento termina solo apenas se llega a esta cantidad de cofres generados.</td></tr>
-<tr><td><code>groups</code></td><td>Cada grupo tiene un <code>weight</code> (peso relativo frente a los demás grupos) y una lista <code>drops</code> con nombres de cofres de tu carpeta <code>/drops</code>. En cada tick el plugin sortea primero el grupo, y dentro de ese grupo, un cofre al azar. El ejemplo de fábrica ya apunta al cofre por defecto <code>donadrops</code>: si lo borrás o le cambiás el nombre, actualizá también estos grupos.</td></tr>
-<tr><td><code>messages</code></td><td>Mensajes de chat y título/subtítulo al empezar y al terminar, más el aviso del próximo evento (<code>%time%</code> se reemplaza por el tiempo restante, ej. "1h 0m 0s").</td></tr>
+<tr><th>Field</th><th>What it controls</th></tr>
+<tr><td><code>enable</code></td><td>Ships as <code>false</code> on purpose: review the event and turn it on when it's ready. It's the first option in the file.</td></tr>
+<tr><td><code>auto-start</code> / <code>auto-interval-minutes</code></td><td>If <code>true</code>, the event fires on its own every so many minutes (every 1 hour by default) as long as <code>enable</code> is also <code>true</code>.</td></tr>
+<tr><td><code>spawn-interval-seconds</code></td><td>While the event is active, a new chest appears every so many seconds (5 by default).</td></tr>
+<tr><td><code>total-chests</code></td><td>The event ends on its own as soon as this many chests have spawned.</td></tr>
+<tr><td><code>groups</code></td><td>Each group has a <code>weight</code> (relative to the other groups) and a <code>drops</code> list of chest names from your <code>/drops</code> folder. On every tick the plugin first rolls the group, then a random chest within that group. The factory example already points at the default <code>donadrops</code> chest: if you delete it or rename it, update these groups too.</td></tr>
+<tr><td><code>messages</code></td><td>Chat and title/subtitle messages when it starts and ends, plus the next-event notice (<code>%time%</code> is replaced with the remaining time, e.g. "1h 0m 0s").</td></tr>
 </table>
-<p>Se maneja con <code>/dd event start &lt;nombre&gt;</code>, <code>/dd event stop [nombre]</code> y <code>/dd event list</code>. Solo puede haber un evento activo a la vez. Mientras el evento está corriendo, todos los jugadores conectados ven una <b>bossbar</b> mostrando cuántos cofres van generados sobre el total (se actualiza sola y desaparece al terminar el evento).</p>
-<p>Para ver cuánto falta para el próximo evento (o para el próximo cofre automático random), usá los placeholders <code>%donadrops_next_event_time%</code> y <code>%donadrops_next_chest_time%</code> — ver <a href="#placeholders">Placeholders</a>.</p>
+<p>Managed with <code>/dd event start &lt;name&gt;</code>, <code>/dd event stop [name]</code> and <code>/dd event list</code>. Only one event can be active at a time. While the event is running, every connected player sees a <b>boss bar</b> showing how many chests have spawned out of the total (it updates itself and disappears when the event ends).</p>
+<p>To see how long until the next event (or the next random automatic chest), use the placeholders <code>%donadrops_next_event_time%</code> and <code>%donadrops_next_chest_time%</code> — see <a href="#placeholders">Placeholders</a>.</p>
 
-<h2 id="spawn-points">Puntos de spawn fijos</h2>
-<p>Con <code>/dd createspawn &lt;nombreSpawn&gt; &lt;nombreCofre&gt;</code> creás un punto de aparición fijo, en tu ubicación actual, ligado a un cofre concreto. Se guarda como un archivo dentro de la carpeta <code>/Spawners</code>, nombrado <code>&lt;cofre&gt;_&lt;nombreSpawn&gt;.yml</code>:</p>
+<h2 id="spawn-points">Fixed spawn points</h2>
+<p>With <code>/dd createspawn &lt;spawnName&gt; &lt;chestName&gt;</code> you create a fixed spawn point, at your current location, tied to a specific chest. It's saved as a file inside the <code>/Spawners</code> folder, named <code>&lt;chest&gt;_&lt;spawnName&gt;.yml</code>:</p>
 <pre><code># Spawners/donadrops_spawnroom.yml
 spawn-name: "spawnroom"
 chest: "donadrops"
@@ -533,13 +533,13 @@ world: "world"
 x: 120
 y: 68
 z: -34</code></pre>
-<p>Podés crear tantos puntos como quieras para el mismo cofre: solo necesitás que cada uno tenga un <code>nombreSpawn</code> distinto (por eso el nombre del archivo combina cofre + nombre del punto, nunca se pisan entre sí).</p>
-<p>Estos puntos por sí solos no cambian nada todavía: un cofre sigue usando el spawneador aleatorio normal hasta que le pongas <code>spawn: true</code> en su propio archivo dentro de <code>/drops</code> (ver <a href="#drops">Archivos /drops</a>). Una vez en <code>true</code>, ese cofre deja de aparecer en cualquier lugar aleatorio y <b>solo</b> aparece —automática o manualmente— en alguno de sus puntos fijos libres.</p>
-<p>Gestión: <code>/dd listspawns [nombreCofre]</code> para ver los puntos guardados, <code>/dd deletespawn &lt;archivo&gt;</code> para borrar uno.</p>
+<p>You can create as many points as you want for the same chest: you just need each one to have a different <code>spawnName</code> (that's why the file name combines chest + point name, so they never overwrite each other).</p>
+<p>These points alone don't change anything yet: a chest still uses the normal random spawner until you set <code>spawn: true</code> in its own file inside <code>/drops</code> (see <a href="#drops">/drops files</a>). Once set to <code>true</code>, that chest stops appearing anywhere random and <b>only</b> appears — automatically or manually — at one of its free fixed points.</p>
+<p>Management: <code>/dd listspawns [chestName]</code> to see saved points, <code>/dd deletespawn &lt;file&gt;</code> to delete one.</p>
 
-<h2 id="decoration">Decoración del cofre</h2>
-<p>Cada cofre puede mostrar paneles decorativos alrededor de sus recompensas cuando un jugador lo abre. Estos paneles son puramente visuales: <b>no se pueden sacar, mover, ni recolectar de ninguna forma</b> (clic, shift-clic, arrastrar o doble clic para recolectar), sin importar qué material se use.</p>
-<p>Se configura por cofre, dentro de su archivo en <code>/drops</code>, bajo la sección <code>decoration</code>:</p>
+<h2 id="decoration">Chest decoration</h2>
+<p>Each chest can show decorative panels around its rewards when a player opens it. These panels are purely visual: <b>they can't be taken out, moved, or collected in any way</b> (click, shift-click, drag or double-click to collect), no matter what material is used.</p>
+<p>Configured per chest, inside its file in <code>/drops</code>, under the <code>decoration</code> section:</p>
 <pre><code>decoration:
   enabled: true
   material: GRAY_STAINED_GLASS_PANE
@@ -548,70 +548,70 @@ z: -34</code></pre>
   slots: "border"
   glow: false</code></pre>
 <table>
-<tr><th>Campo</th><th>Qué controla</th></tr>
-<tr><td><code>enabled</code></td><td>Activa o desactiva la decoración para ese cofre en particular.</td></tr>
-<tr><td><code>material</code></td><td>Cualquier <code>Material</code> válido de Bukkit, no solo paneles de cristal.</td></tr>
-<tr><td><code>name</code></td><td>Nombre mostrado del ítem decorativo (admite colores con <code>&amp;</code>).</td></tr>
-<tr><td><code>lore</code></td><td>Lore opcional, línea por línea.</td></tr>
-<tr><td><code>slots</code></td><td><code>"border"</code> (se adapta automáticamente al tamaño del inventario) o una lista de slots separados por coma, ej. <code>"0,1,7,8,9,17"</code>.</td></tr>
-<tr><td><code>glow</code></td><td>Añade un brillo de encantamiento sin mostrar ningún encantamiento en el ítem.</td></tr>
+<tr><th>Field</th><th>What it controls</th></tr>
+<tr><td><code>enabled</code></td><td>Turns decoration on or off for that particular chest.</td></tr>
+<tr><td><code>material</code></td><td>Any valid Bukkit <code>Material</code>, not just glass panes.</td></tr>
+<tr><td><code>name</code></td><td>The decorative item's display name (supports colors with <code>&amp;</code>).</td></tr>
+<tr><td><code>lore</code></td><td>Optional lore, line by line.</td></tr>
+<tr><td><code>slots</code></td><td><code>"border"</code> (automatically adapts to the inventory's size) or a comma-separated list of slots, e.g. <code>"0,1,7,8,9,17"</code>.</td></tr>
+<tr><td><code>glow</code></td><td>Adds an enchantment glow without showing any enchantment on the item.</td></tr>
 </table>
 <div class="callout">
-Todo cofre nuevo creado con <code>/dd create</code> incluye esta sección automáticamente, con una plantilla básica de borde (<code>GRAY_STAINED_GLASS_PANE</code>) lista para usar. Las recompensas sorteadas siempre se colocan en los slots libres restantes: nunca pisan un slot decorativo.
+Every new chest created with <code>/dd create</code> includes this section automatically, with a basic border template (<code>GRAY_STAINED_GLASS_PANE</code>) ready to use. Rolled rewards are always placed in the remaining free slots: they never land on a decorative slot.
 </div>
 
-<h2 id="lang">Idiomas</h2>
-<p>La carpeta <code>/lang</code> contiene los idiomas disponibles. Actualmente se contemplan: <code>en</code>, <code>es</code>, <code>pt</code>, <code>fr</code>, <code>de</code>, <code>it</code>, <code>ru</code>, <code>zh</code>, <code>ja</code> y <code>ko</code>.</p>
-<p>El idioma es <b>global para todo el plugin</b>. El selector de idioma del editor muestra todos los idiomas fila por fila y marca claramente el seleccionado. Al elegir uno, DonaDrops cambia inmediatamente <code>config.yml → language</code> (por ejemplo, <code>en</code> pasa a <code>es</code>) y guarda el archivo. No se guarda un idioma independiente por drop/cofre.</p>
-<p>Las traducciones abarcan los mensajes de chat, títulos y avisos, y <b>todos los menús que el plugin construye por sí mismo</b>: el editor, Chest Flags (incluida la descripción de cada flag), tipo de cofre, tipo de inventario, selector de idioma, editor de recompensas, los tres selectores de efectos y los mensajes que el editor pide por chat. Al cambiar el idioma, los menús se muestran en el nuevo idioma en cuanto se vuelven a abrir. Los textos que tú personalices directamente en los archivos <code>/gui</code> permanecen como los hayas escrito.</p>
-<p>Cada archivo de <code>/lang</code> tiene estas secciones principales:</p>
+<h2 id="lang">Languages</h2>
+<p>The <code>/lang</code> folder contains the available languages. Currently supported: <code>en</code>, <code>es</code>, <code>pt</code>, <code>fr</code>, <code>de</code>, <code>it</code>, <code>ru</code>, <code>zh</code>, <code>ja</code> and <code>ko</code>.</p>
+<p>The language is <b>global for the whole plugin</b>. The editor's language selector shows every language row by row and clearly marks the one selected. Picking one, DonaDrops immediately changes <code>config.yml → language</code> (e.g., <code>en</code> becomes <code>es</code>) and saves the file. There's no separate language saved per drop/chest.</p>
+<p>Translations cover chat messages, titles and notices, and <b>every menu the plugin builds itself</b>: the editor, Chest Flags (including each flag's description), chest type, inventory type, language selector, reward editor, the three effect selectors and the messages the editor asks for in chat. When the language changes, menus show in the new language as soon as they're reopened. Text you customize directly in the <code>/gui</code> files stays exactly as you wrote it.</p>
+<p>Each file in <code>/lang</code> has these main sections:</p>
 <table>
-<tr><th>Sección</th><th>Contenido</th></tr>
-<tr><td><code>general</code>, <code>create</code>, <code>spawn</code>, <code>help</code>, <code>notify</code>, <code>messages</code></td><td>Mensajes de comandos, avisos y chat.</td></tr>
-<tr><td><code>editor</code></td><td>Nombre y lore de cada botón del editor (<code>edit-name</code> / <code>edit-name-lore</code>, y así con cada uno, incluidos <code>edit-prespawn</code>, <code>edit-animation</code> y <code>edit-particles</code>).</td></tr>
-<tr><td><code>tops</code></td><td>Menú de rankings.</td></tr>
-<tr><td><code>menus</code></td><td>Botones comunes (<code>back</code>, páginas, seleccionado), Chest Flags, tipo de cofre, tipo de inventario, idioma, recompensas, mensajes por chat y selectores de efectos.</td></tr>
+<tr><th>Section</th><th>Content</th></tr>
+<tr><td><code>general</code>, <code>create</code>, <code>spawn</code>, <code>help</code>, <code>notify</code>, <code>messages</code></td><td>Command, notice and chat messages.</td></tr>
+<tr><td><code>editor</code></td><td>Name and lore for each editor button (<code>edit-name</code> / <code>edit-name-lore</code>, and so on for each one, including <code>edit-prespawn</code>, <code>edit-animation</code> and <code>edit-particles</code>).</td></tr>
+<tr><td><code>tops</code></td><td>Leaderboard menu.</td></tr>
+<tr><td><code>menus</code></td><td>Shared buttons (<code>back</code>, pages, selected), Chest Flags, chest type, inventory type, language, rewards, chat messages and the effect selectors.</td></tr>
 </table>
-<p>Si un texto falta en un idioma, se usa el de inglés. Para corregir o añadir una traducción edita el archivo de <code>/lang</code> del idioma y usa <code>/dd reload</code>. Los textos aceptan <code>&amp;</code>, hex y MiniMessage, y <code>\n</code> separa las líneas del lore.</p>
-<h2 id="visibility">Distancia de visibilidad</h2>
-<p>La opción global <code>visibility-distance</code> controla la distancia máxima de visibilidad de los cofres generados y de sus hologramas. El valor predeterminado es <code>50</code>.</p>
+<p>If a text is missing in a language, the English one is used instead. To fix or add a translation, edit that language's file in <code>/lang</code> and run <code>/dd reload</code>. Text accepts <code>&amp;</code>, hex and MiniMessage, and <code>\n</code> separates lore lines.</p>
+<h2 id="visibility">Visibility distance</h2>
+<p>The global <code>visibility-distance</code> option controls the maximum visibility distance of spawned chests and their holograms. The default value is <code>50</code>.</p>
 <pre><code>visibility-distance: 50</code></pre>
-<p>Los jugadores fuera de esa distancia no reciben visualmente el bloque del cofre ni su holograma; al acercarse, el cofre vuelve a mostrarse. La distancia se mide desde la ubicación del cofre.</p>
+<p>Players outside that distance won't visually receive the chest block or its hologram; getting closer makes the chest show up again. The distance is measured from the chest's location.</p>
 
-<h2 id="holograms">Hologramas</h2>
-<p>Cada cofre generado tiene un holograma construido con <b>Display Entities</b> (TextDisplay), sin depender de otro plugin de hologramas. Configurable en <code>config.yml → hologram</code>: líneas, altura, escala y <code>text-shadow</code>. El holograma permanece vertical y gira horizontalmente para mirar al jugador desde cualquier dirección lateral, sin inclinarse hacia arriba o hacia abajo.</p>
-<p>Además de <code>{name}</code> y <code>{stars}</code>, el holograma puede mostrar el <b>tiempo restante antes del despawn</b> mediante la variable de tiempo configurada para ello.</p>
+<h2 id="holograms">Holograms</h2>
+<p>Every spawned chest has a hologram built with <b>Display Entities</b> (TextDisplay), without depending on any other hologram plugin. Configurable in <code>config.yml → hologram</code>: lines, height, scale and <code>text-shadow</code>. The hologram stays upright and rotates horizontally to face the player from any side, without tilting up or down.</p>
+<p>Besides <code>{name}</code> and <code>{stars}</code>, the hologram can show the <b>time left until despawn</b> through the time variable set up for it.</p>
 <div class="callout">
-Si por algún motivo el holograma no se puede crear en tu servidor, el plugin desactiva los hologramas sin crashear y avisa una sola vez por consola. El resto del plugin sigue funcionando normal.
+If for some reason the hologram can't be created on your server, the plugin disables holograms without crashing and warns once in the console. The rest of the plugin keeps working normally.
 </div>
 
-<h2 id="heads">Cabezas con textura</h2>
-<p>Para usar una cabeza con textura personalizada, utiliza <code>PLAYER_HEAD</code> como material y coloca el valor de la textura en el campo <code>texture</code>.</p>
+<h2 id="heads">Textured heads</h2>
+<p>To use a custom-textured head, set <code>PLAYER_HEAD</code> as the material and put the texture value in the <code>texture</code> field.</p>
 <pre><code>material: PLAYER_HEAD
-texture: "VALOR_DE_LA_TEXTURE"</code></pre>
-<p>El valor de <code>texture</code> corresponde al valor de textura/Base64 que proporciona el servicio o recurso utilizado para la cabeza. Esto permite configurar cabezas personalizadas sin depender de que el jugador esté conectado.</p>
-<p>Si vas a reutilizar la misma cabeza en varios menús, es más cómodo guardar la textura una sola vez en <code>config.yml → custom-heads</code> y referenciarla con <code>head</code> en lugar de <code>texture</code>:</p>
+texture: "TEXTURE_VALUE"</code></pre>
+<p>The <code>texture</code> value corresponds to the texture/Base64 value provided by the service or resource used for the head. This lets you set up custom heads without depending on the player being online.</p>
+<p>If you're going to reuse the same head across several menus, it's more convenient to save the texture once in <code>config.yml → custom-heads</code> and reference it with <code>head</code> instead of <code>texture</code>:</p>
 <pre><code># config.yml
 custom-heads:
   empty-slot:
-    texture: "VALOR_DE_LA_TEXTURE"</code></pre>
-<pre><code># gui/&lt;archivo&gt;.yml
+    texture: "TEXTURE_VALUE"</code></pre>
+<pre><code># gui/&lt;file&gt;.yml
 material: PLAYER_HEAD
 head: empty-slot</code></pre>
-<p>Las cabezas de jugador también pueden utilizar la skin del jugador correspondiente cuando el menú necesite mostrar una cabeza dinámica.</p>
+<p>Player heads can also use the corresponding player's own skin whenever the menu needs to show a dynamic head.</p>
 <h2 id="tops">Leaderboards (/dd tops)</h2>
-<p>El sistema de rankings admite inventarios configurables y posiciones con cabezas de jugador, nombre, estadísticas y Lore.</p>
+<p>The leaderboard system supports configurable inventories and positions with player heads, names, stats and lore.</p>
 <ul>
-<li>Si una posición no tiene jugador todavía, se muestra ahí el ítem <code>items.empty</code> del archivo de ese ranking (por ejemplo <code>gui/rarity-ranking.yml</code>) en vez de dejar el slot vacío o el de decoración.</li>
-<li>En cuanto un jugador ocupa esa posición, ese ítem se reemplaza automáticamente por su cabeza, con su nombre, posición y estadísticas.</li>
-<li>El ítem <code>empty</code> es propio de cada categoría: cada archivo de ranking en <code>/gui</code> puede darle su propio material, cabeza con textura y Lore. Ver <a href="#gui-files">Archivos de GUI y rankings</a>.</li>
-<li>El Lore de las posiciones ocupadas se configura de forma global en <code>config.yml → leaderboard.player</code>; el de las posiciones vacías se configura por categoría en <code>items.empty</code>.</li>
-<li>El inventario puede decorarse y su tamaño, slots, materiales, sonidos y acciones pueden configurarse mediante la GUI.</li>
+<li>If a position doesn't have a player yet, that ranking file's <code>items.empty</code> item (e.g. <code>gui/rarity-ranking.yml</code>) is shown there instead of leaving the slot empty or showing the decoration.</li>
+<li>As soon as a player takes that position, that item is automatically replaced by their head, with their name, position and stats.</li>
+<li>The <code>empty</code> item belongs to each category: every ranking file in <code>/gui</code> can give it its own material, textured head and lore. See <a href="#gui-files">GUI and ranking files</a>.</li>
+<li>The lore for occupied positions is set globally in <code>config.yml → leaderboard.player</code>; the lore for empty positions is set per category in <code>items.empty</code>.</li>
+<li>The inventory can be decorated, and its size, slots, materials, sounds and actions can all be configured through the GUI.</li>
 </ul>
-<p>Los datos de los rankings se guardan en <code>stats.yml</code>. Las estadísticas disponibles dependen de las métricas implementadas por el plugin.</p>
-<h2 id="gui-files">Archivos de GUI y rankings</h2>
-<p>La carpeta <code>gui</code> usa un sistema separado para los rankings. El menú principal se guarda en <code>gui/categories.yml</code>. Cada ranking tiene su propio archivo YAML para que pueda diseñarse de forma independiente.</p>
-<h3>Archivos incluidos</h3>
+<p>Leaderboard data is stored in <code>stats.yml</code>. The available stats depend on the metrics the plugin implements.</p>
+<h2 id="gui-files">GUI and ranking files</h2>
+<p>The <code>gui</code> folder uses a separate system for leaderboards. The main menu is stored in <code>gui/categories.yml</code>. Each ranking has its own YAML file so it can be designed independently.</p>
+<h3>Included files</h3>
 <pre><code>gui/
 ├── categories.yml
 ├── most-opened.yml
@@ -619,12 +619,12 @@ head: empty-slot</code></pre>
 ├── rarest-opened.yml
 ├── best-reward.yml
 └── most-rewards.yml</code></pre>
-<p><code>/tops</code> abre directamente <code>categories.yml</code>. Los botones de ese selector utilizan acciones con formato <code>[opengui] nombre-del-menu</code>. Por ejemplo:</p>
+<p><code>/tops</code> opens <code>categories.yml</code> directly. That selector's buttons use actions formatted as <code>[opengui] menu-name</code>. For example:</p>
 <pre><code>actions:
   - "[opengui] most-opened"</code></pre>
-<p>Los nombres usados en <code>[opengui]</code> corresponden al nombre del archivo sin <code>.yml</code>. Así, <code>[opengui] rarity-ranking</code> abre <code>gui/rarity-ranking.yml</code>.</p>
-<h3>Diseño de cada ranking</h3>
-<p>Cada archivo de ranking puede tener su propio título, cantidad de filas, slots de jugadores, botón de regreso, decoración y el ítem que ocupa las posiciones todavía sin jugador. Esto permite hacer un menú de 27 slots, 36 slots, 45 slots o 54 slots sin cambiar Java.</p>
+<p>The names used in <code>[opengui]</code> match the file name without <code>.yml</code>. So <code>[opengui] rarity-ranking</code> opens <code>gui/rarity-ranking.yml</code>.</p>
+<h3>Designing each ranking</h3>
+<p>Each ranking file can have its own title, row count, player slots, back button, decoration and the item that fills positions still without a player. This lets you build a 27-slot, 36-slot, 45-slot or 54-slot menu without touching Java.</p>
 <pre><code>title: "&#C77DFF&amp;lRarity Ranking"
 rows: 4
 fill-border: false
@@ -655,31 +655,31 @@ items:
       - "&amp;7Return to the top categories."
     actions:
       - "[opengui] categories"</code></pre>
-<h3>Decoraciones</h3>
-<p>Las decoraciones se agregan como cualquier otro <code>items.&lt;nombre&gt;</code>. Puedes usar cristales, bloques, cabezas, ítems decorativos, nombres, Lore y acciones. Los slots de decoración no tienen que estar relacionados con los slots de jugadores.</p>
-<p>En vez de escribir un ítem por cada slot, un mismo ítem puede rellenar varios a la vez con el campo <code>slots</code> (en lugar de <code>slot</code>): admite <code>"border"</code>, una lista separada por comas (<code>"0,1,7,8"</code>), rangos (<code>"0-8,25-26"</code>) o una mezcla de ambos (<code>"0-8,17,25-26"</code>). Con un solo panel de cristal y un patrón de slots alcanza para decorar todo el borde del menú.</p>
-<h3>Posiciones sin jugador (items.empty)</h3>
-<p>Cada archivo de ranking puede definir su propio <code>items.empty</code>: el ítem que se muestra en cualquier posición de <code>player-slots</code> que todavía no tiene un jugador asignado. Admite <code>material</code>, <code>texture</code> o <code>head</code> (ver <a href="#heads">Cabezas con textura</a>), <code>name</code> y <code>lore</code>, y el marcador <code>%rank%</code> se reemplaza por el número de esa posición. En cuanto un jugador alcanza esa posición, este ítem se reemplaza automáticamente por su cabeza. Si un archivo de ranking no define <code>items.empty</code>, DonaDrops usa un <code>BARRIER</code> genérico como respaldo.</p>
-<h3>Slots de jugadores</h3>
-<p><code>player-slots</code> determina exactamente dónde aparecerán las cabezas de los jugadores. La cantidad de posiciones también determina cuántos jugadores se muestran en ese menú. Si quieres un Top 5, coloca cinco slots; si quieres un Top 10, coloca diez.</p>
-<h3>Tamaño del menú</h3>
-<p><code>rows</code> controla el tamaño del inventario. Los menús de cofres admiten 1 a 6 filas, es decir, 9, 18, 27, 36, 45 o 54 slots. Para aplicar un tamaño personalizado el inventario debe ser de tipo <code>CHEST</code>; el bloque físico utilizado por los drops no cambia esta regla. Los demás tipos de inventario mantienen sus propios tamaños y no aceptan tamaños arbitrarios.</p>
-<h3>Volver a categorías</h3>
-<p>El <code>back-slot</code> define dónde se coloca el botón de regreso. El botón puede configurarse dentro de <code>items.back</code>. Al pulsarlo, DonaDrops vuelve al menú definido por <code>categories.yml</code>.</p>
-<h2 id="spawn-effects">Efectos de aparición del cofre</h2>
-<p>Un cofre puede mostrar tres efectos distintos cuando aparece. Son <strong>independientes</strong>: cada uno tiene su propia sección, sus propias opciones y su propia lista de valores. En el orden en que los ven los jugadores:</p>
+<h3>Decorations</h3>
+<p>Decorations are added like any other <code>items.&lt;name&gt;</code>. You can use glass, blocks, heads, decorative items, names, lore and actions. Decoration slots don't have to relate to the player slots in any way.</p>
+<p>Instead of writing one item per slot, a single item can fill several at once with the <code>slots</code> field (instead of <code>slot</code>): it accepts <code>"border"</code>, a comma-separated list (<code>"0,1,7,8"</code>), ranges (<code>"0-8,25-26"</code>), or a mix of both (<code>"0-8,17,25-26"</code>). A single glass pane plus a slot pattern is enough to decorate the whole border of the menu. If another item (like <code>back</code>) uses a <code>slot</code> that falls inside that pattern, that item is drawn afterward and sits on top of the decorative glass — it doesn't matter which order they're written in the file.</p>
+<h3>Positions without a player (items.empty)</h3>
+<p>Each ranking file can define its own <code>items.empty</code>: the item shown at any <code>player-slots</code> position that doesn't have a player assigned yet. It accepts <code>material</code>, <code>texture</code> or <code>head</code> (see <a href="#heads">Textured heads</a>), <code>name</code> and <code>lore</code>, and the <code>%rank%</code> placeholder is replaced by that position's number. As soon as a player reaches that position, this item is automatically replaced by their head. If a ranking file doesn't define <code>items.empty</code>, DonaDrops falls back to a generic <code>BARRIER</code>.</p>
+<h3>Player slots</h3>
+<p><code>player-slots</code> determines exactly where player heads will appear. The number of positions also determines how many players are shown in that menu. Want a Top 5? Put five slots. Want a Top 10? Put ten.</p>
+<h3>Menu size</h3>
+<p><code>rows</code> controls the inventory's size. Chest-style menus support 1 to 6 rows, i.e. 9, 18, 27, 36, 45 or 54 slots. To apply a custom size, the inventory must be of type <code>CHEST</code>; the physical block used by the drops doesn't change this rule. Other inventory types keep their own fixed sizes and don't accept arbitrary sizes.</p>
+<h3>Returning to categories</h3>
+<p><code>items.back.slot</code> is what actually decides where the back button shows up: to move it, change that <code>slot</code>. The old top-level <code>back-slot</code> is kept only as a fallback for when <code>items.back</code> isn't defined, but if both exist, <code>items.back.slot</code> always wins. Clicking the button returns to the menu defined by <code>categories.yml</code>.</p>
+<h2 id="spawn-effects">Chest spawn effects</h2>
+<p>A chest can show three different effects when it spawns. They're <strong>independent</strong>: each one has its own section, its own options and its own list of values. In the order players see them:</p>
 <table>
-<tr><th>#</th><th>Efecto</th><th>Cuándo se ve</th><th>Dónde se configura</th><th>Clave</th></tr>
-<tr><td>1</td><td><a href="#pre-spawn">Partículas de aparición</a></td><td>Unos segundos <b>antes</b> de que salga el cofre.</td><td><code>config.yml</code> y cada drop</td><td><code>pre-spawn-particles</code></td></tr>
-<tr><td>2</td><td><a href="#spawn-animations">Animación de aparición</a></td><td>En el momento en que el cofre aparece.</td><td>Solo en cada drop</td><td><code>spawn-animation</code></td></tr>
-<tr><td>3</td><td><a href="#spawn-particles">Partículas persistentes</a></td><td>Mientras el cofre está en el mundo.</td><td><code>config.yml</code> y cada drop</td><td><code>spawn-particles</code></td></tr>
+<tr><th>#</th><th>Effect</th><th>When it's seen</th><th>Where it's configured</th><th>Key</th></tr>
+<tr><td>1</td><td><a href="#pre-spawn">Pre-spawn particles</a></td><td>A few seconds <b>before</b> the chest appears.</td><td><code>config.yml</code> and each drop</td><td><code>pre-spawn-particles</code></td></tr>
+<tr><td>2</td><td><a href="#spawn-animations">Spawn animation</a></td><td>The moment the chest appears.</td><td>Only on each drop</td><td><code>spawn-animation</code></td></tr>
+<tr><td>3</td><td><a href="#spawn-particles">Persistent particles</a></td><td>While the chest is in the world.</td><td><code>config.yml</code> and each drop</td><td><code>spawn-particles</code></td></tr>
 </table>
-<p>Los tres vienen <strong>desactivados</strong>: <code>type: none</code> significa que no hay ningún efecto. Para activar uno solo cambia <code>none</code> por el nombre que quieras, sin agregar líneas ni tocar la indentación, o elígelo desde los botones del <a href="#editor">Editor GUI</a>. En el archivo de un drop, <code>-1</code> significa "usar el valor de config.yml".</p>
-<p>Aparte existen las partículas que se reproducen al sacar el último ítem del cofre (<code>particles</code>), que vienen activadas: ver <a href="#events">Sonidos, títulos y partículas</a>.</p>
+<p>All three ship <strong>disabled</strong>: <code>type: none</code> means there's no effect. To enable one, just change <code>none</code> to whichever name you want, without adding lines or touching indentation, or pick it from the <a href="#editor">Editor GUI</a>'s buttons. In a drop's file, <code>-1</code> means "use the value from config.yml".</p>
+<p>There are also the particles played when the last item is taken out of the chest (<code>particles</code>), which ship enabled: see <a href="#events">Sounds, titles and particles</a>.</p>
 
-<h2 id="pre-spawn">1. Partículas de aparición (antes de que salga el cofre)</h2>
-<p>Son las partículas que se ven en el punto donde va a salir un cofre <strong>unos segundos antes de que aparezca</strong> (3 por defecto). Durante ese tiempo el bloque todavía no está puesto; cuando termina, el cofre aparece y recién ahí se envían el mensaje, el título y el sonido de aparición. Funciona igual con el spawneo automático, los drop events y <code>/dd spawn</code>.</p>
-<p>Vienen <strong>desactivadas</strong>: en <code>config.yml</code> el <code>type</code> es <code>none</code>. Para activarlas solo cambia <code>none</code> por el nombre de una partícula.</p>
+<h2 id="pre-spawn">1. Pre-spawn particles (before the chest appears)</h2>
+<p>These are the particles seen at the spot where a chest is about to appear, <strong>a few seconds before it spawns</strong> (3 by default). During that time the block isn't placed yet; once it ends, the chest appears and only then are the spawn message, title and sound sent. Works the same with automatic spawning, drop events and <code>/dd spawn</code>.</p>
+<p>Ships <strong>disabled</strong>: in <code>config.yml</code> the <code>type</code> is <code>none</code>. To enable them, just change <code>none</code> to a particle's name.</p>
 <pre><code># config.yml
 pre-spawn-particles:
   type: none
@@ -688,163 +688,163 @@ pre-spawn-particles:
   offset-x: 0.4
   offset-y: 0.6
   offset-z: 0.4</code></pre>
-<p>Cada drop puede tener las suyas en su archivo de <code>/drops</code>. En un drop nuevo todo viene en <code>-1</code>, que significa "usar los mismos valores de config.yml":</p>
+<p>Each drop can have its own in its <code>/drops</code> file. On a new drop everything is <code>-1</code>, which means "use the same values from config.yml":</p>
 <pre><code># drops/donadrops.yml
 pre-spawn-particles:
   type: -1
   seconds: -1
   count: -1</code></pre>
-<p>Por ejemplo, para que solo ese drop muestre llamas durante 5 segundos:</p>
+<p>For example, to make only that drop show flames for 5 seconds:</p>
 <pre><code>pre-spawn-particles:
   type: FLAME
   seconds: 5
   count: -1</code></pre>
 <table>
-<tr><th>Campo</th><th>Qué controla</th></tr>
-<tr><td><code>type</code></td><td>Nombre de la partícula. <code>none</code> = sin partículas (en un drop también las apaga aunque config.yml las tenga activas). <code>-1</code> (solo en el drop) = usar el de config.yml.</td></tr>
-<tr><td><code>seconds</code></td><td>Cuántos segundos se ven antes de que aparezca el cofre. <code>0</code> = el cofre aparece de inmediato. <code>-1</code> = usar config.yml.</td></tr>
-<tr><td><code>count</code></td><td>Cuántas partículas se emiten cada vez (cada 5 ticks). <code>-1</code> = usar config.yml.</td></tr>
-<tr><td><code>offset-x / offset-y / offset-z</code></td><td>Extensión de las partículas alrededor del punto. Solo se configuran en config.yml.</td></tr>
+<tr><th>Field</th><th>What it controls</th></tr>
+<tr><td><code>type</code></td><td>The particle's name. <code>none</code> = no particles (on a drop, this also turns them off even if config.yml has them enabled). <code>-1</code> (drop only) = use config.yml's.</td></tr>
+<tr><td><code>seconds</code></td><td>How many seconds they're shown before the chest appears. <code>0</code> = the chest appears immediately. <code>-1</code> = use config.yml.</td></tr>
+<tr><td><code>count</code></td><td>How many particles are emitted each time (every 5 ticks). <code>-1</code> = use config.yml.</td></tr>
+<tr><td><code>offset-x / offset-y / offset-z</code></td><td>How far the particles spread around the point. Only set in config.yml.</td></tr>
 </table>
 <div class="callout">
-Mientras las partículas se reproducen, esa posición cuenta como ocupada y también cuenta para <code>max-active-chests</code>. Si el chunk se descarga o el lugar se ocupa antes de que termine, el cofre no aparece. Si el nombre de la partícula no existe se usa <code>END_ROD</code>; si la partícula necesita datos extra (como <code>BLOCK</code> o <code>ITEM</code>), se avisa por consola y el cofre aparece sin esperar.
+While the particles are playing, that position counts as occupied and also counts toward <code>max-active-chests</code>. If the chunk unloads or the spot gets occupied before it finishes, the chest doesn't appear. If the particle's name doesn't exist, <code>END_ROD</code> is used instead; if the particle needs extra data (like <code>BLOCK</code> or <code>ITEM</code>), a console warning is shown and the chest appears without waiting.
 </div>
-<h3>Partículas disponibles para pre-spawn-particles</h3>
-<p>Estas partículas pueden utilizarse en <code>pre-spawn-particles.type</code>. La segunda columna indica de forma sencilla qué efecto produce cada una.</p>
-<table><thead><tr><th>Partícula</th><th>Qué hace</th></tr></thead><tbody>
-<tr><td><code>ASH</code></td><td>Pequeñas partículas de ceniza que flotan por el aire.</td></tr>
-<tr><td><code>BLOCK</code></td><td>Muestra fragmentos o partículas de bloques.</td></tr>
-<tr><td><code>BUBBLE</code></td><td>Crea pequeñas burbujas flotantes.</td></tr>
-<tr><td><code>CAMPFIRE_COSY_SMOKE</code></td><td>Produce un humo suave de fogata.</td></tr>
-<tr><td><code>CAMPFIRE_SIGNAL_SMOKE</code></td><td>Produce un humo de fogata más alto y denso.</td></tr>
-<tr><td><code>CLOUD</code></td><td>Crea partículas suaves con aspecto de nube.</td></tr>
-<tr><td><code>CRIT</code></td><td>Crea partículas afiladas de golpe crítico.</td></tr>
-<tr><td><code>DAMAGE_INDICATOR</code></td><td>Muestra partículas rojas de daño.</td></tr>
-<tr><td><code>DOLPHIN</code></td><td>Crea partículas acuáticas asociadas al delfín.</td></tr>
-<tr><td><code>DRAGON_BREATH</code></td><td>Crea una nube morada de aliento de dragón.</td></tr>
-<tr><td><code>DRIPPING_HONEY</code></td><td>Crea partículas de miel goteando.</td></tr>
-<tr><td><code>DRIPPING_LAVA</code></td><td>Crea partículas de lava goteando.</td></tr>
-<tr><td><code>DRIPPING_OBSIDIAN_TEAR</code></td><td>Crea partículas de lágrima de obsidiana llorosa goteando.</td></tr>
-<tr><td><code>DRIPPING_WATER</code></td><td>Crea partículas de agua goteando.</td></tr>
-<tr><td><code>DUST</code></td><td>Crea partículas de polvo de color.</td></tr>
-<tr><td><code>DUST_COLOR_TRANSITION</code></td><td>Crea polvo con transición de color.</td></tr>
-<tr><td><code>ELECTRIC_SPARK</code></td><td>Crea pequeñas chispas eléctricas.</td></tr>
-<tr><td><code>ENCHANT</code></td><td>Crea el efecto de partículas moradas de encantamiento.</td></tr>
-<tr><td><code>ENCHANTED_HIT</code></td><td>Crea partículas similares a un golpe encantado.</td></tr>
-<tr><td><code>END_ROD</code></td><td>Crea partículas blancas brillantes de End Rod.</td></tr>
-<tr><td><code>ENTITY_EFFECT</code></td><td>Crea partículas de efectos de entidad con color.</td></tr>
-<tr><td><code>EXPLOSION</code></td><td>Crea un pequeño efecto de explosión.</td></tr>
-<tr><td><code>EXPLOSION_EMITTER</code></td><td>Crea un efecto de emisor de explosión más grande.</td></tr>
-<tr><td><code>FALLING_DUST</code></td><td>Crea partículas de polvo o bloques cayendo.</td></tr>
-<tr><td><code>FIREWORK</code></td><td>Crea partículas con estilo de fuegos artificiales.</td></tr>
-<tr><td><code>FLAME</code></td><td>Crea partículas brillantes de fuego.</td></tr>
-<tr><td><code>FLASH</code></td><td>Crea un destello brillante breve.</td></tr>
-<tr><td><code>GLOW</code></td><td>Crea partículas brillantes.</td></tr>
-<tr><td><code>GLOW_SQUID_INK</code></td><td>Crea partículas de tinta de calamar luminosa.</td></tr>
-<tr><td><code>HEART</code></td><td>Crea partículas de corazones.</td></tr>
-<tr><td><code>INSTANT_EFFECT</code></td><td>Crea partículas del estilo de efecto instantáneo.</td></tr>
-<tr><td><code>ITEM</code></td><td>Muestra partículas basadas en un ítem.</td></tr>
-<tr><td><code>ITEM_SLIME</code></td><td>Crea partículas de ítem de slime.</td></tr>
-<tr><td><code>ITEM_SNOWBALL</code></td><td>Crea partículas de ítem de bola de nieve.</td></tr>
-<tr><td><code>LANDING_HONEY</code></td><td>Crea partículas de miel al aterrizar.</td></tr>
-<tr><td><code>LANDING_LAVA</code></td><td>Crea partículas de lava al aterrizar.</td></tr>
-<tr><td><code>LANDING_OBSIDIAN_TEAR</code></td><td>Crea partículas de lágrima de obsidiana llorosa al aterrizar.</td></tr>
-<tr><td><code>LARGE_SMOKE</code></td><td>Crea partículas grandes de humo.</td></tr>
-<tr><td><code>LAVA</code></td><td>Crea partículas de lava flotantes.</td></tr>
-<tr><td><code>MYCELIUM</code></td><td>Crea partículas con aspecto de micelio.</td></tr>
-<tr><td><code>NAUTILUS</code></td><td>Crea partículas relacionadas con el nautilus.</td></tr>
-<tr><td><code>NOTE</code></td><td>Crea partículas de notas musicales de colores.</td></tr>
-<tr><td><code>POOF</code></td><td>Crea una pequeña nube de partículas.</td></tr>
-<tr><td><code>PORTAL</code></td><td>Crea partículas moradas de portal.</td></tr>
-<tr><td><code>RAIN</code></td><td>Crea partículas de lluvia o agua.</td></tr>
-<tr><td><code>REVERSE_PORTAL</code></td><td>Crea partículas con estilo de portal inverso.</td></tr>
-<tr><td><code>SCULK_CHARGE</code></td><td>Crea partículas de carga de sculk.</td></tr>
-<tr><td><code>SCULK_SOUL</code></td><td>Crea partículas de alma de sculk.</td></tr>
-<tr><td><code>SHRIEK</code></td><td>Crea un efecto de partículas de chillido de sculk.</td></tr>
-<tr><td><code>SMALL_FLAME</code></td><td>Crea pequeñas partículas de fuego.</td></tr>
-<tr><td><code>SMOKE</code></td><td>Crea partículas normales de humo.</td></tr>
-<tr><td><code>SNEEZE</code></td><td>Crea partículas de estornudo.</td></tr>
-<tr><td><code>SNOWFLAKE</code></td><td>Crea partículas de copos de nieve.</td></tr>
-<tr><td><code>SOUL</code></td><td>Crea partículas azules de alma.</td></tr>
-<tr><td><code>SOUL_FIRE_FLAME</code></td><td>Crea llamas azules de fuego de alma.</td></tr>
-<tr><td><code>SPLASH</code></td><td>Crea partículas de salpicadura de agua.</td></tr>
-<tr><td><code>SQUID_INK</code></td><td>Crea partículas oscuras de tinta de calamar.</td></tr>
-<tr><td><code>SWEEP_ATTACK</code></td><td>Crea la partícula del ataque de barrido.</td></tr>
-<tr><td><code>TOTEM_OF_UNDYING</code></td><td>Crea el efecto de partículas del Tótem de Inmortalidad. También se acepta <code>TOTEM</code> como alias.</td></tr>
-<tr><td><code>TRIAL_SPAWNER_DETECTION</code></td><td>Crea el efecto de detección del generador de pruebas.</td></tr>
-<tr><td><code>VIBRATION</code></td><td>Crea un efecto de partículas de vibración.</td></tr>
-<tr><td><code>WITCH</code></td><td>Crea partículas moradas de magia de bruja.</td></tr>
+<h3>Particles available for pre-spawn-particles</h3>
+<p>These particles can be used in <code>pre-spawn-particles.type</code>. The second column gives a plain-language description of what each one produces.</p>
+<table><thead><tr><th>Particle</th><th>What it does</th></tr></thead><tbody>
+<tr><td><code>ASH</code></td><td>Small ash particles that float through the air.</td></tr>
+<tr><td><code>BLOCK</code></td><td>Shows block fragments/particles.</td></tr>
+<tr><td><code>BUBBLE</code></td><td>Creates small floating bubbles.</td></tr>
+<tr><td><code>CAMPFIRE_COSY_SMOKE</code></td><td>Produces a soft campfire smoke.</td></tr>
+<tr><td><code>CAMPFIRE_SIGNAL_SMOKE</code></td><td>Produces a taller, denser campfire smoke.</td></tr>
+<tr><td><code>CLOUD</code></td><td>Creates soft cloud-like particles.</td></tr>
+<tr><td><code>CRIT</code></td><td>Creates sharp critical-hit particles.</td></tr>
+<tr><td><code>DAMAGE_INDICATOR</code></td><td>Shows red damage particles.</td></tr>
+<tr><td><code>DOLPHIN</code></td><td>Creates the watery particles associated with dolphins.</td></tr>
+<tr><td><code>DRAGON_BREATH</code></td><td>Creates a purple dragon's-breath cloud.</td></tr>
+<tr><td><code>DRIPPING_HONEY</code></td><td>Creates dripping honey particles.</td></tr>
+<tr><td><code>DRIPPING_LAVA</code></td><td>Creates dripping lava particles.</td></tr>
+<tr><td><code>DRIPPING_OBSIDIAN_TEAR</code></td><td>Creates dripping crying-obsidian tear particles.</td></tr>
+<tr><td><code>DRIPPING_WATER</code></td><td>Creates dripping water particles.</td></tr>
+<tr><td><code>DUST</code></td><td>Creates colored dust particles.</td></tr>
+<tr><td><code>DUST_COLOR_TRANSITION</code></td><td>Creates dust with a color transition.</td></tr>
+<tr><td><code>ELECTRIC_SPARK</code></td><td>Creates small electric sparks.</td></tr>
+<tr><td><code>ENCHANT</code></td><td>Creates the purple enchantment particle effect.</td></tr>
+<tr><td><code>ENCHANTED_HIT</code></td><td>Creates particles similar to an enchanted hit.</td></tr>
+<tr><td><code>END_ROD</code></td><td>Creates bright white End Rod particles.</td></tr>
+<tr><td><code>ENTITY_EFFECT</code></td><td>Creates colored entity-effect particles.</td></tr>
+<tr><td><code>EXPLOSION</code></td><td>Creates a small explosion effect.</td></tr>
+<tr><td><code>EXPLOSION_EMITTER</code></td><td>Creates a larger explosion-emitter effect.</td></tr>
+<tr><td><code>FALLING_DUST</code></td><td>Creates falling dust/block particles.</td></tr>
+<tr><td><code>FIREWORK</code></td><td>Creates firework-style particles.</td></tr>
+<tr><td><code>FLAME</code></td><td>Creates bright fire particles.</td></tr>
+<tr><td><code>FLASH</code></td><td>Creates a brief bright flash.</td></tr>
+<tr><td><code>GLOW</code></td><td>Creates glowing particles.</td></tr>
+<tr><td><code>GLOW_SQUID_INK</code></td><td>Creates glowing squid ink particles.</td></tr>
+<tr><td><code>HEART</code></td><td>Creates heart particles.</td></tr>
+<tr><td><code>INSTANT_EFFECT</code></td><td>Creates instant-effect-style particles.</td></tr>
+<tr><td><code>ITEM</code></td><td>Shows item-based particles.</td></tr>
+<tr><td><code>ITEM_SLIME</code></td><td>Creates slimeball item particles.</td></tr>
+<tr><td><code>ITEM_SNOWBALL</code></td><td>Creates snowball item particles.</td></tr>
+<tr><td><code>LANDING_HONEY</code></td><td>Creates honey particles on landing.</td></tr>
+<tr><td><code>LANDING_LAVA</code></td><td>Creates lava particles on landing.</td></tr>
+<tr><td><code>LANDING_OBSIDIAN_TEAR</code></td><td>Creates crying-obsidian tear particles on landing.</td></tr>
+<tr><td><code>LARGE_SMOKE</code></td><td>Creates large smoke particles.</td></tr>
+<tr><td><code>LAVA</code></td><td>Creates floating lava particles.</td></tr>
+<tr><td><code>MYCELIUM</code></td><td>Creates mycelium-like particles.</td></tr>
+<tr><td><code>NAUTILUS</code></td><td>Creates nautilus-related particles.</td></tr>
+<tr><td><code>NOTE</code></td><td>Creates colorful musical note particles.</td></tr>
+<tr><td><code>POOF</code></td><td>Creates a small puff of particles.</td></tr>
+<tr><td><code>PORTAL</code></td><td>Creates purple portal particles.</td></tr>
+<tr><td><code>RAIN</code></td><td>Creates rain/water particles.</td></tr>
+<tr><td><code>REVERSE_PORTAL</code></td><td>Creates reverse-portal-style particles.</td></tr>
+<tr><td><code>SCULK_CHARGE</code></td><td>Creates sculk charge particles.</td></tr>
+<tr><td><code>SCULK_SOUL</code></td><td>Creates sculk soul particles.</td></tr>
+<tr><td><code>SHRIEK</code></td><td>Creates the sculk shrieker particle effect.</td></tr>
+<tr><td><code>SMALL_FLAME</code></td><td>Creates small fire particles.</td></tr>
+<tr><td><code>SMOKE</code></td><td>Creates regular smoke particles.</td></tr>
+<tr><td><code>SNEEZE</code></td><td>Creates sneeze particles.</td></tr>
+<tr><td><code>SNOWFLAKE</code></td><td>Creates snowflake particles.</td></tr>
+<tr><td><code>SOUL</code></td><td>Creates blue soul particles.</td></tr>
+<tr><td><code>SOUL_FIRE_FLAME</code></td><td>Creates blue soul fire flames.</td></tr>
+<tr><td><code>SPLASH</code></td><td>Creates water splash particles.</td></tr>
+<tr><td><code>SQUID_INK</code></td><td>Creates dark squid ink particles.</td></tr>
+<tr><td><code>SWEEP_ATTACK</code></td><td>Creates the sweep-attack particle.</td></tr>
+<tr><td><code>TOTEM_OF_UNDYING</code></td><td>Creates the Totem of Undying particle effect. <code>TOTEM</code> is also accepted as an alias.</td></tr>
+<tr><td><code>TRIAL_SPAWNER_DETECTION</code></td><td>Creates the trial spawner detection effect.</td></tr>
+<tr><td><code>VIBRATION</code></td><td>Creates a vibration particle effect.</td></tr>
+<tr><td><code>WITCH</code></td><td>Creates purple witch magic particles.</td></tr>
 </tbody></table>
-<p>Los nombres de partículas cambiaron entre versiones de Minecraft. Si escribes uno que tu servidor no conoce, DonaDrops prueba automáticamente su equivalente (por ejemplo <code>TOTEM_OF_UNDYING</code> y <code>TOTEM</code>, o <code>DUST</code> y <code>REDSTONE</code>). Si un nombre no existe en tu versión o está mal escrito, se muestra una partícula por defecto en lugar de detener el spawn.</p>
+<p>Particle names have changed between Minecraft versions. If you write one your server doesn't recognize, DonaDrops automatically tries its equivalent (e.g. <code>TOTEM_OF_UNDYING</code> and <code>TOTEM</code>, or <code>DUST</code> and <code>REDSTONE</code>). If a name doesn't exist on your version or is misspelled, a default particle is shown instead of stopping the spawn.</p>
 
-<h2 id="spawn-animations">2. Animación de aparición</h2>
-<p>Es una animación hecha con partículas que se reproduce <strong>en el momento en que el cofre aparece</strong> (después de las partículas de aparición, si las tienes activas). A diferencia de las otras, <strong>solo se configura en el archivo de cada drop</strong> (o desde el botón del editor): no existe en <code>config.yml</code>.</p>
-<p>Viene <strong>desactivada</strong>. En un drop nuevo la sección ya está escrita y lista para usar; <code>type: none</code> significa que no hay animación. Para activarla solo cambia <code>none</code> por el nombre de una animación:</p>
+<h2 id="spawn-animations">2. Spawn animation</h2>
+<p>This is a particle-based animation played <strong>the moment the chest appears</strong> (after the pre-spawn particles, if you have them enabled). Unlike the others, <strong>it's only ever set in each drop's file</strong> (or from the editor's button): it doesn't exist in <code>config.yml</code>.</p>
+<p>Ships <strong>disabled</strong>. On a new drop the section is already written and ready to use; <code>type: none</code> means there's no animation. To enable it, just change <code>none</code> to an animation's name:</p>
 <pre><code># drops/donadrops.yml
 spawn-animation:
   type: none
   duration-ticks: 30</code></pre>
-<p>Por ejemplo, cambiando <code>none</code> por <code>meteor</code>:</p>
+<p>For example, changing <code>none</code> to <code>meteor</code>:</p>
 <pre><code>spawn-animation:
   type: meteor
   duration-ticks: 30</code></pre>
 <table>
-<tr><th>Campo</th><th>Qué controla</th></tr>
-<tr><td><code>type</code></td><td>La animación que se reproduce al aparecer el drop. <code>none</code> = sin animación.</td></tr>
-<tr><td><code>duration-ticks</code></td><td>Cuánto dura la animación en ticks. <code>20</code> ticks son aproximadamente 1 segundo.</td></tr>
+<tr><th>Field</th><th>What it controls</th></tr>
+<tr><td><code>type</code></td><td>The animation played when the drop appears. <code>none</code> = no animation.</td></tr>
+<tr><td><code>duration-ticks</code></td><td>How long the animation lasts, in ticks. <code>20</code> ticks are roughly 1 second.</td></tr>
 </table>
-<p>Cada animación dibuja con sus propias partículas, por eso <strong>no tiene una opción de partícula</strong>. Las partículas que tú eliges van en las otras dos secciones: <a href="#pre-spawn">Partículas de aparición</a> y <a href="#spawn-particles">Partículas persistentes</a>. Los archivos de drops anteriores que tengan <code>particle</code> y <code>particle-count</code> dentro de <code>spawn-animation</code> siguen cargando; esas dos líneas se ignoran y desaparecen la próxima vez que se guarde el drop. Un <code>spawn-animation: []</code> antiguo equivale a "sin animación".</p>
-<h3>Animaciones disponibles</h3>
-<p>Cada drop puede utilizar uno de los siguientes valores en <code>spawn-animation.type</code>.</p>
-<table><thead><tr><th>Animación</th><th>Qué hace</th></tr></thead><tbody>
-<tr><td><code>none</code></td><td>Sin animación.</td></tr>
-<tr><td><code>rain</code></td><td>Crea una lluvia de partículas sobre el drop.</td></tr>
-<tr><td><code>falling</code></td><td>Crea partículas que caen hacia el drop.</td></tr>
-<tr><td><code>sky-drop</code></td><td>Hace que las partículas desciendan desde el cielo hacia el drop.</td></tr>
-<tr><td><code>meteor</code></td><td>Crea una caída estilo meteorito con fuego y humo.</td></tr>
-<tr><td><code>spiral</code></td><td>Forma una espiral giratoria alrededor del drop.</td></tr>
-<tr><td><code>vortex</code></td><td>Crea un vórtice giratorio con aspecto de portal.</td></tr>
-<tr><td><code>circle</code></td><td>Crea un círculo de partículas girando alrededor del drop.</td></tr>
-<tr><td><code>helix</code></td><td>Crea dos trayectorias espirales que se mueven alrededor del drop.</td></tr>
-<tr><td><code>pulse</code></td><td>Expande y contrae un anillo de partículas como un pulso.</td></tr>
-<tr><td><code>burst</code></td><td>Forma un anillo y termina con un efecto de explosión.</td></tr>
-<tr><td><code>implosion</code></td><td>Hace que el anillo de partículas se contraiga hacia el drop.</td></tr>
-<tr><td><code>fountain</code></td><td>Lanza partículas hacia arriba y hacia afuera como una fuente.</td></tr>
-<tr><td><code>flame-pillar</code></td><td>Crea una columna ascendente de llamas sobre el drop.</td></tr>
-<tr><td><code>smoke-pillar</code></td><td>Crea una columna ascendente de humo sobre el drop.</td></tr>
-<tr><td><code>totem</code></td><td>Rodea el drop con partículas de Tótem de Inmortalidad.</td></tr>
-<tr><td><code>enchant</code></td><td>Crea un aura densa de partículas de encantamiento.</td></tr>
-<tr><td><code>soul</code></td><td>Crea un aura de llamas de alma alrededor del drop.</td></tr>
-<tr><td><code>portal</code></td><td>Crea un aura de partículas con aspecto de portal.</td></tr>
-<tr><td><code>end-rod</code></td><td>Crea un aura de partículas de End Rod.</td></tr>
-<tr><td><code>lightning</code></td><td>Crea un efecto de chispas eléctricas cerca del final de la animación.</td></tr>
-<tr><td><code>firework</code></td><td>Crea un efecto de partículas estilo fuegos artificiales.</td></tr>
-<tr><td><code>snow</code></td><td>Crea un efecto de copos de nieve.</td></tr>
-<tr><td><code>descend</code></td><td>Mueve un anillo de partículas hacia abajo hasta el drop.</td></tr>
-<tr><td><code>lift</code></td><td>Mueve un anillo de partículas hacia arriba desde el drop.</td></tr>
-<tr><td><code>spiral-down</code></td><td>Crea una espiral que se desplaza hacia abajo.</td></tr>
-<tr><td><code>spiral-up</code></td><td>Crea una espiral que se desplaza hacia arriba.</td></tr>
-<tr><td><code>expanding-ring</code></td><td>Comienza pequeño y expande un anillo de partículas hacia afuera.</td></tr>
-<tr><td><code>contracting-ring</code></td><td>Comienza grande y contrae un anillo de partículas hacia adentro.</td></tr>
-<tr><td><code>double-ring</code></td><td>Muestra dos anillos giratorios de diferentes tamaños.</td></tr>
-<tr><td><code>orbit</code></td><td>Hace que las partículas orbiten alrededor del drop.</td></tr>
-<tr><td><code>cross</code></td><td>Crea una formación de partículas en forma de cruz.</td></tr>
-<tr><td><code>x-cross</code></td><td>Crea una formación de partículas en forma de X.</td></tr>
-<tr><td><code>star</code></td><td>Crea una estrella giratoria de cinco puntas.</td></tr>
-<tr><td><code>wave</code></td><td>Crea una onda de partículas en movimiento.</td></tr>
-<tr><td><code>sweep</code></td><td>Desplaza partículas alrededor del drop en un movimiento circular.</td></tr>
-<tr><td><code>beacon</code></td><td>Crea un haz vertical de partículas que sube.</td></tr>
-<tr><td><code>rainburst</code></td><td>Crea muchas partículas que caen desde arriba alrededor del drop.</td></tr>
-<tr><td><code>ground-ring</code></td><td>Expande un anillo de partículas a ras del suelo.</td></tr>
-<tr><td><code>shockwave</code></td><td>Crea una onda expansiva rápida que se abre desde el drop.</td></tr>
-<tr><td><code>halo</code></td><td>Crea un halo giratorio sobre el drop.</td></tr>
-<tr><td><code>twinkle</code></td><td>Crea partículas brillantes en posiciones aleatorias alrededor del drop.</td></tr>
-<tr><td><code>constellation</code></td><td>Crea una formación giratoria de partículas similar a una constelación.</td></tr>
+<p>Each animation draws with its own particles, which is why it <strong>doesn't have a particle option</strong>. The particles you choose go in the other two sections: <a href="#pre-spawn">Pre-spawn particles</a> and <a href="#spawn-particles">Persistent particles</a>. Older drop files with <code>particle</code> and <code>particle-count</code> inside <code>spawn-animation</code> still load fine; those two lines are ignored and disappear the next time the drop is saved. An old <code>spawn-animation: []</code> is equivalent to "no animation".</p>
+<h3>Available animations</h3>
+<p>Each drop can use one of the following values in <code>spawn-animation.type</code>.</p>
+<table><thead><tr><th>Animation</th><th>What it does</th></tr></thead><tbody>
+<tr><td><code>none</code></td><td>No animation.</td></tr>
+<tr><td><code>rain</code></td><td>Creates a rain of particles over the drop.</td></tr>
+<tr><td><code>falling</code></td><td>Creates particles falling toward the drop.</td></tr>
+<tr><td><code>sky-drop</code></td><td>Makes particles descend from the sky toward the drop.</td></tr>
+<tr><td><code>meteor</code></td><td>Creates a meteor-style fall with fire and smoke.</td></tr>
+<tr><td><code>spiral</code></td><td>Forms a spinning spiral around the drop.</td></tr>
+<tr><td><code>vortex</code></td><td>Creates a spinning, portal-like vortex.</td></tr>
+<tr><td><code>circle</code></td><td>Creates a ring of particles spinning around the drop.</td></tr>
+<tr><td><code>helix</code></td><td>Creates two spiral paths moving around the drop.</td></tr>
+<tr><td><code>pulse</code></td><td>Expands and contracts a ring of particles like a pulse.</td></tr>
+<tr><td><code>burst</code></td><td>Forms a ring and ends with a burst effect.</td></tr>
+<tr><td><code>implosion</code></td><td>Makes the ring of particles collapse toward the drop.</td></tr>
+<tr><td><code>fountain</code></td><td>Shoots particles up and outward like a fountain.</td></tr>
+<tr><td><code>flame-pillar</code></td><td>Creates a rising pillar of flame over the drop.</td></tr>
+<tr><td><code>smoke-pillar</code></td><td>Creates a rising pillar of smoke over the drop.</td></tr>
+<tr><td><code>totem</code></td><td>Surrounds the drop with Totem of Undying particles.</td></tr>
+<tr><td><code>enchant</code></td><td>Creates a dense aura of enchantment particles.</td></tr>
+<tr><td><code>soul</code></td><td>Creates a soul-flame aura around the drop.</td></tr>
+<tr><td><code>portal</code></td><td>Creates a portal-like particle aura.</td></tr>
+<tr><td><code>end-rod</code></td><td>Creates an End Rod particle aura.</td></tr>
+<tr><td><code>lightning</code></td><td>Creates an electric spark effect near the end of the animation.</td></tr>
+<tr><td><code>firework</code></td><td>Creates a firework-style particle effect.</td></tr>
+<tr><td><code>snow</code></td><td>Creates a snowflake effect.</td></tr>
+<tr><td><code>descend</code></td><td>Moves a ring of particles downward onto the drop.</td></tr>
+<tr><td><code>lift</code></td><td>Moves a ring of particles upward away from the drop.</td></tr>
+<tr><td><code>spiral-down</code></td><td>Creates a spiral moving downward.</td></tr>
+<tr><td><code>spiral-up</code></td><td>Creates a spiral moving upward.</td></tr>
+<tr><td><code>expanding-ring</code></td><td>Starts small and expands a ring of particles outward.</td></tr>
+<tr><td><code>contracting-ring</code></td><td>Starts large and contracts a ring of particles inward.</td></tr>
+<tr><td><code>double-ring</code></td><td>Shows two spinning rings of different sizes.</td></tr>
+<tr><td><code>orbit</code></td><td>Makes particles orbit around the drop.</td></tr>
+<tr><td><code>cross</code></td><td>Creates a cross-shaped particle formation.</td></tr>
+<tr><td><code>x-cross</code></td><td>Creates an X-shaped particle formation.</td></tr>
+<tr><td><code>star</code></td><td>Creates a spinning five-pointed star.</td></tr>
+<tr><td><code>wave</code></td><td>Creates a moving wave of particles.</td></tr>
+<tr><td><code>sweep</code></td><td>Moves particles around the drop in a circular sweep.</td></tr>
+<tr><td><code>beacon</code></td><td>Creates a vertical beam of particles rising up.</td></tr>
+<tr><td><code>rainburst</code></td><td>Creates lots of particles falling from above around the drop.</td></tr>
+<tr><td><code>ground-ring</code></td><td>Expands a ring of particles at ground level.</td></tr>
+<tr><td><code>shockwave</code></td><td>Creates a fast shockwave expanding from the drop.</td></tr>
+<tr><td><code>halo</code></td><td>Creates a spinning halo above the drop.</td></tr>
+<tr><td><code>twinkle</code></td><td>Creates sparkling particles at random positions around the drop.</td></tr>
+<tr><td><code>constellation</code></td><td>Creates a spinning particle formation similar to a constellation.</td></tr>
 </tbody></table>
 
-<h2 id="spawn-particles">3. Partículas persistentes</h2>
-<p>Son las partículas que <strong>permanecen alrededor del cofre mientras está en el mundo</strong>, hasta que se reclama el loot o el cofre desaparece. No son las partículas de aparición: aquellas se ven antes de que salga el cofre, estas después.</p>
-<p>Vienen <strong>desactivadas</strong>: en <code>config.yml</code> el <code>type</code> es <code>none</code>. Para activarlas cambia <code>none</code> por el nombre de una partícula:</p>
+<h2 id="spawn-particles">3. Persistent particles</h2>
+<p>These are the particles that <strong>stay around the chest while it's in the world</strong>, until the loot is claimed or the chest disappears. They aren't the spawn particles: those are seen before the chest appears, these afterward.</p>
+<p>Ships <strong>disabled</strong>: in <code>config.yml</code> the <code>type</code> is <code>none</code>. To enable them, change <code>none</code> to a particle's name:</p>
 <pre><code># config.yml
 spawn-particles:
   enabled: true
@@ -855,174 +855,177 @@ spawn-particles:
   offset-x: 0.4
   offset-y: 0.6
   offset-z: 0.4</code></pre>
-<p>Cada drop puede tener las suyas. En un drop nuevo todo viene en <code>-1</code>, que significa "usar los valores de config.yml":</p>
+<p>Each drop can have its own. On a new drop everything is <code>-1</code>, which means "use the values from config.yml":</p>
 <pre><code># drops/donadrops.yml
 spawn-particles:
   type: -1
   count: -1
   interval-ticks: -1</code></pre>
-<p>Por ejemplo, para que solo ese drop use tótems (puedes agregar también <code>enabled</code>, <code>persistent</code> y los <code>offset-*</code> para sobrescribirlos):</p>
+<p>For example, to make only that drop use totems (you can also add <code>enabled</code>, <code>persistent</code> and the <code>offset-*</code> fields to override them):</p>
 <pre><code>spawn-particles:
   type: TOTEM_OF_UNDYING
   count: 30
   interval-ticks: 10</code></pre>
 <table>
-<tr><th>Campo</th><th>Qué controla</th></tr>
-<tr><td><code>enabled</code></td><td>Activa o desactiva las partículas persistentes.</td></tr>
-<tr><td><code>persistent</code></td><td><code>true</code> = se repiten cada <code>interval-ticks</code> mientras el cofre siga sin reclamarse. <code>false</code> = una sola ráfaga al aparecer.</td></tr>
-<tr><td><code>interval-ticks</code></td><td>Cada cuántos ticks se vuelven a emitir las partículas. <code>-1</code> = usar config.yml.</td></tr>
-<tr><td><code>type</code></td><td>Nombre de la partícula. <code>none</code> = sin partículas (en un drop también las apaga aunque config.yml las tenga activas). <code>-1</code> (solo en el drop) = usar el de config.yml.</td></tr>
-<tr><td><code>count</code></td><td>Cuántas partículas se emiten cada vez. <code>-1</code> = usar config.yml.</td></tr>
-<tr><td><code>offset-x / offset-y / offset-z</code></td><td>Extensión de las partículas sobre cada eje. En un drop son opcionales: si no los escribes se usan los de config.yml.</td></tr>
+<tr><th>Field</th><th>What it controls</th></tr>
+<tr><td><code>enabled</code></td><td>Turns persistent particles on or off.</td></tr>
+<tr><td><code>persistent</code></td><td><code>true</code> = repeats every <code>interval-ticks</code> as long as the chest stays unclaimed. <code>false</code> = a single burst when it spawns.</td></tr>
+<tr><td><code>interval-ticks</code></td><td>How many ticks between each re-emission of particles. <code>-1</code> = use config.yml.</td></tr>
+<tr><td><code>type</code></td><td>The particle's name. <code>none</code> = no particles (on a drop, this also turns them off even if config.yml has them enabled). <code>-1</code> (drop only) = use config.yml's.</td></tr>
+<tr><td><code>count</code></td><td>How many particles are emitted each time. <code>-1</code> = use config.yml.</td></tr>
+<tr><td><code>offset-x / offset-y / offset-z</code></td><td>How far the particles spread on each axis. Optional on a drop: if you don't set them, config.yml's are used.</td></tr>
 </table>
-<p>Los archivos de drops creados con versiones anteriores que tengan <code>spawn-particles: []</code> siguen funcionando: <code>[]</code> equivale a "sin partículas".</p>
-<h3>Partículas disponibles para spawn-particles</h3>
-<p>Estas partículas pueden utilizarse en <code>spawn-particles.type</code>. La segunda columna indica de forma sencilla qué efecto produce cada una.</p>
-<table><thead><tr><th>Partícula</th><th>Qué hace</th></tr></thead><tbody>
-<tr><td><code>ASH</code></td><td>Pequeñas partículas de ceniza que flotan por el aire.</td></tr>
-<tr><td><code>BLOCK</code></td><td>Muestra fragmentos o partículas de bloques.</td></tr>
-<tr><td><code>BUBBLE</code></td><td>Crea pequeñas burbujas flotantes.</td></tr>
-<tr><td><code>CAMPFIRE_COSY_SMOKE</code></td><td>Produce un humo suave de fogata.</td></tr>
-<tr><td><code>CAMPFIRE_SIGNAL_SMOKE</code></td><td>Produce un humo de fogata más alto y denso.</td></tr>
-<tr><td><code>CLOUD</code></td><td>Crea partículas suaves con aspecto de nube.</td></tr>
-<tr><td><code>CRIT</code></td><td>Crea partículas afiladas de golpe crítico.</td></tr>
-<tr><td><code>DAMAGE_INDICATOR</code></td><td>Muestra partículas rojas de daño.</td></tr>
-<tr><td><code>DOLPHIN</code></td><td>Crea partículas acuáticas asociadas al delfín.</td></tr>
-<tr><td><code>DRAGON_BREATH</code></td><td>Crea una nube morada de aliento de dragón.</td></tr>
-<tr><td><code>DRIPPING_HONEY</code></td><td>Crea partículas de miel goteando.</td></tr>
-<tr><td><code>DRIPPING_LAVA</code></td><td>Crea partículas de lava goteando.</td></tr>
-<tr><td><code>DRIPPING_OBSIDIAN_TEAR</code></td><td>Crea partículas de lágrima de obsidiana llorosa goteando.</td></tr>
-<tr><td><code>DRIPPING_WATER</code></td><td>Crea partículas de agua goteando.</td></tr>
-<tr><td><code>DUST</code></td><td>Crea partículas de polvo de color.</td></tr>
-<tr><td><code>DUST_COLOR_TRANSITION</code></td><td>Crea polvo con transición de color.</td></tr>
-<tr><td><code>ELECTRIC_SPARK</code></td><td>Crea pequeñas chispas eléctricas.</td></tr>
-<tr><td><code>ENCHANT</code></td><td>Crea el efecto de partículas moradas de encantamiento.</td></tr>
-<tr><td><code>ENCHANTED_HIT</code></td><td>Crea partículas similares a un golpe encantado.</td></tr>
-<tr><td><code>END_ROD</code></td><td>Crea partículas blancas brillantes de End Rod.</td></tr>
-<tr><td><code>ENTITY_EFFECT</code></td><td>Crea partículas de efectos de entidad con color.</td></tr>
-<tr><td><code>EXPLOSION</code></td><td>Crea un pequeño efecto de explosión.</td></tr>
-<tr><td><code>EXPLOSION_EMITTER</code></td><td>Crea un efecto de emisor de explosión más grande.</td></tr>
-<tr><td><code>FALLING_DUST</code></td><td>Crea partículas de polvo o bloques cayendo.</td></tr>
-<tr><td><code>FIREWORK</code></td><td>Crea partículas con estilo de fuegos artificiales.</td></tr>
-<tr><td><code>FLAME</code></td><td>Crea partículas brillantes de fuego.</td></tr>
-<tr><td><code>FLASH</code></td><td>Crea un destello brillante breve.</td></tr>
-<tr><td><code>GLOW</code></td><td>Crea partículas brillantes.</td></tr>
-<tr><td><code>GLOW_SQUID_INK</code></td><td>Crea partículas de tinta de calamar luminosa.</td></tr>
-<tr><td><code>HEART</code></td><td>Crea partículas de corazones.</td></tr>
-<tr><td><code>INSTANT_EFFECT</code></td><td>Crea partículas del estilo de efecto instantáneo.</td></tr>
-<tr><td><code>ITEM</code></td><td>Muestra partículas basadas en un ítem.</td></tr>
-<tr><td><code>ITEM_SLIME</code></td><td>Crea partículas de ítem de slime.</td></tr>
-<tr><td><code>ITEM_SNOWBALL</code></td><td>Crea partículas de ítem de bola de nieve.</td></tr>
-<tr><td><code>LANDING_HONEY</code></td><td>Crea partículas de miel al aterrizar.</td></tr>
-<tr><td><code>LANDING_LAVA</code></td><td>Crea partículas de lava al aterrizar.</td></tr>
-<tr><td><code>LANDING_OBSIDIAN_TEAR</code></td><td>Crea partículas de lágrima de obsidiana llorosa al aterrizar.</td></tr>
-<tr><td><code>LARGE_SMOKE</code></td><td>Crea partículas grandes de humo.</td></tr>
-<tr><td><code>LAVA</code></td><td>Crea partículas de lava flotantes.</td></tr>
-<tr><td><code>MYCELIUM</code></td><td>Crea partículas con aspecto de micelio.</td></tr>
-<tr><td><code>NAUTILUS</code></td><td>Crea partículas relacionadas con el nautilus.</td></tr>
-<tr><td><code>NOTE</code></td><td>Crea partículas de notas musicales de colores.</td></tr>
-<tr><td><code>POOF</code></td><td>Crea una pequeña nube de partículas.</td></tr>
-<tr><td><code>PORTAL</code></td><td>Crea partículas moradas de portal.</td></tr>
-<tr><td><code>RAIN</code></td><td>Crea partículas de lluvia o agua.</td></tr>
-<tr><td><code>REVERSE_PORTAL</code></td><td>Crea partículas con estilo de portal inverso.</td></tr>
-<tr><td><code>SCULK_CHARGE</code></td><td>Crea partículas de carga de sculk.</td></tr>
-<tr><td><code>SCULK_SOUL</code></td><td>Crea partículas de alma de sculk.</td></tr>
-<tr><td><code>SHRIEK</code></td><td>Crea un efecto de partículas de chillido de sculk.</td></tr>
-<tr><td><code>SMALL_FLAME</code></td><td>Crea pequeñas partículas de fuego.</td></tr>
-<tr><td><code>SMOKE</code></td><td>Crea partículas normales de humo.</td></tr>
-<tr><td><code>SNEEZE</code></td><td>Crea partículas de estornudo.</td></tr>
-<tr><td><code>SNOWFLAKE</code></td><td>Crea partículas de copos de nieve.</td></tr>
-<tr><td><code>SOUL</code></td><td>Crea partículas azules de alma.</td></tr>
-<tr><td><code>SOUL_FIRE_FLAME</code></td><td>Crea llamas azules de fuego de alma.</td></tr>
-<tr><td><code>SPLASH</code></td><td>Crea partículas de salpicadura de agua.</td></tr>
-<tr><td><code>SQUID_INK</code></td><td>Crea partículas oscuras de tinta de calamar.</td></tr>
-<tr><td><code>SWEEP_ATTACK</code></td><td>Crea la partícula del ataque de barrido.</td></tr>
-<tr><td><code>TOTEM_OF_UNDYING</code></td><td>Crea el efecto de partículas del Tótem de Inmortalidad. También se acepta <code>TOTEM</code> como alias.</td></tr>
-<tr><td><code>TRIAL_SPAWNER_DETECTION</code></td><td>Crea el efecto de detección del generador de pruebas.</td></tr>
-<tr><td><code>VIBRATION</code></td><td>Crea un efecto de partículas de vibración.</td></tr>
-<tr><td><code>WITCH</code></td><td>Crea partículas moradas de magia de bruja.</td></tr>
+<p>Drop files created with older versions that have <code>spawn-particles: []</code> still work fine: <code>[]</code> is equivalent to "no particles".</p>
+<h3>Particles available for spawn-particles</h3>
+<p>These particles can be used in <code>spawn-particles.type</code>. The second column gives a plain-language description of what each one produces.</p>
+<table><thead><tr><th>Particle</th><th>What it does</th></tr></thead><tbody>
+<tr><td><code>ASH</code></td><td>Small ash particles that float through the air.</td></tr>
+<tr><td><code>BLOCK</code></td><td>Shows block fragments/particles.</td></tr>
+<tr><td><code>BUBBLE</code></td><td>Creates small floating bubbles.</td></tr>
+<tr><td><code>CAMPFIRE_COSY_SMOKE</code></td><td>Produces a soft campfire smoke.</td></tr>
+<tr><td><code>CAMPFIRE_SIGNAL_SMOKE</code></td><td>Produces a taller, denser campfire smoke.</td></tr>
+<tr><td><code>CLOUD</code></td><td>Creates soft cloud-like particles.</td></tr>
+<tr><td><code>CRIT</code></td><td>Creates sharp critical-hit particles.</td></tr>
+<tr><td><code>DAMAGE_INDICATOR</code></td><td>Shows red damage particles.</td></tr>
+<tr><td><code>DOLPHIN</code></td><td>Creates the watery particles associated with dolphins.</td></tr>
+<tr><td><code>DRAGON_BREATH</code></td><td>Creates a purple dragon's-breath cloud.</td></tr>
+<tr><td><code>DRIPPING_HONEY</code></td><td>Creates dripping honey particles.</td></tr>
+<tr><td><code>DRIPPING_LAVA</code></td><td>Creates dripping lava particles.</td></tr>
+<tr><td><code>DRIPPING_OBSIDIAN_TEAR</code></td><td>Creates dripping crying-obsidian tear particles.</td></tr>
+<tr><td><code>DRIPPING_WATER</code></td><td>Creates dripping water particles.</td></tr>
+<tr><td><code>DUST</code></td><td>Creates colored dust particles.</td></tr>
+<tr><td><code>DUST_COLOR_TRANSITION</code></td><td>Creates dust with a color transition.</td></tr>
+<tr><td><code>ELECTRIC_SPARK</code></td><td>Creates small electric sparks.</td></tr>
+<tr><td><code>ENCHANT</code></td><td>Creates the purple enchantment particle effect.</td></tr>
+<tr><td><code>ENCHANTED_HIT</code></td><td>Creates particles similar to an enchanted hit.</td></tr>
+<tr><td><code>END_ROD</code></td><td>Creates bright white End Rod particles.</td></tr>
+<tr><td><code>ENTITY_EFFECT</code></td><td>Creates colored entity-effect particles.</td></tr>
+<tr><td><code>EXPLOSION</code></td><td>Creates a small explosion effect.</td></tr>
+<tr><td><code>EXPLOSION_EMITTER</code></td><td>Creates a larger explosion-emitter effect.</td></tr>
+<tr><td><code>FALLING_DUST</code></td><td>Creates falling dust/block particles.</td></tr>
+<tr><td><code>FIREWORK</code></td><td>Creates firework-style particles.</td></tr>
+<tr><td><code>FLAME</code></td><td>Creates bright fire particles.</td></tr>
+<tr><td><code>FLASH</code></td><td>Creates a brief bright flash.</td></tr>
+<tr><td><code>GLOW</code></td><td>Creates glowing particles.</td></tr>
+<tr><td><code>GLOW_SQUID_INK</code></td><td>Creates glowing squid ink particles.</td></tr>
+<tr><td><code>HEART</code></td><td>Creates heart particles.</td></tr>
+<tr><td><code>INSTANT_EFFECT</code></td><td>Creates instant-effect-style particles.</td></tr>
+<tr><td><code>ITEM</code></td><td>Shows item-based particles.</td></tr>
+<tr><td><code>ITEM_SLIME</code></td><td>Creates slimeball item particles.</td></tr>
+<tr><td><code>ITEM_SNOWBALL</code></td><td>Creates snowball item particles.</td></tr>
+<tr><td><code>LANDING_HONEY</code></td><td>Creates honey particles on landing.</td></tr>
+<tr><td><code>LANDING_LAVA</code></td><td>Creates lava particles on landing.</td></tr>
+<tr><td><code>LANDING_OBSIDIAN_TEAR</code></td><td>Creates crying-obsidian tear particles on landing.</td></tr>
+<tr><td><code>LARGE_SMOKE</code></td><td>Creates large smoke particles.</td></tr>
+<tr><td><code>LAVA</code></td><td>Creates floating lava particles.</td></tr>
+<tr><td><code>MYCELIUM</code></td><td>Creates mycelium-like particles.</td></tr>
+<tr><td><code>NAUTILUS</code></td><td>Creates nautilus-related particles.</td></tr>
+<tr><td><code>NOTE</code></td><td>Creates colorful musical note particles.</td></tr>
+<tr><td><code>POOF</code></td><td>Creates a small puff of particles.</td></tr>
+<tr><td><code>PORTAL</code></td><td>Creates purple portal particles.</td></tr>
+<tr><td><code>RAIN</code></td><td>Creates rain/water particles.</td></tr>
+<tr><td><code>REVERSE_PORTAL</code></td><td>Creates reverse-portal-style particles.</td></tr>
+<tr><td><code>SCULK_CHARGE</code></td><td>Creates sculk charge particles.</td></tr>
+<tr><td><code>SCULK_SOUL</code></td><td>Creates sculk soul particles.</td></tr>
+<tr><td><code>SHRIEK</code></td><td>Creates the sculk shrieker particle effect.</td></tr>
+<tr><td><code>SMALL_FLAME</code></td><td>Creates small fire particles.</td></tr>
+<tr><td><code>SMOKE</code></td><td>Creates regular smoke particles.</td></tr>
+<tr><td><code>SNEEZE</code></td><td>Creates sneeze particles.</td></tr>
+<tr><td><code>SNOWFLAKE</code></td><td>Creates snowflake particles.</td></tr>
+<tr><td><code>SOUL</code></td><td>Creates blue soul particles.</td></tr>
+<tr><td><code>SOUL_FIRE_FLAME</code></td><td>Creates blue soul fire flames.</td></tr>
+<tr><td><code>SPLASH</code></td><td>Creates water splash particles.</td></tr>
+<tr><td><code>SQUID_INK</code></td><td>Creates dark squid ink particles.</td></tr>
+<tr><td><code>SWEEP_ATTACK</code></td><td>Creates the sweep-attack particle.</td></tr>
+<tr><td><code>TOTEM_OF_UNDYING</code></td><td>Creates the Totem of Undying particle effect. <code>TOTEM</code> is also accepted as an alias.</td></tr>
+<tr><td><code>TRIAL_SPAWNER_DETECTION</code></td><td>Creates the trial spawner detection effect.</td></tr>
+<tr><td><code>VIBRATION</code></td><td>Creates a vibration particle effect.</td></tr>
+<tr><td><code>WITCH</code></td><td>Creates purple witch magic particles.</td></tr>
 </tbody></table>
-<p>Los nombres de partículas cambiaron entre versiones de Minecraft. Si escribes uno que tu servidor no conoce, DonaDrops prueba automáticamente su equivalente (por ejemplo <code>TOTEM_OF_UNDYING</code> y <code>TOTEM</code>, o <code>DUST</code> y <code>REDSTONE</code>). Si un nombre no existe en tu versión o está mal escrito, se muestra una partícula por defecto en lugar de detener el spawn.</p>
+<p>Particle names have changed between Minecraft versions. If you write one your server doesn't recognize, DonaDrops automatically tries its equivalent (e.g. <code>TOTEM_OF_UNDYING</code> and <code>TOTEM</code>, or <code>DUST</code> and <code>REDSTONE</code>). If a name doesn't exist on your version or is misspelled, a default particle is shown instead of stopping the spawn.</p>
 
-<h2 id="security">Seguridad y configuración</h2><p><code>PLAYER_COMMAND</code> ejecuta con los permisos del jugador que pulsa el botón y <code>CONSOLE_COMMAND</code> se ejecuta como consola. DonaDrops no convierte automáticamente datos escritos por jugadores en comandos. Las acciones de consola deben limitarse a comandos que el administrador haya configurado y autorizado.</p><p>Las partículas y animaciones se resuelven contra la API de Paper instalada. Si una partícula no existe o está mal escrita, se utiliza un respaldo seguro en lugar de detener el spawn. La compilación de producción también desactiva la metadata de depuración del compilador para reducir información de desarrollo dentro del bytecode. Esto no sustituye los permisos del servidor ni hace imposible la ingeniería inversa de un plugin Java.</p><h2 id="rgb-colors">Colores RGB</h2><p>Los textos nuevos usan colores RGB hex, por ejemplo <code>&amp;#FFF9B1</code>. La negrita se mantiene separada con <code>&amp;l</code>: <code>&amp;#FFF9B1&amp;lTítulo</code>. La sintaxis de colores anterior sigue siendo compatible con configuraciones existentes.</p><h2 id="gui">Sistema de GUIs (carpeta /gui)</h2>
-<p>El nombre y el lore de los ítems de los menús respetan los colores que escribas (<code>&amp;</code>, hex y MiniMessage) y ya no salen en cursiva morada por defecto. Para cursiva usa <code>&amp;o</code>.</p>
-<p>Los inventarios configurables viven en <code>/gui/*.yml</code>. La configuración permite definir el tamaño del inventario, título, botones, posiciones, materiales, nombres, Lore, cabezas/texturas, decoraciones, sonidos y acciones.</p>
+<h2 id="security">Security and configuration</h2><p><code>PLAYER_COMMAND</code> runs with the permissions of the player who clicks the button, and <code>CONSOLE_COMMAND</code> runs as console. DonaDrops never turns player-typed data into commands on its own. Console actions should be limited to commands the administrator has configured and authorized.</p><p>Particles and animations are resolved against the installed Paper API. If a particle doesn't exist or is misspelled, a safe fallback is used instead of stopping the spawn. The production build also strips the compiler's debug metadata to reduce development information left in the bytecode. This doesn't replace server permissions, nor does it make reverse-engineering a Java plugin impossible.</p><h2 id="rgb-colors">RGB colors</h2><p>All of the plugin's text and menus use RGB hex colors, e.g. <code>&amp;#FFF9B1</code>. Bold is kept separate with <code>&amp;l</code>: <code>&amp;#FFF9B1&amp;lTitle</code>. The classic color syntax (<code>&amp;0</code>-<code>&amp;f</code>) still works if you use it in your own configuration, but it no longer appears in any text the plugin ships by default.</p><h2 id="gui">GUI system (/gui folder)</h2>
+<p>Menu item names and lore respect whatever colors you write (<code>&amp;</code>, hex and MiniMessage) and no longer render in purple italics by default. For italics, use <code>&amp;o</code>.</p>
+<p>Configurable inventories live in <code>/gui/*.yml</code>. The configuration lets you set the inventory's size, title, buttons, positions, materials, names, lore, heads/textures, decorations, sounds and actions.</p>
 <pre><code>items:
   close:
     slot: 34
     material: BARRIER
-    name: "&amp;cCerrar"
+    name: "&amp;cClose"
     lore:
-      - "&amp;7Cierra este menú."
+      - "&amp;7Closes this menu."
     actions:
       - "sound:UI_BUTTON_CLICK"
       - "close"</code></pre>
 <table>
-<tr><th>Acción</th><th>Formato</th><th>Qué hace</th></tr>
-<tr><td><code>close</code></td><td><code>close</code></td><td>Cierra el inventario.</td></tr>
-<tr><td><code>message</code></td><td><code>message:&amp;aTexto</code></td><td>Envía un mensaje al jugador.</td></tr>
-<tr><td><code>broadcast</code></td><td><code>broadcast:&amp;6Texto</code></td><td>Envía un mensaje al servidor.</td></tr>
-<tr><td><code>title</code></td><td><code>title:Título|Subtítulo</code></td><td>Muestra un título.</td></tr>
-<tr><td><code>sound</code></td><td><code>sound:UI_BUTTON_CLICK</code></td><td>Reproduce un sonido.</td></tr>
-<tr><td><code>opengui</code></td><td><code>opengui:tops</code></td><td>Abre otro menú.</td></tr>
-<tr><td><code>player</code></td><td><code>[player] comando</code></td><td>Ejecuta un comando con los permisos del jugador que pulsa el botón.</td></tr>
-<tr><td><code>console</code></td><td><code>[console] comando</code></td><td>Ejecuta un comando desde la consola (ver <a href="#security">Seguridad</a>).</td></tr>
+<tr><th>Action</th><th>Format</th><th>What it does</th></tr>
+<tr><td><code>close</code></td><td><code>close</code></td><td>Closes the inventory.</td></tr>
+<tr><td><code>message</code></td><td><code>message:&amp;aText</code></td><td>Sends a message to the player.</td></tr>
+<tr><td><code>broadcast</code></td><td><code>broadcast:&amp;6Text</code></td><td>Sends a message to the whole server.</td></tr>
+<tr><td><code>title</code></td><td><code>title:Title|Subtitle</code></td><td>Shows a title.</td></tr>
+<tr><td><code>sound</code></td><td><code>sound:UI_BUTTON_CLICK</code></td><td>Plays a sound.</td></tr>
+<tr><td><code>opengui</code></td><td><code>opengui:tops</code></td><td>Opens another menu.</td></tr>
+<tr><td><code>player</code></td><td><code>[player] command</code></td><td>Runs a command with the permissions of the player who clicked the button.</td></tr>
+<tr><td><code>console</code></td><td><code>[console] command</code></td><td>Runs a command from the console (see <a href="#security">Security</a>).</td></tr>
 </table>
-<p>Los botones especiales del editor conservan su comportamiento aunque se cambien sus propiedades visuales. Los botones genéricos pueden utilizar las acciones configurables.</p>
-<p>El sistema de GUIs está pensado para permitir una personalización amplia: tamaño, título, slots, materiales, Lore, cabezas, decoraciones, sonidos y acciones.</p>
-<h2 id="events">Sonidos, títulos y partículas</h2>
-<p>Los sonidos y efectos de los cofres se pueden configurar para diferentes eventos: aparición, apertura, bloqueo, recompensa, clic de GUI y otros eventos soportados por la configuración.</p>
-<h3>Partículas al reclamar el loot</h3>
-<p>Cuando se saca el último ítem del cofre se reproducen las partículas de <code>config.yml → particles</code> (por defecto <code>EXPLOSION_LARGE</code>). Cada drop puede cambiarlas en su propia sección <code>particles</code>. Son distintas de los tres efectos de aparición (ver <a href="#spawn-effects">Efectos de aparición del cofre</a>).</p>
-<p>Las <a href="#spawn-particles">partículas persistentes</a> se mantienen mientras el cofre siga sin reclamarse y dejan de emitirse cuando el loot se saca por completo.</p>
-<h3>Estrellas</h3>
-<p>Las estrellas de rareza tienen dos colores independientes: uno para las estrellas obtenidas y otro para las estrellas restantes. Se configuran en <code>config.yml → general.star-color-filled</code> y <code>general.star-color-empty</code>.</p>
-<p>El mismo concepto se aplica a la representación de estrellas en el GUI y en el holograma, de modo que un cofre de 3 estrellas puede mostrar las 3 estrellas llenas con un color y las restantes con otro.</p>
-<h3>Tiempo restante</h3>
-<p>El tiempo restante antes de que el cofre desaparezca puede mostrarse en el holograma. El tiempo restante de apertura también puede incluirse en el mensaje de cooldown cuando un jugador intenta abrir un cofre que todavía está bloqueado.</p>
+<p>The editor's special buttons keep their behavior even if their visual properties are changed. Generic buttons can use any of the configurable actions.</p>
+<p>The GUI system is built to allow broad customization: size, title, slots, materials, lore, heads, decorations, sounds and actions.</p>
+<h2 id="events">Sounds, titles and particles</h2>
+<p>Chest sounds and effects can be configured for different events: spawn, open, locked, reward, GUI click and other events supported by the configuration.</p>
+<h3>Particles when claiming the loot</h3>
+<p>When the last item is taken out of the chest, the particles from <code>config.yml → particles</code> are played (defaults to <code>EXPLOSION_LARGE</code>). Each drop can change these in its own <code>particles</code> section. They're different from the three spawn effects (see <a href="#spawn-effects">Chest spawn effects</a>).</p>
+<p><a href="#spawn-particles">Persistent particles</a> keep playing as long as the chest remains unclaimed and stop once all the loot is taken out.</p>
+<h3>Stars</h3>
+<p>Rarity stars have two independent colors: one for the earned stars and another for the remaining ones. Set in <code>config.yml → general.star-color-filled</code> and <code>general.star-color-empty</code>.</p>
+<p>The same concept applies to how stars are shown in the GUI and in the hologram, so a 3-star chest can show its 3 filled stars in one color and the rest in another.</p>
+<h3>Time remaining</h3>
+<p>The time left before a chest disappears can be shown in the hologram. The remaining opening time can also be included in the cooldown message when a player tries to open a chest that's still locked.</p>
 <h2 id="placeholders">Placeholders</h2>
-<p>DonaDrops registra su propia expansión de <b>PlaceholderAPI</b> automáticamente al iniciar (necesitás tener PlaceholderAPI instalado, ya es un plugin requerido). Todos empiezan con <code>%donadrops_...%</code> y funcionan en cualquier plugin compatible con PlaceholderAPI (scoreboards, tablist, hologramas de otros plugins, chat, etc.).</p>
+<p>DonaDrops registers its own <b>PlaceholderAPI</b> expansion automatically on startup (you need PlaceholderAPI installed, since it's already a required plugin). They all start with <code>%donadrops_...%</code> and work in any plugin compatible with PlaceholderAPI (scoreboards, tab list, other plugins' holograms, chat, etc.).</p>
 <table>
-<tr><th>Placeholder</th><th>Devuelve</th></tr>
-<tr><td><code>%donadrops_version%</code></td><td>Versión instalada del plugin.</td></tr>
-<tr><td><code>%donadrops_language%</code></td><td>Idioma actual configurado.</td></tr>
-<tr><td><code>%donadrops_total_chests%</code></td><td>Cantidad total de cofres registrados en <code>/drops</code>.</td></tr>
-<tr><td><code>%donadrops_active_chests%</code></td><td>Cantidad de cofres actualmente generados en el mundo.</td></tr>
-<tr><td><code>%donadrops_chest_&lt;nombre&gt;_active%</code></td><td>Cuántas instancias de ese cofre en particular están generadas ahora mismo.</td></tr>
-<tr><td><code>%donadrops_chest_&lt;nombre&gt;_rarity%</code></td><td>Rareza (1-5) de ese cofre.</td></tr>
-<tr><td><code>%donadrops_chest_&lt;nombre&gt;_category%</code></td><td>Nombre de categoría (con colores) de ese cofre.</td></tr>
-<tr><td><code>%donadrops_event_active%</code></td><td><code>yes</code>/<code>no</code>, si hay un drop event corriendo ahora mismo.</td></tr>
-<tr><td><code>%donadrops_event_name%</code></td><td>Nombre del drop event activo (vacío si no hay ninguno).</td></tr>
-<tr><td><code>%donadrops_event_chests_spawned%</code></td><td>Cofres generados en lo que va del evento activo.</td></tr>
-<tr><td><code>%donadrops_event_chests_total%</code></td><td><code>total-chests</code> del evento activo.</td></tr>
-<tr><td><code>%donadrops_next_event_time%</code></td><td>Tiempo formateado (ej. <code>45m 12s</code>) hasta el próximo evento automático, entre todos los eventos configurados.</td></tr>
-<tr><td><code>%donadrops_next_chest_time%</code></td><td>Tiempo restante del cooldown global antes de que el spawneador automático pueda intentar aparecer otro cofre random.</td></tr>
-<tr><td><code>%donadrops_next_event_seconds%</code></td><td>Lo mismo, pero en segundos totales (útil para barras de progreso).</td></tr>
-<tr><td><code>%donadrops_event_&lt;nombre&gt;_next_time%</code></td><td>Tiempo hasta el próximo disparo automático de ESE evento en particular.</td></tr>
-<tr><td><code>%donadrops_player_opened%</code></td><td>Cantidad de cofres que el jugador reclamó por completo.</td></tr>
-<tr><td><code>%donadrops_player_rarity_score%</code></td><td>Puntaje acumulado de rareza del jugador (usado en <code>/dd tops</code>).</td></tr>
-<tr><td><code>%donadrops_player_rarest%</code></td><td>Rareza más alta que ese jugador reclamó alguna vez.</td></tr>
-<tr><td><code>%donadrops_player_rewards_total%</code></td><td>Cantidad total de ítems recibidos de cofres.</td></tr>
-<tr><td><code>%donadrops_player_best_reward%</code></td><td>La entrega individual más grande (cantidad de un mismo ítem) que recibió.</td></tr>
+<tr><th>Placeholder</th><th>Returns</th></tr>
+<tr><td><code>%donadrops_version%</code></td><td>The plugin's installed version.</td></tr>
+<tr><td><code>%donadrops_language%</code></td><td>The currently configured language.</td></tr>
+<tr><td><code>%donadrops_total_chests%</code></td><td>Total number of chests registered in <code>/drops</code>.</td></tr>
+<tr><td><code>%donadrops_active_chests%</code></td><td>Number of chests currently spawned in the world.</td></tr>
+<tr><td><code>%donadrops_chest_&lt;name&gt;_active%</code></td><td>How many instances of that particular chest are spawned right now.</td></tr>
+<tr><td><code>%donadrops_chest_&lt;name&gt;_rarity%</code></td><td>That chest's rarity (1-5).</td></tr>
+<tr><td><code>%donadrops_chest_&lt;name&gt;_category%</code></td><td>That chest's category name (with colors).</td></tr>
+<tr><td><code>%donadrops_event_active%</code></td><td><code>yes</code>/<code>no</code>, whether a drop event is currently running.</td></tr>
+<tr><td><code>%donadrops_event_name%</code></td><td>The active drop event's name (empty if there isn't one).</td></tr>
+<tr><td><code>%donadrops_event_chests_spawned%</code></td><td>Chests spawned so far during the active event.</td></tr>
+<tr><td><code>%donadrops_event_chests_total%</code></td><td>The active event's <code>total-chests</code>.</td></tr>
+<tr><td><code>%donadrops_next_event_time%</code></td><td>Formatted time (e.g. <code>45m 12s</code>) until the next automatic event, across every configured event.</td></tr>
+<tr><td><code>%donadrops_next_chest_time%</code></td><td>Time left on the global cooldown before the automatic spawner can try to spawn another random chest.</td></tr>
+<tr><td><code>%donadrops_next_event_seconds%</code></td><td>The same, but in total seconds (useful for progress bars).</td></tr>
+<tr><td><code>%donadrops_event_&lt;name&gt;_next_time%</code></td><td>Time until THAT particular event's next automatic trigger.</td></tr>
+<tr><td><code>%donadrops_player_opened%</code></td><td>How many chests the player has fully claimed.</td></tr>
+<tr><td><code>%donadrops_player_rarity_score%</code></td><td>The player's accumulated rarity score (used in <code>/dd tops</code>).</td></tr>
+<tr><td><code>%donadrops_player_rarest%</code></td><td>The highest rarity that player has ever claimed.</td></tr>
+<tr><td><code>%donadrops_player_rewards_total%</code></td><td>Total number of items received from chests.</td></tr>
+<tr><td><code>%donadrops_player_best_reward%</code></td><td>The single biggest delivery (amount of the same item) they've received.</td></tr>
 </table>
-<p>Dentro del propio plugin (mensajes de chat, títulos, comandos al abrir, hologramas), seguís usando las variables internas de siempre: <code>%player%</code>, <code>%name%</code>, <code>%world%</code>, <code>%x%</code>, <code>%y%</code>, <code>%z%</code>, <code>{name}</code>/<code>{stars}</code> en hologramas, y <code>%time%</code> en los mensajes de <code>next-event-*</code> dentro de un Drop Event.</p>
+<p>Inside the plugin itself (chat messages, titles, commands on open, holograms), you still use the same internal variables as always: <code>%player%</code>, <code>%name%</code>, <code>%world%</code>, <code>%x%</code>, <code>%y%</code>, <code>%z%</code>, <code>{name}</code>/<code>{stars}</code> in holograms, and <code>%time%</code> in a Drop Event's <code>next-event-*</code> messages.</p>
 
-<h2 id="faq">Solución de problemas</h2>
-<p><b>El plugin no inicia:</b> revisa que PlaceholderAPI esté instalado. Es una dependencia obligatoria de DonaDrops. Comprueba también que el servidor corra Java 17 o superior y que sea Paper 1.20.</p><p><b>El botón Editar Recompensas no hace nada:</b> en v1.3.0 debe abrir un inventario de edición de 54 slots. Puedes retirar las recompensas actuales y colocar nuevos ítems; los cambios se guardan al cerrar.</p>
-<p><b>Las posiciones vacías de /dd tops no muestran nada:</b> revisa <code>items.empty</code> en el archivo de ese ranking dentro de <code>/gui</code> (ver <a href="#gui-files">Archivos de GUI y rankings</a>). Cada posición sin jugador se rellena automáticamente con ese ítem, y en cuanto un jugador la alcanza se sustituye por su cabeza y sus estadísticas. Si el archivo no define <code>items.empty</code>, se usa un <code>BARRIER</code> genérico como respaldo.</p>
-<p><b>Quiero elegir los mundos de un drop:</b> edita <code>spawn-world</code> en el archivo del drop. Puedes indicar varios mundos separados por comas, por ejemplo <code>spawn-world: worldcustom, world, world_nether</code>.</p>
-<p><b>Quiero una zona:</b> usa <code>/dd zonewand</code> o <code>/dd pos1</code> + <code>/dd pos2</code>, después <code>/dd createzone &lt;nombre&gt;</code> y pulsa la confirmación. Para eliminarla, usa <code>/dd deletezone &lt;nombre&gt;</code>.</p>
+<h2 id="faq">Troubleshooting</h2>
+<p><b>The plugin doesn't start:</b> check that PlaceholderAPI is installed. It's a required dependency of DonaDrops. Also check that the server is running Java 17 or higher and that it's Paper 1.20.</p><p><b>The Edit Rewards button doesn't do anything:</b> as of v1.3.0 it should open a 54-slot editing inventory. You can remove existing rewards and place new items; changes are saved when you close it.</p>
+<p><b>Empty positions in /dd tops don't show anything:</b> check <code>items.empty</code> in that ranking's file inside <code>/gui</code> (see <a href="#gui-files">GUI and ranking files</a>). Every position without a player is automatically filled with that item, and as soon as a player reaches it, it's replaced by their head and stats. If the file doesn't define <code>items.empty</code>, a generic <code>BARRIER</code> is used as a fallback.</p>
+<p><b>I want to choose which worlds a drop spawns in:</b> edit <code>spawn-world</code> in the drop's file. You can list several worlds separated by commas, e.g. <code>spawn-world: worldcustom, world, world_nether</code>.</p>
+<p><b>I want a zone:</b> use <code>/dd zonewand</code> or <code>/dd pos1</code> + <code>/dd pos2</code>, then <code>/dd createzone &lt;name&gt;</code> and click the confirmation. To remove it, use <code>/dd deletezone &lt;name&gt;</code>.</p>
 
-<p><b>/dd reload indica un error YAML:</b> si un archivo YAML está corrupto, la recarga debe considerarse fallida y la consola debe mostrar el archivo y la línea del problema en lugar de informar falsamente que la recarga terminó correctamente.</p>
-<p><b>No puedo abrir un cofre recién aparecido:</b> revisa el tiempo configurado en <code>open-delay-seconds</code>. El mensaje de cooldown puede mostrar cuánto tiempo queda.</p>
-<p><b>Quiero cambiar el tipo de cofre:</b> utiliza el selector de Inventory Type del editor o configura <code>type-override</code> en el drop.</p>
-<p><b>Quiero una cabeza con textura:</b> usa <code>material: PLAYER_HEAD</code> y <code>texture: "VALOR_DE_LA_TEXTURE"</code>.</p>
-<p><b>Las partículas desaparecen antes de abrir el cofre:</b> revisa la configuración de partículas de aparición; estas deben permanecer activas mientras el cofre no haya sido abierto.</p>
-<p><b>No veo partículas antes de que aparezca el cofre:</b> vienen desactivadas. En <code>config.yml → pre-spawn-particles</code> cambia <code>type: none</code> por el nombre de una partícula (y revisa que el drop no tenga <code>none</code> en su propio <code>pre-spawn-particles.type</code>). Ver <a href="#pre-spawn">Partículas de aparición</a>.</p>
-<p><b>No veo la animación ni las partículas alrededor del cofre:</b> también vienen desactivadas. La animación se activa en el drop (<code>spawn-animation.type</code>) y las partículas persistentes en <code>spawn-particles.type</code>. Ver <a href="#spawn-effects">Efectos de aparición del cofre</a>.</p>
-<p><b>Los menús no salen en mi idioma:</b> el idioma se cambia en <code>config.yml → language</code> o desde el botón de idioma del editor, y es global. Los menús de <code>/gui</code> que hayas editado mantienen el texto que escribiste. Ver <a href="#lang">Idiomas</a>.</p>
-<p><b>Un sonido o partícula no funciona:</b> verifica que el nombre corresponda a la versión de Minecraft/Paper utilizada.</p>
-<p><b>El servidor se congela/crashea al aparecer un cofre:</b> actualiza a la última versión del plugin; el spawneo automático ya no fuerza la carga de chunks.</p>
+<p><b>/dd reload reports a YAML error:</b> if a YAML file is broken, the reload should be treated as failed and the console should show the file and the line the problem is on, instead of falsely reporting that the reload finished successfully.</p>
+<p><b>I can't open a chest that just spawned:</b> check the time set in <code>open-delay-seconds</code>. The cooldown message can show how much time is left.</p>
+<p><b>I want to change the chest's type:</b> use the editor's Inventory Type selector, or set <code>type-override</code> on the drop.</p>
+<p><b>I want a textured head:</b> use <code>material: PLAYER_HEAD</code> and <code>texture: "TEXTURE_VALUE"</code>.</p>
+<p><b>Particles disappear before the chest opens:</b> check the spawn particle settings; they should stay active as long as the chest hasn't been opened.</p>
+<p><b>I don't see particles before the chest appears:</b> they ship disabled. In <code>config.yml → pre-spawn-particles</code>, change <code>type: none</code> to a particle's name (and check that the drop doesn't have <code>none</code> in its own <code>pre-spawn-particles.type</code>). See <a href="#pre-spawn">Pre-spawn particles</a>.</p>
+<p><b>I don't see the animation or the particles around the chest:</b> those ship disabled too. The animation is set on the drop (<code>spawn-animation.type</code>) and the persistent particles in <code>spawn-particles.type</code>. See <a href="#spawn-effects">Chest spawn effects</a>.</p>
+<p><b>Menus don't show up in my language:</b> the language is changed in <code>config.yml → language</code> or from the editor's language button, and it's global. Any <code>/gui</code> menus you've edited keep the text you wrote. See <a href="#lang">Languages</a>.</p>
+<p><b>A sound or particle isn't working:</b> check that the name matches the Minecraft/Paper version you're using.</p>
+<p><b>A dropped reward still shows Rarity/Probability lore after I take it out of the chest:</b> fixed in 2.0.10. Update the plugin - the lore is now removed the moment the item leaves the chest, including when it's dropped straight to the ground with the drop key (Q).</p>
+<p><b>Renaming a chest makes /dd editor say it doesn't exist:</b> fixed in 2.0.10. Renaming a chest now updates its internal identifier (and its <code>.yml</code> file) to match, so the name shown by tab-completion always works.</p>
+<p><b>Edit Rewards shows Rarity/Probability more than once, or lines keep piling up:</b> fixed in 2.0.10. The editor now shows a single, self-updating line for each.</p>
+<p><b>The server freezes/crashes when a chest spawns:</b> update to the latest version of the plugin; automatic spawning no longer forces chunks to load.</p>
 
 </main>
 </body>
